@@ -1,0 +1,121 @@
+
+label {
+    font-family: Arial, Verdana;
+    /*text-shadow: 1px 1px 1px #000;*/
+    display: block;
+    float: left; margin-right:15px;
+    font-weight: bold;
+    margin-right:10px;
+    text-align: right;
+    width: 120px;
+    line-height: 25px;
+    font-size: 15px;
+	color: #0D5E44 ;
+	
+	color:rgb(61, 157, 179);
+    }
+
+	
+#contactform {
+ 
+    width: 500px;
+    padding: 20px;
+    /*background: #0D5E44;*/
+    overflow:auto;
+	float:left;
+	margin: -50px auto;
+ 
+    /* Border style */
+    border: 1px solid #aaa;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px; 
+ 
+    /* Border Shadow*/ 
+    -moz-box-shadow: 2px 2px 2px #888;
+    -webkit-box-shadow: 2px 2px 2px #888;
+    box-shadow: 2px 2px 2px #888;
+ 
+    }
+.input{
+    font-family: Arial, Verdana;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid rgb(61, 157, 179);
+    width: 300px;
+	color: #797979 /*rgb(61, 157, 179)*/;
+	margin: 3px auto;
+    }
+	
+textarea{
+    font-family: Arial, Verdana;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid rgb(61, 157, 179);
+    width: 300px;
+    color: #797979;
+	margin-top: 3px;
+    }	
+	
+select{
+    font-family: Arial, Verdana;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid rgb(61, 157, 179);
+    width: 300px;
+    color: #797979;
+	margin-bottom: 2px;
+    }		
+
+	
+.hint{
+    display:none;
+    }
+
+.field:hover .hint {
+    position: absolute;
+    display: block;
+    margin: -30px 0 0 455px;
+    color: #FFFFFF;
+    padding: 7px 10px;
+    background: rgba(0, 0, 0, 0.6);
+ 
+    /*-moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;*/
+    }
+	
+.button{
+	float: right; 
+	margin-right:50px;
+    margin:20px 10px 10px 0px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 6px 10px;
+    cursor:pointer;
+    color: #fff;
+	
+	/* Background gradient */
+	text-align: center;
+    text-shadow: 0 -1px 1px #00d;
+ 
+	background: rgb(61, 157, 179);
+    /*background: -moz-linear-gradient
+       (top, #a5b8da 0%, #7089b3 100%);
+	 background: -webkit-gradient
+		(linear, 0% 0%, 0% 100%,
+		from(#a5b8da), to(#7089b3));*/
+		
+	/* Box styler  */	
+		border: 1px solid rgb(61, 157, 179);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+	/* Box Shadow */
+	-moz-box-shadow: inset 0 1px 0 0 #99D9EA;
+    -webkit-box-shadow: inset 0 1px 0 0 #99D9EA;
+    box-shadow: inset 0 1px 0 0 #99D9EA;
+ 
+ /*  #aec3e5*/
+
+}	
