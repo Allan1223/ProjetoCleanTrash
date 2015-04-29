@@ -3,6 +3,13 @@
 public class Problema{
 	
 	private int    codigoProlema;
+	private int codigoUsuario;
+	public int getCodigoUsuario() {
+		return codigoUsuario;
+	}
+	public void setCodigoUsuario(int codigoUsuario) {
+		this.codigoUsuario = codigoUsuario;
+	}
 	private String tipoProblema;
 	private String descricaoProblema;
 	private String statusProblema;
