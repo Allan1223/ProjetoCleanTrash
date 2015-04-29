@@ -3,7 +3,10 @@ package ads.fafica.modelo;
 public class Operador extends Usuario{
 
 	public Operador(int codigoUsuario, String nomeUsuario, String emailUsuario, String senha, Perfil perfilUsuario) {
-		super(codigoUsuario, nomeUsuario, emailUsuario, senha, perfilUsuario);	
+		
+		super(codigoUsuario, nomeUsuario, emailUsuario, senha, perfilUsuario);
+		
+		new Perfil("Operador do Sistema",1);
 				
 		// TODO Auto-generated constructor stub
 	}	
