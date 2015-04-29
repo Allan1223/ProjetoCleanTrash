@@ -15,7 +15,7 @@ public class ControladorUsuario {
   		this.repositorioUsuario = new RepositorioUsuario(); 
   	}
   	
-	public void inserirUsuario (Usuario usuario) throws RepositorioException {		
+	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		
 		if(!repositorioUsuario.existe(usuario.getCodigoUsuario()));			
 		repositorioUsuario.inserir(usuario);			
 	}

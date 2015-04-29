@@ -18,9 +18,9 @@ public class ConnectionManager {
 
     public static Connection reservaStatement(String sistema) throws Exception {
     	
-    	String conexao = "jdbc:mysql://localhost/meutreino";
+    	String conexao = "jdbc:mysql://localhost/cleanTrash";
     	String usuario = "root";
-    	String senha = "root";
+    	String senha = "admin";
     	
     	   		
     	if (sistema == "mysql") {

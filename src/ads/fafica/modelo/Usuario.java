@@ -1,19 +1,21 @@
 package ads.fafica.modelo;
 
-public abstract class Usuario{
+public  class Usuario{
 
 	private int codigoUsuario;
 	private String nomeUsuario;
 	private String emailUSuario;
 	private String senha;
-	private Perfil perfilUsuario;
+	/*private Perfil perfilUsuario;*/
+	private int perfilUsuario;
 	
-	public Usuario(int codigoUsuario, String nomeUsuario, String emailUSuario, String senha, Perfil perfilUsuario) {
+	public Usuario(int codigoUsuario, String nomeUsuario, String emailUSuario, String senha, int perfilUsuario) {
 		this.setCodigoUsuario(codigoUsuario);
 		this.setNomeUsuario(nomeUsuario);
 		this.setEmailUSuario(nomeUsuario);
 		this.setSenha(senha);
-		this.setPerfilUsuario(perfilUsuario);		
+		this.setPerfilUsuario(perfilUsuario);
+		
 	}
 
 	public int getCodigoUsuario() {
@@ -48,13 +50,22 @@ public abstract class Usuario{
 		this.senha = senha;
 	}
 
-	public Perfil getPerfilUsuario() {
+	public int getPerfilUsuario() {
+		return perfilUsuario;
+	}
+
+	public void setPerfilUsuario(int perfilUsuario) {
+		this.perfilUsuario = perfilUsuario;
+	}
+	
+
+	/*public Perfil getPerfilUsuario() {
 		return perfilUsuario;
 	}
 
 	public void setPerfilUsuario(Perfil perfilUsuario) {
 		this.perfilUsuario = perfilUsuario;
-	}
+	}*/
 
 	
 }

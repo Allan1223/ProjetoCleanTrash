@@ -4,10 +4,17 @@ public class Solucao{
 	
 	private int codigoSolucao;
 	private int codigoUsuario;
+	private int codigoProblema;	
 	private String descricaoSolucao;
 	private String hrFechamentoSolucao;
 	private String dtFechamentoSolucao;
 	
+	public int getCodigoProblema() {
+		return codigoProblema;
+	}
+	public void setCodigoProblema(int codigoProblema) {
+		this.codigoProblema = codigoProblema;
+	}
 	public int getCodigoSolucao() {
 		return codigoSolucao;
 	}

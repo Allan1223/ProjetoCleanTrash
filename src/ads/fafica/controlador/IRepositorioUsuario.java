@@ -6,7 +6,7 @@ import ads.fafica.modelo.Usuario;
 
 public interface IRepositorioUsuario {
 	
-	public void inserir(Usuario usuario) throws RepositorioException; 
+	public void inserir(Usuario usuario) throws RepositorioException, SQLException; 
 
 	public void remover(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 

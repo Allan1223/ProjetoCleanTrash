@@ -6,7 +6,7 @@ public class UsuarioNaoEncontradoException extends Exception{
 			super("Usuario  não encontrado");
 		}
 		
-		public UsuarioNaoEncontradoException(String valor) {
+		public UsuarioNaoEncontradoException(int valor) {
 			super("Usuario " + valor + " não encontrado");
 		}
 
