@@ -3,12 +3,19 @@ package ads.fafica.modelo;
 public class Solucao{
 	
 	private int codigoSolucao;
+	private int codigoUsuario;
 	private String descricaoSolucao;
 	private String hrFechamentoSolucao;
 	private String dtFechamentoSolucao;
 	
 	public int getCodigoSolucao() {
 		return codigoSolucao;
+	}
+	public int getCodigoUsuario() {
+		return codigoUsuario;
+	}
+	public void setCodigoUsuario(int codigoUsuario) {
+		this.codigoUsuario = codigoUsuario;
 	}
 	public void setCodigoSolucao(int codigoSolucao) {
 		this.codigoSolucao = codigoSolucao;
