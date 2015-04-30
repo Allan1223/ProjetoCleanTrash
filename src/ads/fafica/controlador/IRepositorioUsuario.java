@@ -14,9 +14,13 @@ public interface IRepositorioUsuario {
 
 	public void atualizar(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 
-	public boolean existe(int codigoUsuario);
+	public boolean existe(String email) throws RepositorioException, SQLException;
+	
+	public boolean existe(int codigoUsuario) throws RepositorioException, SQLException;
 	
 	public boolean acessoAoSistema(String emailUsuario, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException;
+
+	public Usuario procurar(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 		
 			
 

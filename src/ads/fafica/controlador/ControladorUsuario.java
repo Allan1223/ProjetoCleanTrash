@@ -16,7 +16,7 @@ public class ControladorUsuario {
   	}
   	
 	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		
-		if(!repositorioUsuario.existe(usuario.getCodigoUsuario()));			
+		if(!repositorioUsuario.existe(usuario.getEmailUSuario()));			
 		repositorioUsuario.inserir(usuario);			
 	}
 	
@@ -31,6 +31,11 @@ public class ControladorUsuario {
 	
 	public void alterarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
 		repositorioUsuario.atualizar(usuario);		
+	}
+
+	public Usuario procurarUsuario(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+		return repositorioUsuario.procurar(email);	
+		
 	}
 	
 }

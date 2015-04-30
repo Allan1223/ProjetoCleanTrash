@@ -27,7 +27,7 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form  action="homeComum.html" autocomplete="on"> 
+                            <form  action="ServletAcessarSistema" autocomplete="on" method="Post"> 
                                 <h1>Acesso ao Sistema</h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Digite seu email </label>
@@ -52,7 +52,7 @@
                         </div>
 
                         <div id="register" class="animate form">
-                            <form  action="homeComum.html" autocomplete="on"> 
+                            <form  action="servletPrimeiroCadastroUsuario" autocomplete="on" method="Post"> 
                                 <h1> Cadastre-se </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" data-icon="u">Seu Nome</label>
@@ -67,6 +67,7 @@
                                     <input id="senhaCad" name="senhaCad" required="required" type="password" placeholder="eg. X8df!90EO"/>
                                 </p>
                                 <p> 
+                                <!--  Validar se a senha é igual a senhaConfirm com javascript no clique do botão Submit -->
                                     <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Confirme sua Senha </label>
                                     <input id="senhaConf" name="senhaConf" required="required" type="password" placeholder="eg. X8df!90EO"/>
                                 </p>

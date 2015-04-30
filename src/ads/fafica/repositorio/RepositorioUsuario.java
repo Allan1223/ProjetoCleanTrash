@@ -31,17 +31,17 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	            try {
 	            	
 	            	          	
-	            	String sql = "INSERT INTO USUARIO (codigoUsuario, nome, email, senha, perfil )"
-	            			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	            	String sql = "INSERT INTO USUARIO ( nome, email, senha, perfil )"
+	            			+ " VALUES (?, ?, ?, ?)";
 	            	
 	            	           	
 	            	stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 	            	
-	            	stmt.setInt(1, usuario.getCodigoUsuario());
-	            	stmt.setString(2, usuario.getNomeUsuario());
-	            	stmt.setString(3, usuario.getEmailUSuario());
-	            	stmt.setString(4, usuario.getSenha());
-	            	stmt.setInt(5, usuario.getPerfilUsuario());
+	            	//stmt.setInt(1, usuario.getCodigoUsuario());
+	            	stmt.setString(1, usuario.getNomeUsuario());
+	            	stmt.setString(2, usuario.getEmailUSuario());
+	            	stmt.setString(3, usuario.getSenha());
+	            	stmt.setInt(4, usuario.getPerfilUsuario());
 	            		            	
 	            	stmt.execute();
 	            	
@@ -185,6 +185,33 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		}
 	}
 	
+	public boolean existe(int codigoUsuario) throws RepositorioException, SQLException {
+		/*boolean resposta = false;
+        if (getIndice(codigoUsuario) >= 0) resposta = true;
+        else resposta = false;
+        return resposta;*/
+        
+        
+        PreparedStatement stmt=null;
+		ResultSet rs = null;
+        try {
+        	String sql = "SELECT count(*) as quantidade FROM USUARIO WHERE codigoUsuario = ?";
+        	stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+        	stmt.setInt(1, codigoUsuario);
+        	
+        	rs = stmt.executeQuery();
+        	rs.next();
+        	if (rs.getInt("quantidade") == 0) return false;
+        	else return true;
+        	
+        } catch (SQLException e) {
+			throw new RepositorioException(e);
+		} finally {
+			stmt.close();
+        	rs.close();
+		}
+	}
+	
 	/*private int getIndice(int codigoUsuario) {
         int resposta = -1;
         /*boolean achou = false;
@@ -225,10 +252,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		
 		
 	}
-
-	@Override
-	public boolean existe(int codigoUsuario) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
+	
+	
 }
