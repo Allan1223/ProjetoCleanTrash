@@ -10,12 +10,12 @@ public class ControladorUsuario {
     private IRepositorioUsuario repositorioUsuario;
     
   //contrutor da classe
-  	public ControladorUsuario() throws Exception {
+  	public ControladorUsuario() throws Exception{
   		// instancia o objeto RepositorioPessoaFisicaArray
   		this.repositorioUsuario = new RepositorioUsuario(); 
   	}
   	
-	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		
+  	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		
 		if(!repositorioUsuario.existe(usuario.getEmailUSuario()));			
 		repositorioUsuario.inserir(usuario);			
 	}

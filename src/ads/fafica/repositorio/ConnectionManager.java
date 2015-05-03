@@ -25,9 +25,9 @@ public class ConnectionManager {
     	   		
     	if (sistema == "mysql") {
     		
-    		conexao = "jdbc:mysql://localhost/meutreino";
+    		conexao = "jdbc:mysql://localhost/cleantrash";
     		usuario = "root";
-    		senha = "root";
+    		senha = "admin";
     	}
     	else if(sistema == "oracle") {
     		conexao = "jdbc:oracle:thin:@192.168.43.149:1521:XE";
@@ -47,6 +47,7 @@ public class ConnectionManager {
         if (connection == null) {
             try {
             	
+
             	connection = DriverManager.getConnection(conexao, usuario, senha);
             	            	
 	            //statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
