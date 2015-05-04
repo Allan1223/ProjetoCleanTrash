@@ -21,6 +21,11 @@
 	</head>
 	<body>
 	
+	<%-- Código JSP
+		String mensagem = "Bem vindo ao sistema de agenda do FJ-21!";
+	    out.println(mensagem); 
+	 --%>
+		
 		<div class="md-modal md-effect-19" id="modal-19">
 			<div class="md-content">
 				<h3>Clean Trash</h3>

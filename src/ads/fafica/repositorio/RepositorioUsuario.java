@@ -3,6 +3,9 @@ package ads.fafica.repositorio;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mysql.jdbc.PreparedStatement;
 
 import ads.fafica.controlador.IRepositorioUsuario;
@@ -254,6 +257,40 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		
 		
 	}
+	
+	@Override
+	public List<Usuario> listarUsuarios() {
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+
+		PreparedStatement stmt=null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM USUARIO";
+        	stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+        	rs = stmt.executeQuery();
+        	
+			
+			while (rs.next()) {
+				int codigoUsuario = rs.getInt("codigoUsuario");
+				String nome = rs.getString("nome");
+				String email = rs.getString("email");
+				String senha = rs.getString("senha");
+				int perfil = rs.getInt("perfil");
+								
+				
+				Usuario usuario = new Usuario(codigoUsuario,nome, email, senha,perfil);
+				
+				
+				
+				usuarios.add(usuario);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuarios;
+	}
+
 	
 	
 	

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+import ads.fafica.acao.AcaoCadastrarUsuario;
 import ads.fafica.acao.AcaoUsuario;
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
@@ -22,8 +24,8 @@ import ads.fafica.modelo.Usuario;
 /**
  * Servlet implementation class servletPrimeiroCadastroUsuario
  */
-@WebServlet("/servletPrimeiroCadastroUsuario")
-public class servletPrimeiroCadastroUsuario extends HttpServlet {
+@WebServlet("/controladorUsuario")
+public class ServletControladorUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -35,11 +37,11 @@ public class servletPrimeiroCadastroUsuario extends HttpServlet {
      * @throws Exception 
      * @see HttpServlet#HttpServlet()
      */
-    public servletPrimeiroCadastroUsuario(){
+    public ServletControladorUsuario(){
         
     	acoes.put("cadastrar", new AcaoCadastrarUsuario()); 
-        /*acoes.put("listar", new AcaoListarMedico());
-        acoes.put("formularioAdicionarMedico", new AcaoFormularioAdicionarMedico());
+        /*acoes.put("listar", new AcaoListarMedico());*/
+        /*acoes.put("formularioAdicionarMedico", new AcaoFormularioAdicionarMedico());
         acoes.put("editar", new AcaoEditarMedico());
         acoes.put("excluir", new AcaoExcluirMedico());
         acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());*/
@@ -63,8 +65,11 @@ public class servletPrimeiroCadastroUsuario extends HttpServlet {
 		
 		// recupera o valor do parâmetro 'acao' da requisição
 				String acao = request.getParameter("acao");
+				String tipo = request.getParameter("tipo");
 				// pega a classe de 'Acao' baseado no parâmetro da requisição
-				AcaoUsuario operacao = acoes.get(acao);
+				AcaoUsuario operacao      = acoes.get(acao);
+				
+				
 				if (operacao == null) {
 					// se operacao == null é porque não existe classe 'Acao' com 
 					// a String informada, então vamos usar a acao 'listar' 
@@ -72,7 +77,10 @@ public class servletPrimeiroCadastroUsuario extends HttpServlet {
 				}
 				// chama o método executar da classe de 'Acao' passado request e response
 				try {
-					operacao.executarUsuario(request, response);
+					/*if (tipo == "comum")*/
+						operacao.executarUsuarioComum(request, response);
+					/*else 
+						operacao.executarUsuario(request, response);*/
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

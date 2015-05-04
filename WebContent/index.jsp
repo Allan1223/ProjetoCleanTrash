@@ -52,8 +52,10 @@
                         </div>
 
                         <div id="register" class="animate form">
-                            <form  action="servletPrimeiroCadastroUsuario" autocomplete="on" method="Post"> 
+                            <form  action="controladorUsuario" autocomplete="on" method="Post"> 
                                 <input type="hidden" name="acao" value="cadastrar">
+                                <input type="hidden" name="tipo" value="comum">
+                                
                                 <h1> Cadastre-se </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" data-icon="u">Seu Nome</label>

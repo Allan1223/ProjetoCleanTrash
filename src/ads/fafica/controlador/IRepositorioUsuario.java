@@ -1,6 +1,7 @@
 package ads.fafica.controlador;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import ads.fafica.modelo.Usuario;
 
@@ -21,6 +22,8 @@ public interface IRepositorioUsuario {
 	public boolean acessoAoSistema(String emailUsuario, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException;
 
 	public Usuario procurar(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
+	
+	public List<Usuario> listarUsuarios();
 		
 			
 
