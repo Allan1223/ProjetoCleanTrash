@@ -3,6 +3,8 @@ package ads.fafica.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
+import ads.fafica.acao.AcaoUsuario;
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
-import ads.fafica.controlador.UsuarioNaoEncontradoException;
 import ads.fafica.modelo.Usuario;
 
 /**
@@ -23,7 +27,9 @@ public class servletPrimeiroCadastroUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private ControladorUsuario controladorUsuario; 
+	private Map<String, AcaoUsuario> acoes = new HashMap<String, AcaoUsuario>();
+	
+	 
        
     /**
      * @throws Exception 
@@ -31,14 +37,12 @@ public class servletPrimeiroCadastroUsuario extends HttpServlet {
      */
     public servletPrimeiroCadastroUsuario(){
         
-    	super();
-    	try {
-			controladorUsuario = new ControladorUsuario();
-			System.out.println("aqui");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	acoes.put("cadastrar", new AcaoCadastrarUsuario()); 
+        /*acoes.put("listar", new AcaoListarMedico());
+        acoes.put("formularioAdicionarMedico", new AcaoFormularioAdicionarMedico());
+        acoes.put("editar", new AcaoEditarMedico());
+        acoes.put("excluir", new AcaoExcluirMedico());
+        acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());*/
     	
         
         
@@ -56,24 +60,38 @@ public class servletPrimeiroCadastroUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Esse Servlet sempre cria um usuário com o perfil 2(usuário comum)
-		String nome = request.getParameter("nome");
-		String email = request.getParameter("emailCad");
-		String senha = request.getParameter("senhaCad");
 		
-		 PrintWriter out = response.getWriter();
+		// recupera o valor do parâmetro 'acao' da requisição
+				String acao = request.getParameter("acao");
+				// pega a classe de 'Acao' baseado no parâmetro da requisição
+				AcaoUsuario operacao = acoes.get(acao);
+				if (operacao == null) {
+					// se operacao == null é porque não existe classe 'Acao' com 
+					// a String informada, então vamos usar a acao 'listar' 
+					operacao = acoes.get("listar");
+				}
+				// chama o método executar da classe de 'Acao' passado request e response
+				try {
+					operacao.executarUsuario(request, response);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		/* PrintWriter out = response.getWriter();
 		 
 		 
 
-	      /*  // escreve o texto
+	        // escreve o texto
 	        out.println("<html>");
 	        out.println("<body>");
 	        out.println("Primeira servlet: " + nome + "-" + email + "-" + senha);
 	        out.println("</body>");
-	        out.println("</html>");*/
+	        out.println("</html>");
 		 
-		 /*response.setContentType("text/html");
+		 response.setContentType("text/html");
 		    String pagina="http//www.google.com";
-		    response.sendRedirect(pagina);*/
+		    response.sendRedirect(pagina);
 		
 		// na criação do usuário é preciso testar se já existe usuário cadastrado,
 		// se sim o código do usuário será o ultimo código cadastrado + 1, se não será 1
@@ -97,7 +115,7 @@ public class servletPrimeiroCadastroUsuario extends HttpServlet {
 			e.printStackTrace();
 			e.getMessage();
 			
-		}
+		}*/
 		
 		
 		
