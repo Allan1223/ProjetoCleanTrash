@@ -2,32 +2,30 @@ package ads.fafica.repositorio;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.JOptionPane;
 
 /**
  * Esta é uma classe auxiliar
  */
-public class ConnectionManager {
+public class  ConnectionManager {
 
     private static Connection connection;
     private static Statement statement;
 
     public static Connection reservaStatement(String sistema) throws Exception {
     	
-    	String conexao = "jdbc:mysql://localhost/cleanTrash";
+    	String conexao = "jdbc:mysql://localhost:3306/cleantrash";
     	String usuario = "root";
     	String senha = "admin";
     	
     	   		
     	if (sistema == "mysql") {
     		
-    		conexao = "jdbc:mysql://localhost/cleantrash";
+    		conexao = "jdbc:mysql://localhost:3306/cleantrash";
     		usuario = "root";
     		senha = "admin";
+    		    		
     	}
     	else if(sistema == "oracle") {
     		conexao = "jdbc:oracle:thin:@192.168.43.149:1521:XE";
@@ -47,8 +45,14 @@ public class ConnectionManager {
         if (connection == null) {
             try {
             	
+            		
+            	String driverName = "com.mysql.jdbc.Driver";                        
 
+		    	Class.forName(driverName);
+		    	
+		    	
             	connection = DriverManager.getConnection(conexao, usuario, senha);
+            	           	
             	            	
 	            //statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    	} catch(SQLException e) {

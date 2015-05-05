@@ -1,12 +1,13 @@
 package ads.fafica.repositorio;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.PreparedStatement;
+
 
 import ads.fafica.controlador.IRepositorioUsuario;
 import ads.fafica.controlador.RepositorioException;
@@ -21,6 +22,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	
     public RepositorioUsuario() throws Exception{
     	    	    		
+    	
        this.conn = ConnectionManager.reservaStatement("mysql"); 
        
        

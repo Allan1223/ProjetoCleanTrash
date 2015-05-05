@@ -12,7 +12,10 @@ public class ControladorUsuario {
   //contrutor da classe
   	public ControladorUsuario() throws Exception{
   		// instancia o objeto RepositorioPessoaFisicaArray
+  		
   		this.repositorioUsuario = new RepositorioUsuario(); 
+  		
+  		
   	}
   	
   	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		

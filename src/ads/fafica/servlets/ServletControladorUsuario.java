@@ -77,10 +77,11 @@ public class ServletControladorUsuario extends HttpServlet {
 				}
 				// chama o método executar da classe de 'Acao' passado request e response
 				try {
-					/*if (tipo == "comum")*/
+					
+					if (tipo.equals("comum"))
 						operacao.executarUsuarioComum(request, response);
-					/*else 
-						operacao.executarUsuario(request, response);*/
+					else 
+						operacao.executarUsuario(request, response);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
