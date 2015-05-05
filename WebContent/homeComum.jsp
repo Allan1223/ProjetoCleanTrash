@@ -58,7 +58,7 @@
 					
 					<!--<img src="images\home-icon.png" style="opacity:0.6">-->
 					<div class="codrops-top">
-						<a class="codrops-icon codrops-icon-prev" href="index.html"><span>Sair</span></a>
+						<a class="codrops-icon codrops-icon-prev" href="index.jsp"><span>Sair</span></a>
 					</div>	
 				</div>
 				<!--<div>

@@ -1,11 +1,13 @@
 package ads.fafica.repositorio;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 
@@ -23,7 +25,16 @@ public class RepositorioUsuario implements IRepositorioUsuario{
     public RepositorioUsuario() throws Exception{
     	    	    		
     	
-       this.conn = ConnectionManager.reservaStatement("mysql"); 
+    	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/CleanTrash", "root", "admin");
+			//conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_projeto_mvc", "root", "");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+      /* this.conn = ConnectionManager.reservaStatement("mysql");*/ 
        
        
        
@@ -233,8 +244,30 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 
 
 
-	public boolean acessoAoSistema(String emailUsuario, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException {
+	public Usuario acessoAoSistema(String emailUsuario, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException {
+		
 		Usuario usuario = null;
+   	    PreparedStatement stmt=null;
+		ResultSet rs = null;
+        try {
+        	String sql = "SELECT count(*) as quantidade FROM USUARIO WHERE email = ? and senha = ?";
+        	stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+        	stmt.setString(1, emailUsuario);
+	    	stmt.setString(2, senha);
+        	rs = stmt.executeQuery();
+        	
+        	        	
+        	if (!rs.next()) throw new UsuarioNaoEncontradoException();
+            usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
+        } catch (SQLException e) {
+			throw new RepositorioException(e);
+		} finally {
+			stmt.close();
+			rs.close();
+		}
+        
+		return repositorioUsuario;
+		/*Usuario usuario = null;
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
 	    try {
@@ -253,7 +286,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		} finally {
 			stmt.close();
 	    	rs.close();
-		}
+		}*/
 	    
 	    
 		

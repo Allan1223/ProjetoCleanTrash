@@ -41,4 +41,9 @@ public class ControladorUsuario {
 		
 	}
 	
+	public Usuario acessoAoSistema(String email, String senha) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+		return repositorioUsuario.acessoAoSistema(email, senha);	
+		
+	}
+	
 }

@@ -19,7 +19,7 @@ public interface IRepositorioUsuario {
 	
 	public boolean existe(int codigoUsuario) throws RepositorioException, SQLException;
 	
-	public boolean acessoAoSistema(String emailUsuario, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException;
+	public Usuario acessoAoSistema(String emailUsuario, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException;
 
 	public Usuario procurar(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 	
