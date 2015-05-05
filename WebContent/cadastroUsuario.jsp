@@ -23,7 +23,10 @@
 				<!-- Conteudo da página -->
 				<div id="reportar">
 					
-					<form id="contactform" action="#" method="get">
+					
+					<form id="contactform"  action="controladorUsuario" autocomplete="on" method="Post"> 
+                        <input type="hidden" name="acao" value="cadastrar">
+                        <input type="hidden" name="tipo" value="cadastrar">
 						
 						<div class="field">
 							<label for="name">Nome:*</label>
@@ -33,13 +36,13 @@
 						
 						<div class="field">
 							<label for="name">Email:*</label>
-							<input type="email" class="input" name="senhaAtu" id="senhaAtu" required="required" />
+							<input type="email" class="input" name="emailCad" id="emailCad" required="required" />
 							<p class="hint">Senha Atual.</p>
 						</div>
 						
 						<div class="field">
 						<label for="opcao">Perfil:</label>
-						<select name="opcao">
+						<select name="perfil">
 							<option> Selecione o Perfil</option>
 							<option value = "1">Comum</option>
 							<option value = "2">Operador</option>
@@ -50,7 +53,7 @@
 							
 						<div class="field">
 							<label for="name">Senha:*</label>
-							<input type="password" class="input" name="senha" id="senha" required="required" />
+							<input type="password" class="input" name="senhaCad" id="senhaCad" required="required" />
 							<p class="hint">Nova Senha.</p>
 						</div>
 						<div class="field">

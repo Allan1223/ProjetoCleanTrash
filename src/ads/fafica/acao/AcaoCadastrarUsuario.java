@@ -19,13 +19,13 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 	
 	public AcaoCadastrarUsuario(){
 		
-		try {
+		/*try {
 			this.controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Cacete Voador!");
-		}
+		}*/
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			
 			controladorUsuario.inserirUsuario(usuario);		
 			request.setAttribute("mensagem",
-					"Usuario adicionada com sucesso!");
+					"Usuario adicionado com sucesso!");
 			
 			
 			RequestDispatcher dispatcher = request
@@ -78,9 +78,9 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			
 			Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,2);
 			
-			try {
+			/*try {
 				
-				controladorUsuario.inserirUsuario(usuario);	
+				controladorUsuario.inserirUsuario(usuario);	*/
 				request.setAttribute("mensagem",
 						"Usuario adicionado com sucesso!");
 				
@@ -90,14 +90,14 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 				dispatcher.forward(request, response);
 				
 						    
-			} catch (RepositorioException e) {
+			/*} catch (RepositorioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 							
-			}
+			}*/
 			
 		
 

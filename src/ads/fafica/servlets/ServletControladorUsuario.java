@@ -2,6 +2,8 @@ package ads.fafica.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 
 
 
@@ -37,6 +41,9 @@ public class ServletControladorUsuario extends HttpServlet {
      * @throws Exception 
      * @see HttpServlet#HttpServlet()
      */
+
+	private Connection conn = null;
+	
     public ServletControladorUsuario(){
         
     	acoes.put("cadastrar", new AcaoCadastrarUsuario()); 
@@ -45,6 +52,23 @@ public class ServletControladorUsuario extends HttpServlet {
         acoes.put("editar", new AcaoEditarMedico());
         acoes.put("excluir", new AcaoExcluirMedico());
         acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());*/
+    	
+    	
+    	
+    	try {
+    		 
+    		System.out.println("ainda sim!");
+    		
+    		Class.forName("com.mysql.jdbc.Driver"); 
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cleantrash", "root", "admin");
+			
+			System.out.println("conectou!");
+			//conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_projeto_mvc", "root", "");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     	
         
         
