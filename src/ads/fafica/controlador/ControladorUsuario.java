@@ -46,4 +46,9 @@ public class ControladorUsuario {
 		
 	}
 	
+	public boolean existe(String email) throws RepositorioException, SQLException{
+		return repositorioUsuario.existe(email);	
+		
+	}
+	
 }

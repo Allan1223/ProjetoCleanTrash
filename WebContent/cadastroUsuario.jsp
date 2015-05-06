@@ -44,8 +44,8 @@
 						<label for="opcao">Perfil:</label>
 						<select name="perfil">
 							<option> Selecione o Perfil</option>
-							<option value = "1">Comum</option>
-							<option value = "2">Operador</option>
+							<option value = "Comum">Comum</option>
+							<option value = "Operador">Operador</option>
 							
 						</select>
 						</div>						

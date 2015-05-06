@@ -52,24 +52,7 @@ public class ServletControladorUsuario extends HttpServlet {
         acoes.put("editar", new AcaoEditarMedico());
         acoes.put("excluir", new AcaoExcluirMedico());
         acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());*/
-    	
-    	
-    	
-    	try {
-    		 
-    		System.out.println("ainda sim!");
-    		
-    		Class.forName("com.mysql.jdbc.Driver"); 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cleantrash", "root", "admin");
-			
-			System.out.println("conectou!");
-			//conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_projeto_mvc", "root", "");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-    	
+    	   	
         
         
     }
@@ -92,7 +75,7 @@ public class ServletControladorUsuario extends HttpServlet {
 				String tipo = request.getParameter("tipo");
 				// pega a classe de 'Acao' baseado no parâmetro da requisição
 				AcaoUsuario operacao      = acoes.get(acao);
-				
+										
 				
 				if (operacao == null) {
 					// se operacao == null é porque não existe classe 'Acao' com 
@@ -104,8 +87,10 @@ public class ServletControladorUsuario extends HttpServlet {
 					
 					if (tipo.equals("comum"))
 						operacao.executarUsuarioComum(request, response);
-					else 
+					else {
+						
 						operacao.executarUsuario(request, response);
+					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

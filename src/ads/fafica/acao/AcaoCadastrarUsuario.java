@@ -19,13 +19,13 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 	
 	public AcaoCadastrarUsuario(){
 		
-		/*try {
+		try {
 			this.controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Cacete Voador!");
-		}*/
+			
+		}
 	}
 
 	@Override
@@ -33,27 +33,48 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
 		
+		int perfilUsuario, codigoUsuario = 1;
+		
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("emailCad");
 		String senha = request.getParameter("senhaCad");
 		String perfil = request.getParameter("perfil");
+		
+						
+		if(perfil.equals("Operador"))
+			perfilUsuario = 1;
+		else 
+			perfilUsuario = 2;
 			
 		
-		int codigoUsuario = 1;
 		
-		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,Integer.parseInt(perfil));
+		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,perfilUsuario);
 		
 		try {
 			
+			boolean existe = controladorUsuario.existe(usuario.getEmailUSuario());	
+			
+			if(!existe){
 			controladorUsuario.inserirUsuario(usuario);		
 			request.setAttribute("mensagem",
 					"Usuario adicionado com sucesso!");
 			
-			
+			// controladorUsuario?acao=listar
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("controladorUsuario?acao=listar");
+					.getRequestDispatcher("/manUsuario.jsp");
 			dispatcher.forward(request, response);
-			
+			}
+			else {
+				
+				request.setAttribute("mensagem",
+						"Usuario já existe!");
+				
+				// controladorUsuario?acao=listar
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("/cadastroUsuario.jsp");
+				dispatcher.forward(request, response);
+			}
+				
 					    
 		} catch (RepositorioException e) {
 			// TODO Auto-generated catch block
@@ -78,26 +99,40 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			
 			Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,2);
 			
-			/*try {
+			try {
 				
-				controladorUsuario.inserirUsuario(usuario);	*/
-				request.setAttribute("mensagem",
-						"Usuario adicionado com sucesso!");
+				boolean existe = controladorUsuario.existe(usuario.getEmailUSuario());	
 				
-				
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/homeComum.jsp");
-				dispatcher.forward(request, response);
-				
+				if(!existe){
+					controladorUsuario.inserirUsuario(usuario);	
+					
+					request.setAttribute("mensagem",
+							"Usuario adicionado com sucesso!");
+					
+					
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/homeComum.jsp");
+					dispatcher.forward(request, response);
+				}
+				else {
+					
+					request.setAttribute("mensagem",
+							"Usuario já existe!");
+					
+					// controladorUsuario?acao=listar
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/index.jsp");
+					dispatcher.forward(request, response);
+				}
 						    
-			/*} catch (RepositorioException e) {
+			} catch (RepositorioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 							
-			}*/
+			}
 			
 		
 

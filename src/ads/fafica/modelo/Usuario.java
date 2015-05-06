@@ -12,7 +12,7 @@ public  class Usuario{
 	public Usuario(int codigoUsuario, String nomeUsuario, String emailUSuario, String senha, int perfilUsuario) {
 		this.setCodigoUsuario(codigoUsuario);
 		this.setNomeUsuario(nomeUsuario);
-		this.setEmailUSuario(nomeUsuario);
+		this.setEmailUSuario(emailUSuario);
 		this.setSenha(senha);
 		this.setPerfilUsuario(perfilUsuario);
 		

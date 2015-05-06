@@ -16,6 +16,32 @@
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+		
+		<script language="javascript" type="text/javascript">
+		
+			function validar() {
+				
+									
+				var senha     = document.registrar.senhaCad.value;
+				var rep_senha = document.registrar.senhaConf.value;
+				
+				window.alert(senha + "-" +  rep_senha);
+				
+				
+				
+				if (senha != rep_senha) {
+					alert('Senhas diferentes');
+					registrar.senhaConf.focus();
+					return false;
+				}
+	
+	
+				
+			}
+		</script>
+
+		
+		
     </head>
     <body>
         <div class="container">
@@ -52,7 +78,7 @@
                         </div>
 
                         <div id="register" class="animate form">
-                            <form  action="controladorUsuario" autocomplete="on" method="Post"> 
+                            <form nome="registrar" id="registrar" action="controladorUsuario" autocomplete="on" method="Post"> 
                                 <input type="hidden" name="acao" value="cadastrar">
                                 <input type="hidden" name="tipo" value="comum">
                                 
@@ -75,7 +101,7 @@
                                     <input id="senhaConf" name="senhaConf" required="required" type="password" placeholder="eg. X8df!90EO"/>
                                 </p>
                                 <p class="signin button"> 
-									<input type="submit" value="Cadastrar"/> 
+									<input type="submit"  value="Cadastrar" onclick="return validar()"/> 
 								</p>
                                 <p class="change_link">  
 									Já é cadastrado ?

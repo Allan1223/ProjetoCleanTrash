@@ -17,14 +17,14 @@ public class  ConnectionManager {
     	
     	String conexao = "jdbc:mysql://localhost:3306/cleantrash";
     	String usuario = "root";
-    	String senha = "admin";
+    	String senha = "";
     	
     	   		
     	if (sistema == "mysql") {
     		
     		conexao = "jdbc:mysql://localhost:3306/cleantrash";
     		usuario = "root";
-    		senha = "admin";
+    		senha = "";
     		    		
     	}
     	else if(sistema == "oracle") {
@@ -52,6 +52,8 @@ public class  ConnectionManager {
 		    	
 		    	
             	connection = DriverManager.getConnection(conexao, usuario, senha);
+            	
+            	//System.out.println("puta que pariu vei, Conectou porraaaa!");
             	           	
             	            	
 	            //statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

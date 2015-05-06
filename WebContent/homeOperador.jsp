@@ -53,7 +53,7 @@
 					
 					<!--<img src="images\home-icon.png" style="opacity:0.6">-->
 					<div class="codrops-top">
-						<a class="codrops-icon codrops-icon-prev" href="index.html"><span>Sair</span></a>
+						<a class="codrops-icon codrops-icon-prev" href="index.jsp"><span>Sair</span></a>
 					</div>	
 				</div>
 				<!--<div>
@@ -68,7 +68,7 @@
 				<div><h3>About</h3></div>-->
 				<div class="special"><h3><a href="problemas.html"> Reportes </a></h3></div>
 				<div class="special"><!-- <h3><a href="reportar.html">Reportar Problemas</a></h3>--></div>
-				<div class="special"><h3><a href="manUsuario.html">Manuten&ccedil&atildeo Usu&aacute;rio</a></h3></div>
+				<div class="special"><h3><a href="manUsuario.jsp">Manuten&ccedil&atildeo Usu&aacute;rio</a></h3></div>
 				<div class="special"><h3><a href="ajudaOperador.html">Ajuda</a></h3></div>
 				<div class="special">
 				

@@ -11,6 +11,7 @@ import java.util.List;
 
 
 
+
 import ads.fafica.controlador.IRepositorioUsuario;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
@@ -25,7 +26,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
     public RepositorioUsuario() throws Exception{
     	    	    		
     	
-    	try {
+    	/*try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/CleanTrash", "root", "admin");
 			//conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_projeto_mvc", "root", "");
@@ -33,8 +34,8 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-      /* this.conn = ConnectionManager.reservaStatement("mysql");*/ 
+		}*/
+       this.conn = ConnectionManager.reservaStatement("mysql"); 
        
        
        
@@ -49,7 +50,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	            try {
 	            	
 	            	          	
-	            	String sql = "INSERT INTO USUARIO ( nome, email, senha, perfil )"
+	            	String sql = "INSERT INTO USUARIO (nome, email, senha, perfil )"
 	            			+ " VALUES (?, ?, ?, ?)";
 	            	
 	            	           	
@@ -107,14 +108,20 @@ public class RepositorioUsuario implements IRepositorioUsuario{
         	        	
         	if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoUsuario);
             usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
+            
+            
         } catch (SQLException e) {
 			throw new RepositorioException(e);
 		} finally {
+			
 			stmt.close();
 			rs.close();
+			
 		}
         
-		return repositorioUsuario;
+        return usuario;
+        
+		
 	}
 	
 	public Usuario procurar(String emailUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
@@ -137,7 +144,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			rs.close();
 		}
         
-		return repositorioUsuario;
+        return usuario;
 	}
 
 	//@Override
@@ -250,15 +257,18 @@ public class RepositorioUsuario implements IRepositorioUsuario{
    	    PreparedStatement stmt=null;
 		ResultSet rs = null;
         try {
-        	String sql = "SELECT count(*) as quantidade FROM USUARIO WHERE email = ? and senha = ?";
+        	
+        	
+        	String sql = "SELECT * FROM USUARIO WHERE email = ? and senha = ?";
         	stmt = (PreparedStatement) this.conn.prepareStatement(sql);
         	stmt.setString(1, emailUsuario);
 	    	stmt.setString(2, senha);
         	rs = stmt.executeQuery();
-        	
-        	        	
+        	        	        	
         	if (!rs.next()) throw new UsuarioNaoEncontradoException();
             usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
+                       
+            
         } catch (SQLException e) {
 			throw new RepositorioException(e);
 		} finally {
@@ -266,7 +276,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			rs.close();
 		}
         
-		return repositorioUsuario;
+        return usuario;
 		/*Usuario usuario = null;
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
