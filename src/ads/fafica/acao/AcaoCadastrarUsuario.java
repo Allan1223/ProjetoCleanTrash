@@ -86,7 +86,7 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 		}
 		
 	}	
-		public void executarUsuarioComum(HttpServletRequest request,
+	/*	public void executarUsuarioComum(HttpServletRequest request,
 				HttpServletResponse response) throws ServletException, IOException,
 				SQLException {
 			
@@ -136,8 +136,8 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			
 		
 
-	}
-
+		}
 	
+	}*/
 	
 }

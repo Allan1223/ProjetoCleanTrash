@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page  import="java.util.List" %>
+<%@ page  import="ads.fafica.modelo.Usuario" %> 
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -42,32 +47,96 @@
 				<a style=" margin: 0px 0 0 20px;" href="cadastroUsuario.jsp"> <img src="images/novo.png" alt="Novo Usuario" title="Novo Usuario"></a>
 				
 					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
-				<table>
-					<caption>Reportes</caption>
-						<thead> <tr> <th>Codigo <th>Nome <th>Email <th> Perfil <th> A&ccedil&otildees
-						   <!--<tfoot> <tr> <th>Codigo <th>Tipo <th>Descricao <th> Status-->
-							<tbody>
-							    <tr>
-									<td>1010 <td>Allan Silva <td> allan@mail.com <td> Operador
-									<td> 
-									     <a href="EditarUsuario.html"> <img src="images/editar.png"  width='40px' height="40px" alt="Editar Usuario" title="Editar Usuario"></a>
-									     <a href="#"> <img  src="images/excluir.png" width='40px' height="40px" alt="Excluir Usuario" title="Excluir Usuario" ></a>
-								<tr  style="background: #ccc"> 
-									<td>1020 <td>Helder Andrade<td> helder@mail.com <td> Operador 
-									<td> 
-									     <a href="EditarUsuario.html"> <img src="images/editar.png" width='40px' height="40px" alt="Editar Usuario" title="Editar Usuario"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="Excluir Usuario" title="Excluir Usuario"></a>	
-								<tr> 
-									<td>1030 <td>Carlos Santos<td> carlos@mail.com <td> Comum 
-									<td> 
-									     <a href="EditarUsuario.html"> <img src="images/editar.png" width='40px' height="40px" alt="Editar Usuario" title="Editar Usuario"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="Excluir Usuario" title="Excluir Usuario"></a>
-								<tr  style="background: #ccc">
-									<td>1040 <td>Joao Pedro<td> joao@mail.com <td> Comum 
-									<td> 
-									     <a href="EditarUsuario.html"> <img src="images/editar.png" width='40px' height="40px" alt="Editar Usuario" title="Editar Usuario"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="Excluir Usuario" title="Excluir Usuario"></a>
-				</table>
+
+					<!-- tabela dinâmica -->
+				<table border="1" align="center">
+						<tr>
+						<td>
+							<table border="0" align="center" cellpadding="5" cellspacing="0">
+																		
+								<!-- <tr>
+									<td align="center">
+										<a href="controladorMedico?acao=formularioAdicionarMedico">Adicionar Medicos</a>
+									</td>
+								</tr> -->
+				
+								<tr>
+									<th><b>Codigo Usuario</b></th>
+									<th><b>Nome</b></th>
+									<th><b>Email</b></th>
+									<th><b>Perfil</b></th>
+									<th><b>Acoes</b></th>
+								</tr>
+								
+								<%
+									List<Usuario> usuario = (List<Usuario>) request.getAttribute("usuarios");
+									
+								if(usuario == null){
+								%>	
+									<tr>
+									<td align="center">
+										<p>Nenhum Usuario Cadastrado.</p>
+									</td>
+									</tr>
+								<%}
+								else{
+									for(Usuario usuar: usuario){
+																									
+								%>
+									<tr>
+										<td><%=usuar.getCodigoUsuario()%></td>
+										<td><%=usuar.getNomeUsuario()%>  </td>
+										<td><%=usuar.getEmailUSuario()%> </td>
+										<td><%=usuar.getPerfilUsuario()%></td>
+										
+										<td><a href="controladorUsuario?acao=editar&id=<%=usuar.getCodigoUsuario()%>">
+										<img src="images/editar.png" width='40px' height="40px" alt="Editar Usuario" title="Editar Usuario"></a>
+										</a>
+										    <a href="controladorUsuario?acao=excluir&id=<%=usuar.getCodigoUsuario()%>">
+										    <img src="images/excluir.png" width='40px' height="40px" alt="Excluir Usuario" title="Excluir Usuario">
+										    </a> 
+										</td>
+								    </tr>
+								<%}
+									
+								}%>
+								
+									
+										
+										
+																		
+									
+									
+								<!-- 	
+								<c:if test="${empty usuarios}">
+								<tr>
+									<td align="center">
+										<p>Nenhum Usuario Cadastrado.</p>
+									</td>
+								</tr>
+								</c:if>
+								
+								
+					
+								<c:forEach items="${usuarios}" var="usuario">
+								<tr>
+									<td>${usuario.codigoUsuario}</td>
+									<td>${usuario.nome}</td>
+									<td>${usuario.email}</td>
+									<td>${usuario.perfil}</td>
+									
+								
+									<td><a href="controladorMedico?acao=editar&id=${medico.id}">Editar</a>
+											<a href="controladorMedico?acao=excluir&id=${medico.id}">Excluir</a> </td>
+								</tr>
+								</c:forEach> -->
+							</table>
+						</td>
+						</tr>
+					</table>
+					
+					
+
 
 				
 				</div>

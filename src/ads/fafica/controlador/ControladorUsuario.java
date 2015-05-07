@@ -1,6 +1,7 @@
 package ads.fafica.controlador;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import ads.fafica.modelo.Usuario;
 import ads.fafica.repositorio.RepositorioUsuario;
@@ -24,8 +25,11 @@ public class ControladorUsuario {
 	}
 	
 	public void excluirUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
-		if(repositorioUsuario.existe(codigoUsuario));		
-		repositorioUsuario.remover(codigoUsuario);		
+		/*if(repositorioUsuario.existe(codigoUsuario)){		
+		*/ 
+		System.out.println("controlador existe");
+			repositorioUsuario.remover(codigoUsuario);
+		
 	}
 	
 	public Usuario procurarUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
@@ -48,6 +52,11 @@ public class ControladorUsuario {
 	
 	public boolean existe(String email) throws RepositorioException, SQLException{
 		return repositorioUsuario.existe(email);	
+		
+	}
+	
+	public List<Usuario> listarUsuarios(){
+		return repositorioUsuario.listarUsuarios();
 		
 	}
 	

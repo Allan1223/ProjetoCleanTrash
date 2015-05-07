@@ -70,7 +70,7 @@
 				
 				
 			</div>
-		<div id="home"><h2><a href="homeOperador.html">Home</a></h2></div>
+		<div id="home"><h2><a href="homeOperador.jsp">Home</a></h2></div>
 		
 	</body>
 	

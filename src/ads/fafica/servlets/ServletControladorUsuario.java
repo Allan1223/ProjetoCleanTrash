@@ -14,12 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-
-
-
 import ads.fafica.acao.AcaoCadastrarUsuario;
+import ads.fafica.acao.AcaoExcluirUsuario;
+import ads.fafica.acao.AcaoListarUsuario;
 import ads.fafica.acao.AcaoUsuario;
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
@@ -47,11 +44,11 @@ public class ServletControladorUsuario extends HttpServlet {
     public ServletControladorUsuario(){
         
     	acoes.put("cadastrar", new AcaoCadastrarUsuario()); 
-        /*acoes.put("listar", new AcaoListarMedico());*/
+        acoes.put("listar", new AcaoListarUsuario());
         /*acoes.put("formularioAdicionarMedico", new AcaoFormularioAdicionarMedico());
-        acoes.put("editar", new AcaoEditarMedico());
-        acoes.put("excluir", new AcaoExcluirMedico());
-        acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());*/
+        acoes.put("editar", new AcaoEditarMedico());*/
+        acoes.put("excluir", new AcaoExcluirUsuario());
+        //acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());
     	   	
         
         
@@ -61,7 +58,7 @@ public class ServletControladorUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
@@ -72,7 +69,7 @@ public class ServletControladorUsuario extends HttpServlet {
 		
 		// recupera o valor do parâmetro 'acao' da requisição
 				String acao = request.getParameter("acao");
-				String tipo = request.getParameter("tipo");
+				
 				// pega a classe de 'Acao' baseado no parâmetro da requisição
 				AcaoUsuario operacao      = acoes.get(acao);
 										
@@ -85,12 +82,12 @@ public class ServletControladorUsuario extends HttpServlet {
 				// chama o método executar da classe de 'Acao' passado request e response
 				try {
 					
-					if (tipo.equals("comum"))
+					/*if (tipo.equals("comum"))
 						operacao.executarUsuarioComum(request, response);
-					else {
+					else {*/
 						
 						operacao.executarUsuario(request, response);
-					}
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

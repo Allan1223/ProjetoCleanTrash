@@ -21,15 +21,14 @@
 		
 			function validar() {
 				
-									
-				var senha     = document.registrar.senhaCad.value;
-				var rep_senha = document.registrar.senhaConf.value;
 				
-				window.alert(senha + "-" +  rep_senha);
+				var senhaUser     = document.registrar.senhaCad.value;
+				var rep_senhaUser = document.registrar.senhaConf.value;
+				
+				alert(senhaUser);		
 				
 				
-				
-				if (senha != rep_senha) {
+				if (senhaUser != rep_senhaUser) {
 					alert('Senhas diferentes');
 					registrar.senhaConf.focus();
 					return false;
@@ -80,7 +79,7 @@
                         <div id="register" class="animate form">
                             <form nome="registrar" id="registrar" action="controladorUsuario" autocomplete="on" method="Post"> 
                                 <input type="hidden" name="acao" value="cadastrar">
-                                <input type="hidden" name="tipo" value="comum">
+                                <input type="hidden" name="perfil" value="Comum">
                                 
                                 <h1> Cadastre-se </h1> 
                                 <p> 

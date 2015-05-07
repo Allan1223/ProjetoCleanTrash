@@ -325,9 +325,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 								
 				
 				Usuario usuario = new Usuario(codigoUsuario,nome, email, senha,perfil);
-				
-				
-				
+								
 				usuarios.add(usuario);
 			}
 		} catch (SQLException e) {

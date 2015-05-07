@@ -68,7 +68,7 @@
 				<div><h3>About</h3></div>-->
 				<div class="special"><h3><a href="problemas.html"> Reportes </a></h3></div>
 				<div class="special"><!-- <h3><a href="reportar.html">Reportar Problemas</a></h3>--></div>
-				<div class="special"><h3><a href="manUsuario.jsp">Manuten&ccedil&atildeo Usu&aacute;rio</a></h3></div>
+				<div class="special"><h3><a href="controladorUsuario?acao=listar">Manuten&ccedil&atildeo Usu&aacute;rio</a></h3></div>
 				<div class="special"><h3><a href="ajudaOperador.html">Ajuda</a></h3></div>
 				<div class="special">
 				
