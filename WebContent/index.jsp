@@ -17,9 +17,30 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
 		
+		
 		<script language="javascript" type="text/javascript">
 		
+		
+			function acessoUsuario(){
+				<% 
+					//Boolean validacao = (Boolean)request.getAttribute("validacaoUsuario");
+				
+					//if(validacao != null){
+					//	if(validacao){
+					
+				%>
+					alert("Usuario Inexistente!");
+					
+				<%
+					//	}
+					//}
+					
+				%>	
+			}
 			function validar() {
+				
+				
+				
 				
 				
 				var senhaUser     = document.registrar.senhaCad.value;
@@ -52,7 +73,7 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form  action="acessarSistema" autocomplete="on" method="Post"> 
+                            <form  action="acessarSistema" autocomplete="on" method="Post" onload="return acessoUsuario()"> 
                                 <h1>Acesso ao Sistema</h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Digite seu email </label>
@@ -69,11 +90,30 @@
                                 <p class="login button"> 
                                     <input type="submit" value="Entrar" /> 
 								</p>
+								
+									
+				
                                 <p class="change_link">
 									Não é cadastrado ?
 									<a href="#toregister" class="to_register">Cadastre-se</a>
 								</p>
                             </form>
+                            
+                               <% 
+									Boolean validacao = (Boolean)request.getAttribute("validacaoUsuario");
+								
+									if(validacao != null){
+										if(validacao){
+							
+								%>
+									<p>Usuario Inexistente!</p>
+									
+								<%
+										}
+									}
+									
+								%>
+								
                         </div>
 
                         <div id="register" class="animate form">

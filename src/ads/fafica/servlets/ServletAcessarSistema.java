@@ -60,10 +60,13 @@ public class ServletAcessarSistema extends HttpServlet {
 			
 		
 					
-			if (usuario == null){
+			if (usuario.getNomeUsuario() == null){
 								
+				System.out.println("aqui");
 				request.setAttribute("mensagem",
-						"Usuario não encontrado!");
+						       "Usuario não encontrado!");
+				
+				request.setAttribute("validacaoUsuario",false);
 				
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/index.jsp");
@@ -85,8 +88,16 @@ public class ServletAcessarSistema extends HttpServlet {
 				
 			}
 		} catch (UsuarioNaoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			request.setAttribute("mensagem",
+				       "Usuario não encontrado!");
+		
+				request.setAttribute("validacaoUsuario",false);
+				
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("/index.jsp");
+				dispatcher.forward(request, response);
+		
+			//e.printStackTrace();
 		} catch (RepositorioException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
