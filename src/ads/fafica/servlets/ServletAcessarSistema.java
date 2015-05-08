@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
@@ -60,7 +61,7 @@ public class ServletAcessarSistema extends HttpServlet {
 			
 		
 					
-			if (usuario.getNomeUsuario() == null){
+			/*if (usuario.getNomeUsuario() == null){
 								
 				System.out.println("aqui");
 				request.setAttribute("mensagem",
@@ -73,8 +74,15 @@ public class ServletAcessarSistema extends HttpServlet {
 				dispatcher.forward(request, response);
 			}	
 			//se encontrar, recupera o perfil e chama a página correspondente
-			else{
-				
+			else{*/
+			   		    
+			    //session.setAttribute("usuario",usuario);
+			
+			    request.getSession().invalidate();
+		        HttpSession session = request.getSession(true);
+		        session.setAttribute("usuario",usuario);
+
+			
 				if (usuario.getPerfilUsuario() == 1){
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/homeOperador.jsp");
@@ -86,12 +94,13 @@ public class ServletAcessarSistema extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 				
-			}
+			/*}*/
 		} catch (UsuarioNaoEncontradoException e) {
+			
 			request.setAttribute("mensagem",
 				       "Usuario não encontrado!");
 		
-				request.setAttribute("validacaoUsuario",false);
+				request.setAttribute("validacaoUsuario","naoExiste");
 				
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/index.jsp");

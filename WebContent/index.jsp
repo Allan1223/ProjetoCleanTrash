@@ -1,3 +1,10 @@
+<%  
+    session.invalidate();  
+          
+%> 
+
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
@@ -20,28 +27,9 @@
 		
 		<script language="javascript" type="text/javascript">
 		
-		
-			function acessoUsuario(){
-				<% 
-					//Boolean validacao = (Boolean)request.getAttribute("validacaoUsuario");
-				
-					//if(validacao != null){
-					//	if(validacao){
-					
-				%>
-					alert("Usuario Inexistente!");
-					
-				<%
-					//	}
-					//}
-					
-				%>	
-			}
 			function validar() {
 				
-				
-				
-				
+				alert(document.registrar.senhaCad.value);
 				
 				var senhaUser     = document.registrar.senhaCad.value;
 				var rep_senhaUser = document.registrar.senhaConf.value;
@@ -64,6 +52,9 @@
 		
     </head>
     <body>
+    
+     
+    
         <div class="container">
             
             <section>				
@@ -87,6 +78,31 @@
 									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
 									<label for="loginkeeping">Keep me logged in</label>
 								</p>-->
+								
+								 <% 
+                            
+		                            
+											String validacao = (String)request.getAttribute("validacaoUsuario");
+														
+																				
+											if(validacao != null){
+												if(validacao.equals("naoExiste")){
+													
+													%>
+													<h4 style="color:red;">
+												 		<% out.println("Usu&aacuterio ou Senha inv&aacutelidos!"); %>
+													</h4>
+												<%											
+													
+													
+												}
+											}
+											
+									%>
+									
+									
+										
+								
                                 <p class="login button"> 
                                     <input type="submit" value="Entrar" /> 
 								</p>
@@ -94,32 +110,21 @@
 									
 				
                                 <p class="change_link">
-									Não é cadastrado ?
+									N&atildeo cadastrado ?
 									<a href="#toregister" class="to_register">Cadastre-se</a>
 								</p>
                             </form>
                             
-                               <% 
-									Boolean validacao = (Boolean)request.getAttribute("validacaoUsuario");
-								
-									if(validacao != null){
-										if(validacao){
-							
-								%>
-									<p>Usuario Inexistente!</p>
-									
-								<%
-										}
-									}
-									
-								%>
+                           
+                              
 								
                         </div>
-
+                        
+                        
                         <div id="register" class="animate form">
                             <form nome="registrar" id="registrar" action="controladorUsuario" autocomplete="on" method="Post"> 
                                 <input type="hidden" name="acao" value="cadastrar">
-                                <input type="hidden" name="perfil" value="Comum">
+                                <input type="hidden" name="perfil" value="ComumInicial">                                
                                 
                                 <h1> Cadastre-se </h1> 
                                 <p> 
@@ -139,11 +144,32 @@
                                     <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Confirme sua Senha </label>
                                     <input id="senhaConf" name="senhaConf" required="required" type="password" placeholder="eg. X8df!90EO"/>
                                 </p>
+                                
+                                <% 
+                            
+		                            
+			                                String validacaoExiste = (String)request.getAttribute("validacaoUsuario");
+											
+											if(validacaoExiste != null){
+												if(validacaoExiste.equals("existe")){
+													
+													%>
+													<h4 style="color:red;">
+												 		<% out.println("Usu&aacuterio j&aacute Existe!"); %>
+													</h4>
+													
+													
+												<%											
+												}
+											}
+											
+									%>
+									
                                 <p class="signin button"> 
 									<input type="submit"  value="Cadastrar" onclick="return validar()"/> 
 								</p>
                                 <p class="change_link">  
-									Já é cadastrado ?
+									J&aacute cadastrado ?
 									<a href="#tologin" class="to_register"> Ir pra o Login </a>
 								</p>
                             </form>

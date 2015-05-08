@@ -20,15 +20,14 @@ public class ControladorUsuario {
   	}
   	
   	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		
-		if(!repositorioUsuario.existe(usuario.getEmailUSuario()));			
+		if(!repositorioUsuario.existe(usuario.getEmailUsuario()));			
 		repositorioUsuario.inserir(usuario);			
 	}
 	
 	public void excluirUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
 		/*if(repositorioUsuario.existe(codigoUsuario)){		
 		*/ 
-		System.out.println("controlador existe");
-			repositorioUsuario.remover(codigoUsuario);
+		repositorioUsuario.remover(codigoUsuario);
 		
 	}
 	
@@ -58,6 +57,10 @@ public class ControladorUsuario {
 	public List<Usuario> listarUsuarios(){
 		return repositorioUsuario.listarUsuarios();
 		
+	}
+	
+	public void atualizarSenha(Usuario usuario) throws RepositorioException, SQLException, UsuarioNaoEncontradoException{
+		repositorioUsuario.atualizarSenha(usuario);
 	}
 	
 }

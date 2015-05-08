@@ -1,3 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ page  import="java.util.List" %>
+<%@ page  import="ads.fafica.modelo.Usuario" %>
+
+<%@ page language="java" %>
+<%
+// Sessão do usuário 
+if(session.getAttribute("usuario") == null) {
+	// se o usuário não estiver logado será direcionado para a tela de Login
+	response.sendRedirect("/cleantrash/index.jsp");
+} 
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+//Envia a sessao
+session.setAttribute("usuario",usuario);
+
+
+
+
+%>
+
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -20,11 +44,14 @@
 				
 	</head>
 	<body>
-	
+	 	
+		
 	<%-- Código JSP
 		String mensagem = "Bem vindo ao sistema de agenda do FJ-21!";
 	    out.println(mensagem); 
 	 --%>
+		
+		<%//=usuario.getEmailUsuario() %>
 		
 		<div class="md-modal md-effect-19" id="modal-19">
 			<div class="md-content">
@@ -56,6 +83,7 @@
 				<div>
 					<h1>Clean Trash</h1>
 					
+									
 					<!--<img src="images\home-icon.png" style="opacity:0.6">-->
 					<div class="codrops-top">
 						<a class="codrops-icon codrops-icon-prev" href="index.jsp"><span>Sair</span></a>
@@ -73,7 +101,7 @@
 				<div><h3>About</h3></div>-->
 				<div class="special"><h3><a href="reportar.html">Reportar Problemas</a></h3></div>
 				<div class="special"><h3><a href="status.html">Status dos Problemas</a></h3></div>
-				<div class="special"><h3><a href="alterarSenha.html">Alterar Senha</a></h3></div>
+				<div class="special"><h3><a href="alterarSenha.jsp">Alterar Senha</a></h3></div>
 				<div class="special"><h3><a href="ajuda.html">Ajuda</a></h3></div>
 				<div class="special">
 				

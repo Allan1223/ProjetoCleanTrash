@@ -17,14 +17,14 @@ public class  ConnectionManager {
     	
     	String conexao = "jdbc:mysql://localhost:3306/cleantrash";
     	String usuario = "root";
-    	String senha = "admin";
+    	String senha = "";
     	
     	   		
     	if (sistema == "mysql") {
     		
     		conexao = "jdbc:mysql://localhost:3306/cleantrash";
     		usuario = "root";
-    		senha = "admin";
+    		senha = "";
     		    		
     	}
     	else if(sistema == "oracle") {

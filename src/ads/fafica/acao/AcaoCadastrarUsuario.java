@@ -43,36 +43,65 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 						
 		if(perfil.equals("Operador"))
 			perfilUsuario = 1;
-		else 
+		else
 			perfilUsuario = 2;
 			
-		
-		
 		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,perfilUsuario);
 		
 		try {
 			
-			boolean existe = controladorUsuario.existe(usuario.getEmailUSuario());	
+			boolean existe = controladorUsuario.existe(usuario.getEmailUsuario());	
 			
 			if(!existe){
-			controladorUsuario.inserirUsuario(usuario);		
-			request.setAttribute("mensagem",
-					"Usuario adicionado com sucesso!");
+				
+				controladorUsuario.inserirUsuario(usuario);
+				
+							
+				request.setAttribute("mensagem",
+						"Usuario adicionado com sucesso!");
 			
-			// controladorUsuario?acao=listar
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/manUsuario.jsp");
-			dispatcher.forward(request, response);
+			    // testa se o cadastro veio da página inicial
+			    if(perfil.equals("ComumInicial")){
+			    	
+			    	RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/homeComum.jsp");
+					dispatcher.forward(request, response);
+				
+					
+				}
+				
+				else{
+					
+					// controladorUsuario?acao=listar
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("controladorUsuario?acao=listar");
+					dispatcher.forward(request, response);				
+					
+					
+				}
 			}
 			else {
 				
 				request.setAttribute("mensagem",
 						"Usuario já existe!");
+				// retorna um erro
+				request.setAttribute("validacaoUsuario","existe");
+				// testa se o cadastro veio da página inicial para redirecionar a página
 				
-				// controladorUsuario?acao=listar
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/cadastroUsuario.jsp");
-				dispatcher.forward(request, response);
+								
+				if(perfil.equals("ComumInicial")){
+															
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/index.jsp");
+					dispatcher.forward(request, response);
+					
+				}
+				else{
+					// controladorUsuario?acao=listar
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/cadastroUsuario.jsp");
+					dispatcher.forward(request, response);
+				}
 			}
 				
 					    

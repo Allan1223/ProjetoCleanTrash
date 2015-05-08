@@ -4,7 +4,7 @@ public  class Usuario{
 
 	private int codigoUsuario;
 	private String nomeUsuario;
-	private String emailUSuario;
+	private String emailUsuario;
 	private String senha;
 	/*private Perfil perfilUsuario;*/
 	private int perfilUsuario;
@@ -12,7 +12,7 @@ public  class Usuario{
 	public Usuario(int codigoUsuario, String nomeUsuario, String emailUSuario, String senha, int perfilUsuario) {
 		this.setCodigoUsuario(codigoUsuario);
 		this.setNomeUsuario(nomeUsuario);
-		this.setEmailUSuario(emailUSuario);
+		this.setEmailUsuario(emailUSuario);
 		this.setSenha(senha);
 		this.setPerfilUsuario(perfilUsuario);
 		
@@ -34,12 +34,12 @@ public  class Usuario{
 		this.nomeUsuario = nomeUsuario;
 	}
 
-	public String getEmailUSuario() {
-		return emailUSuario;
+	public String getEmailUsuario() {
+		return emailUsuario;
 	}
 
-	public void setEmailUSuario(String emailUSuario) {
-		this.emailUSuario = emailUSuario;
+	public void setEmailUsuario(String emailUSuario) {
+		this.emailUsuario = emailUSuario;
 	}
 
 	public String getSenha() {

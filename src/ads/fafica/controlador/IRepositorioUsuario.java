@@ -24,6 +24,8 @@ public interface IRepositorioUsuario {
 	public Usuario procurar(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 	
 	public List<Usuario> listarUsuarios();
+	
+	public void atualizarSenha(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 		
 			
 

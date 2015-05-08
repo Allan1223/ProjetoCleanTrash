@@ -58,7 +58,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	            	
 	            	//stmt.setInt(1, usuario.getCodigoUsuario());
 	            	stmt.setString(1, usuario.getNomeUsuario());
-	            	stmt.setString(2, usuario.getEmailUSuario());
+	            	stmt.setString(2, usuario.getEmailUsuario());
 	            	stmt.setString(3, usuario.getSenha());
 	            	stmt.setInt(4, usuario.getPerfilUsuario());
 	            		            	
@@ -182,6 +182,37 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			}*/
 	}
 
+	//@Override
+		public void atualizarSenha(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+				PreparedStatement stmt=null;
+			    try {
+		            if (usuario != null) {
+		                try {
+		                	String sql = "UPDATE USUARIO SET nome = ?, senha = ?"
+		                			+ " where codigoUsuario = ?  ";
+		                	  
+		                	
+		                	stmt = this.conn.prepareStatement(sql);
+		                	               	
+		                	
+		                	stmt.setString(1, usuario.getNomeUsuario());
+		                	stmt.setString(2, usuario.getSenha());
+		                	stmt.setInt(3, usuario.getCodigoUsuario());
+		                	
+		                	                	
+		                	Integer resultado = stmt.executeUpdate();
+		                    if (resultado == 0) throw new UsuarioNaoEncontradoException();
+		                }
+		                catch (SQLException e) {
+		    			    throw new RepositorioException(e);
+		    		    }
+		            }
+		        } finally {
+		        	stmt.close();
+				}
+		}
+
+		
 	//@Override
 	public boolean existe(String emailUsuario) throws RepositorioException, SQLException {
 		/*boolean resposta = false;
@@ -324,7 +355,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 				int perfil = rs.getInt("perfil");
 								
 				
-				Usuario usuario = new Usuario(codigoUsuario,nome, email, senha,perfil);
+				Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,perfil);
 								
 				usuarios.add(usuario);
 			}

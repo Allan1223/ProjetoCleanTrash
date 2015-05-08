@@ -35,8 +35,7 @@ public class AcaoExcluirUsuario implements AcaoUsuario {
 		try {
 			//excluir usuário
 			controlador.excluirUsuario(id);
-			
-			System.out.println("excluir");
+						
 		} catch (UsuarioNaoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ads.fafica.acao.AcaoAlterarSenhaUsuario;
 import ads.fafica.acao.AcaoCadastrarUsuario;
 import ads.fafica.acao.AcaoExcluirUsuario;
 import ads.fafica.acao.AcaoListarUsuario;
@@ -47,6 +48,7 @@ public class ServletControladorUsuario extends HttpServlet {
         acoes.put("listar", new AcaoListarUsuario());
         /*acoes.put("formularioAdicionarMedico", new AcaoFormularioAdicionarMedico());
         acoes.put("editar", new AcaoEditarMedico());*/
+        acoes.put("alterarSenha", new AcaoAlterarSenhaUsuario());
         acoes.put("excluir", new AcaoExcluirUsuario());
         //acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());
     	   	
