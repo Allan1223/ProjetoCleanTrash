@@ -2,9 +2,6 @@
     session.invalidate();  
           
 %> 
-
-
-
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
@@ -64,7 +61,8 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form  action="acessarSistema" autocomplete="on" method="Post" onload="return acessoUsuario()"> 
+                            
+                            <form  action="acessarSistema" autocomplete="on" method="Post" > 
                                 <h1>Acesso ao Sistema</h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Digite seu email </label>

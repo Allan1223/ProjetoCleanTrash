@@ -35,9 +35,9 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 		
 		int perfilUsuario, codigoUsuario = 1;
 		
-		String nome = request.getParameter("nome");
-		String email = request.getParameter("emailCad");
-		String senha = request.getParameter("senhaCad");
+		String nome   = request.getParameter("nome");
+		String email  = request.getParameter("emailCad");
+		String senha  = request.getParameter("senhaCad");
 		String perfil = request.getParameter("perfil");
 		
 						

@@ -44,6 +44,7 @@ public class ServletAcessarSistema extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
@@ -57,27 +58,7 @@ public class ServletAcessarSistema extends HttpServlet {
 		try {
 			// Procura pelo usuário no banco de dados
 			Usuario usuario = controladorUsuario.acessoAoSistema(email, senha);
-			// se não encontrar da uma menssagem de erro e volta a tela de Login
-			
-		
 					
-			/*if (usuario.getNomeUsuario() == null){
-								
-				System.out.println("aqui");
-				request.setAttribute("mensagem",
-						       "Usuario não encontrado!");
-				
-				request.setAttribute("validacaoUsuario",false);
-				
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/index.jsp");
-				dispatcher.forward(request, response);
-			}	
-			//se encontrar, recupera o perfil e chama a página correspondente
-			else{*/
-			   		    
-			    //session.setAttribute("usuario",usuario);
-			
 			    request.getSession().invalidate();
 		        HttpSession session = request.getSession(true);
 		        session.setAttribute("usuario",usuario);
@@ -97,6 +78,7 @@ public class ServletAcessarSistema extends HttpServlet {
 			/*}*/
 		} catch (UsuarioNaoEncontradoException e) {
 			
+			// se não encontrar da uma menssagem de erro e volta a tela de Login
 			request.setAttribute("mensagem",
 				       "Usuario não encontrado!");
 		
