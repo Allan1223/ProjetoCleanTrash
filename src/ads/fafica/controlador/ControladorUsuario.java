@@ -31,12 +31,16 @@ public class ControladorUsuario {
 		
 	}
 	
-	public Usuario procurarUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
-		return repositorioUsuario.procurar(codigoUsuario);		
+	public List<Usuario> procurarUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
+		return repositorioUsuario.procurarUsuario(codigoUsuario);		
 	}
 	
-	public void alterarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
-		repositorioUsuario.atualizar(usuario);		
+	public Usuario procurarUsuarioId(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
+		return repositorioUsuario.procurarUsuarioId(codigoUsuario);		
+	}
+	
+	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
+		repositorioUsuario.atualizarUsuario(usuario);		
 	}
 
 	public Usuario procurarUsuario(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {

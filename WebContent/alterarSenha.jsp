@@ -122,7 +122,7 @@ session.setAttribute("usuario",usuario);
 							<p class="hint">Confime a Senha.</p>
 						</div>
 						
-						<input type="reset" value="Limpar" class="button" />
+						<!--  <input type="reset" value="Limpar" class="button" />-->
 					    <input type="submit" name="btnEnviar" class="button" value = "Alterar" />
 				
 					</form>

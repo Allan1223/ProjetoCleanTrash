@@ -3,6 +3,21 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%@ page  import="java.util.List" %>
 <%@ page  import="ads.fafica.modelo.Usuario" %>
+<% 
+// Sessão do usuário 
+if(session.getAttribute("usuario") == null) {
+	// se o usuário não estiver logado será direcionado para a tela de Login
+	response.sendRedirect("/cleantrash/index.jsp");
+} 
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+//Envia a sessao
+session.setAttribute("usuario",usuario);
+
+Usuario usuarioEditar = (Usuario) request.getAttribute("usuarioEditar");
+
+%>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -28,26 +43,30 @@
 				<!-- Conteudo da pÃ¡gina -->
 				<div id="reportar">
 					
-					<form id="contactform" action="#" method="get">
-						
-						<div class="field">
-							<label for="name">Nome:*</label>
-							<input type="text" class="input" name="nome" id="nome" required="required" value="Allan Silva" />
-							<p class="hint">Edite seu nome.</p>
-						</div>
+					<form id="contactform" action="controladorUsuario" method="post">
+						<input type="hidden" name="acao" value="editar">
+						<input type="hidden" name="codigoUsuario" value="<%=usuarioEditar.getCodigoUsuario()%>">
 						
 						<div class="field">
 							<label for="name">Email:*</label>
-							<input type="email" class="input" name="senhaAtu" id="senhaAtu" required="required" value="allan@mail.com" />
-							<p class="hint">Senha Atual.</p>
+							<input type="email" class="input" name="email" id="email" required="required" value="<%=usuarioEditar.getEmailUsuario() %>" />
+							<p class="hint">Editar email.</p>
 						</div>
 						
 						<div class="field">
+							<label for="name">Nome:*</label>
+							<input type="text" class="input" name="nome" id="nome" required="required" value="<%=usuarioEditar.getNomeUsuario() %>" />
+							<p class="hint">Editar nome.</p>
+						</div>
+						
+						
+						
+						<div class="field">
 						<label for="opcao">Perfil:</label>
-						<select name="opcao">
+						<select name="perfil">
 							<option> Selecione o Perfil</option>
-							<option value = "1">Comum</option>
-							<option value = "2">Operador</option>
+							<option value = "Comum">Comum</option>
+							<option value = "Operador">Operador</option>
 							
 						</select>
 						</div>						
@@ -55,23 +74,11 @@
 							
 						<div class="field">
 							<label for="name">Senha Atual:*</label>
-							<input type="text" class="input" name="senha" id="senha" required="required" value="123456" />
+							<input type="text" class="input" name="senha" id="senha" required="required" value="<%=usuarioEditar.getSenha() %>" />
 							<p class="hint">Nova Senha.</p>
 						</div>
-						
-						<div class="field">
-							<label for="name">Nova Senha:*</label>
-							<input type="text" class="input" name="senha" id="senha"   />
-							<p class="hint">Nova Senha.</p>
-						</div>
-						
-						<div class="field">
-							<label for="name">Confirmar Senha:*</label>
-							<input type="text" class="input" name="confirmar" id="confirmar"  />
-							<p class="hint">Confime a Senha.</p>
-						</div>
-						
-						<input type="reset" value="Limpar" class="button" />
+																		
+						<!--  <input type="reset" value="Limpar" class="button" />-->
 					    <input type="submit" name="btnEnviar" class="button" value = "Editar" />
 				
 					</form>
@@ -79,7 +86,7 @@
 				
 				
 			</div>
-		<div id="home"><h2><a href="ManUsuario.html">Manuten&ccedil&atildeo Usu&aacute;rio</a></h2></div>
+		<div id="home"><h2><a href="controladorUsuario?acao=listar">Manuten&ccedil&atildeo Usu&aacute;rio</a></h2></div>
 		
 	</body>
 	

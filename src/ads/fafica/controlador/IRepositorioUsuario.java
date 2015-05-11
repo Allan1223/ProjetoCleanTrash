@@ -11,9 +11,9 @@ public interface IRepositorioUsuario {
 
 	public void remover(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 
-	public Usuario procurar(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
+	public List<Usuario> procurarUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 
-	public void atualizar(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
+	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 
 	public boolean existe(String email) throws RepositorioException, SQLException;
 	
@@ -26,6 +26,8 @@ public interface IRepositorioUsuario {
 	public List<Usuario> listarUsuarios();
 	
 	public void atualizarSenha(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
+
+	public Usuario procurarUsuarioId(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 		
 			
 

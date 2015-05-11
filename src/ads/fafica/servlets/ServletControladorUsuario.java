@@ -16,8 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import ads.fafica.acao.AcaoAlterarSenhaUsuario;
 import ads.fafica.acao.AcaoCadastrarUsuario;
+import ads.fafica.acao.AcaoEditarUsuario;
 import ads.fafica.acao.AcaoExcluirUsuario;
+import ads.fafica.acao.AcaoFormularioEditarUsuario;
 import ads.fafica.acao.AcaoListarUsuario;
+import ads.fafica.acao.AcaoPesquisarUsuario;
 import ads.fafica.acao.AcaoUsuario;
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
@@ -46,10 +49,11 @@ public class ServletControladorUsuario extends HttpServlet {
         
     	acoes.put("cadastrar", new AcaoCadastrarUsuario()); 
         acoes.put("listar", new AcaoListarUsuario());
-        /*acoes.put("formularioAdicionarMedico", new AcaoFormularioAdicionarMedico());
-        acoes.put("editar", new AcaoEditarMedico());*/
+        acoes.put("formularioEditarUsuario", new AcaoFormularioEditarUsuario());
+        acoes.put("editar", new AcaoEditarUsuario());
         acoes.put("alterarSenha", new AcaoAlterarSenhaUsuario());
         acoes.put("excluir", new AcaoExcluirUsuario());
+        acoes.put("pesquisar", new AcaoPesquisarUsuario());
         //acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());
     	   	
         

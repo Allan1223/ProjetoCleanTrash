@@ -4,6 +4,21 @@
 <%@ page  import="java.util.List" %>
 <%@ page  import="ads.fafica.modelo.Usuario" %>
 
+<%@ page language="java" %>
+<%
+// Sessão do usuário 
+if(session.getAttribute("usuario") == null) {
+	// se o usuário não estiver logado será direcionado para a tela de Login
+	response.sendRedirect("/cleantrash/index.jsp");
+} 
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+//Envia a sessao
+session.setAttribute("usuario",usuario);
+
+%>
+
+
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -31,7 +46,8 @@
 				<div id="status">
 				
 					
-				<form id="contactform" action="#" method="get">
+				<form id="contactform" action="controladorUsuario" method="post">
+					<input type="hidden" name="acao" value="pesquisar">
 						
 			
 					<div class="field" style="float: right; margin: 0 33px;">
@@ -92,7 +108,7 @@
 									<td>${usuario.perfilUsuario}</td>
 									
 								
-									<td><a href="controladorUsuario?acao=editar&id=${usuario.codigoUsuario}"><strong><span style="color:green;">Editar</span></strong>	</a>
+									<td><a href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span style="color:green;">Editar</span></strong>	</a>
 									<a href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}">   <strong><span style="color:red;">Excluir</span></strong></a>
 									 </td>
 								</tr>

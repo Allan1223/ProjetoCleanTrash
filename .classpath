@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/temp/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="C:/TEMP/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
@@ -14,8 +14,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/temp/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/temp/javax.servlet.jsp.jstl-1.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/apache-tomcat-6.0.43/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/TEMP/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/TEMP/javax.servlet.jsp.jstl-1.2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

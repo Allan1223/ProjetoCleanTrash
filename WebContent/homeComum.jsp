@@ -16,9 +16,6 @@ Usuario usuario = (Usuario) session.getAttribute("usuario");
 //Envia a sessao
 session.setAttribute("usuario",usuario);
 
-
-
-
 %>
 
 

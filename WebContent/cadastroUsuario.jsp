@@ -70,7 +70,7 @@
 				
 				
 			</div>
-		<div id="home"><h2><a href="homeOperador.jsp">Home</a></h2></div>
+		<div id="home"><h2><a href="controladorUsuario?acao=listar">Manuten&ccedil&atildeo Usu&aacute;rio</a></h2></div>
 		
 	</body>
 	

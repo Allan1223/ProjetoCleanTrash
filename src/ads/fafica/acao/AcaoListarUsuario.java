@@ -14,19 +14,19 @@ import ads.fafica.modelo.Usuario;
 
 public class AcaoListarUsuario implements AcaoUsuario  {
 
-	ControladorUsuario controlador;
+	ControladorUsuario controladorUsuario;
 	@Override
 	public void executarUsuario(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		 try {
-			controlador = new ControladorUsuario();
+			 controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		
-		List<Usuario> usuario = controlador.listarUsuarios();
+		List<Usuario> usuario = controladorUsuario.listarUsuarios();
 					
 		request.setAttribute("usuarios", usuario);
 				

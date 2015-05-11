@@ -94,8 +94,9 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	}
 
 	//@Override
-	public Usuario procurar(int codigoUsuario) throws UsuarioNaoEncontradoException,RepositorioException, SQLException {
-   	   
+	public List<Usuario> procurarUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException,RepositorioException, SQLException {
+		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
 		Usuario usuario = null;
    	    PreparedStatement stmt=null;
 		ResultSet rs = null;
@@ -108,7 +109,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
         	        	
         	if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoUsuario);
             usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
-            
+            usuarios.add(usuario);
             
         } catch (SQLException e) {
 			throw new RepositorioException(e);
@@ -119,13 +120,14 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			
 		}
         
-        return usuario;
+        return usuarios;
         
 		
 	}
 	
 	public Usuario procurar(String emailUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
-   	    Usuario usuario = null;
+		
+		Usuario usuario = null;
    	    PreparedStatement stmt=null;
 		ResultSet rs = null;
         try {
@@ -137,41 +139,40 @@ public class RepositorioUsuario implements IRepositorioUsuario{
         	        	
         	if (!rs.next()) throw new UsuarioNaoEncontradoException();
         	usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
+        	
+        	
         } catch (SQLException e) {
 			throw new RepositorioException(e);
 		} finally {
 			stmt.close();
 			rs.close();
 		}
+              
         
         return usuario;
 	}
 
 	//@Override
-	public void atualizar(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
-			/*PreparedStatement stmt=null;
+	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+			PreparedStatement stmt=null;
 		    try {
 	            if (usuario != null) {
 	                try {
-	                	String sql = "UPDATE USUARIO SET nome = ?, apelido = ?, email = ?, idade = ?, altura = ?, nivel = ?, sexo = ?, tipo = ?"
-	                			+ " where idUsuario = ?  ";
+	                	String sql = "UPDATE USUARIO SET nome = ?, email = ?, senha = ?, perfil = ?"
+	                			+ " where codigoUsuario = ?  ";
 	                	  
 	                	
 	                	stmt = this.conn.prepareStatement(sql);
 	                	               	
 	                	
-	                	stmt.setString(1, usuario.getNome());
-	                	stmt.setString(2, usuario.getApelido());
-	                	stmt.setString(3, usuario.getEmail());
-	                	stmt.setInt(4, usuario.getIdade());
-	                	stmt.setFloat(5, usuario.getAltura());
-	                	stmt.setInt(6, usuario.getNivel());
-	                	stmt.setInt(7, usuario.getSexo());
-	                	stmt.setInt(8, usuario.getTipo());
-	                	stmt.setInt(9, usuario.getIdUsuario());
+	                	stmt.setString(1, usuario.getNomeUsuario());
+	                	stmt.setString(2, usuario.getEmailUsuario());
+	                	stmt.setString(3, usuario.getSenha());
+	                	stmt.setInt(4, usuario.getPerfilUsuario());
+	                	stmt.setInt(5, usuario.getCodigoUsuario());
 	                	                	
 	                	Integer resultado = stmt.executeUpdate();
-	                    if (resultado == 0) throw new UsuarioNaoEncontradoException(usuario.getIdUsuario());
+	                    if (resultado == 0) throw new UsuarioNaoEncontradoException();
 	                }
 	                catch (SQLException e) {
 	    			    throw new RepositorioException(e);
@@ -179,7 +180,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	            }
 	        } finally {
 	        	stmt.close();
-			}*/
+			}
 	}
 
 	//@Override
@@ -364,6 +365,38 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		}
 		return usuarios;
 	}
+
+	@Override
+	public Usuario procurarUsuarioId(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException,
+			SQLException {
+		
+		Usuario usuario = null;
+   	    PreparedStatement stmt=null;
+		ResultSet rs = null;
+        try {
+        	String sql = "SELECT * FROM USUARIO WHERE codigoUsuario = ?";
+        	stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+        	stmt.setInt(1, codigoUsuario);
+        	rs = stmt.executeQuery();
+        	
+        	        	
+        	if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoUsuario);
+            usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
+           
+            
+        } catch (SQLException e) {
+			throw new RepositorioException(e);
+		} finally {
+			
+			stmt.close();
+			rs.close();
+			
+		}
+        
+        return usuario;
+	}
+
+	
 
 	
 	
