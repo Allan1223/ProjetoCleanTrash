@@ -99,8 +99,13 @@ session.setAttribute("usuario",usuario);
 								
 					
 								<c:forEach items="${usuarios}" var="usuario">
-								
-								
+									<c:choose>								
+										<c:when test="${i.count % 2 == 0}">
+											<tr bgColor="#CC0000">
+										</c:when>
+										<c:otherwise>
+											 <tr bgColor="#0000CC">
+										</c:otherwise>
 								<tr>
 									<td>${usuario.codigoUsuario}</td>
 									<td>${usuario.nomeUsuario}</td>
@@ -112,6 +117,7 @@ session.setAttribute("usuario",usuario);
 									<a href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}">   <strong><span style="color:red;">Excluir</span></strong></a>
 									 </td>
 								</tr>
+									</c:choose>
 								</c:forEach>
 								
 								<%
@@ -159,12 +165,7 @@ session.setAttribute("usuario",usuario);
 							</table>
 						</td>
 						</tr>
-					</table>
-					
-					
-
-
-				
+					</table>				
 				</div>
 							
 			</div>
