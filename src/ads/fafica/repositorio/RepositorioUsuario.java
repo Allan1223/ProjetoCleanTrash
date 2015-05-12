@@ -24,21 +24,9 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	private Connection conn = null;
 	
     public RepositorioUsuario() throws Exception{
-    	    	    		
-    	
-    	/*try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/CleanTrash", "root", "admin");
-			//conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_projeto_mvc", "root", "");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}*/
-       this.conn = ConnectionManager.reservaStatement("mysql"); 
-       
-       
-       
+        	    		
+         this.conn = ConnectionManager.reservaStatement("mysql"); 
+                     
     }
 	
 	//@Override
@@ -243,12 +231,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	}
 	
 	public boolean existe(int codigoUsuario) throws RepositorioException, SQLException {
-		/*boolean resposta = false;
-        if (getIndice(codigoUsuario) >= 0) resposta = true;
-        else resposta = false;
-        return resposta;*/
-        
-        
+		       
         PreparedStatement stmt=null;
 		ResultSet rs = null;
         try {
@@ -269,20 +252,6 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		}
 	}
 	
-	/*private int getIndice(int codigoUsuario) {
-        int resposta = -1;
-        /*boolean achou = false;
-        for (int i = 0; !achou && (i < indice); i = i + 1) {
-            if (pessoaFisica[i].getCpf().equals(cpf)) {
-                resposta = i;
-                achou = true;
-            }
-        }*/
-      
-   
-
-
-
 	public Usuario acessoAoSistema(String emailUsuario, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException {
 		
 		Usuario usuario = null;
@@ -309,28 +278,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		}
         
         return usuario;
-		/*Usuario usuario = null;
-		PreparedStatement stmt=null;
-		ResultSet rs = null;
-	    try {
-	    	String sql = "SELECT count(*) as quantidade FROM USUARIO WHERE email = ? and senha = ?";
-	    	stmt = (PreparedStatement) this.conn.prepareStatement(sql);
-	    	stmt.setString(1, emailUsuario);
-	    	stmt.setString(2, senha);
-	    	
-	    	rs = stmt.executeQuery();
-	    	rs.next();
-	    	if (rs.getInt("quantidade") == 0) return false;
-	    	else return true;
-	    	
-	    } catch (SQLException e) {
-			throw new RepositorioException(e);
-		} finally {
-			stmt.close();
-	    	rs.close();
-		}*/
-	    
-	    
+		
 		
 		
 	}

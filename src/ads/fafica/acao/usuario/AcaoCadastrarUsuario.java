@@ -1,4 +1,4 @@
-package ads.fafica.acao;
+package ads.fafica.acao.usuario;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -55,8 +55,7 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			if(!existe){
 				
 				controladorUsuario.inserirUsuario(usuario);
-				
-							
+											
 				request.setAttribute("mensagem",
 						"Usuario adicionado com sucesso!");
 			

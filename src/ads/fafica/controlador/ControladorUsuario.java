@@ -15,8 +15,7 @@ public class ControladorUsuario {
   		// instancia o objeto RepositorioPessoaFisicaArray
   		
   		this.repositorioUsuario = new RepositorioUsuario(); 
-  		
-  		
+  		  		
   	}
   	
   	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		

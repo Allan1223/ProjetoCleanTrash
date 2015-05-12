@@ -1,4 +1,4 @@
-package ads.fafica.acao;
+package ads.fafica.acao.usuario;
 
 import java.io.IOException;
 import java.sql.SQLException;

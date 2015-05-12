@@ -85,7 +85,7 @@
 				
 				
 			</div>
-		<div id="home"><h2><a href="homeComum.html">Home</a></h2></div>
+		<div id="home"><h2><a href="homeComum.jsp">Home</a></h2></div>
 		
 	</body>
 	

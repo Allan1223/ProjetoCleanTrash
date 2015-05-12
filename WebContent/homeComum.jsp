@@ -96,10 +96,10 @@ session.setAttribute("usuario",usuario);
 				<!--<div><h3>Status dos Problemas</h3></div>
 				<div><h3>Manutenção</h3></div>
 				<div><h3>About</h3></div>-->
-				<div class="special"><h3><a href="reportar.html">Reportar Problemas</a></h3></div>
-				<div class="special"><h3><a href="status.html">Status dos Problemas</a></h3></div>
+				<div class="special"><h3><a href="reportar.jsp">Reportar Problemas</a></h3></div>
+				<div class="special"><h3><a href="status.jsp">Status dos Problemas</a></h3></div>
 				<div class="special"><h3><a href="alterarSenha.jsp">Alterar Senha</a></h3></div>
-				<div class="special"><h3><a href="ajuda.html">Ajuda</a></h3></div>
+				<div class="special"><h3><a href="ajuda.jsp">Ajuda</a></h3></div>
 				<div class="special">
 				
 				<div class="main clearfix">

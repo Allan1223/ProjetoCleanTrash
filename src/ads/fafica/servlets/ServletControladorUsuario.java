@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.fafica.acao.AcaoAlterarSenhaUsuario;
-import ads.fafica.acao.AcaoCadastrarUsuario;
-import ads.fafica.acao.AcaoEditarUsuario;
-import ads.fafica.acao.AcaoExcluirUsuario;
-import ads.fafica.acao.AcaoFormularioEditarUsuario;
-import ads.fafica.acao.AcaoListarUsuario;
-import ads.fafica.acao.AcaoPesquisarUsuario;
-import ads.fafica.acao.AcaoUsuario;
+import ads.fafica.acao.usuario.AcaoAlterarSenhaUsuario;
+import ads.fafica.acao.usuario.AcaoCadastrarUsuario;
+import ads.fafica.acao.usuario.AcaoEditarUsuario;
+import ads.fafica.acao.usuario.AcaoExcluirUsuario;
+import ads.fafica.acao.usuario.AcaoFormularioEditarUsuario;
+import ads.fafica.acao.usuario.AcaoListarUsuario;
+import ads.fafica.acao.usuario.AcaoPesquisarUsuario;
+import ads.fafica.acao.usuario.AcaoUsuario;
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Usuario;
@@ -55,7 +55,7 @@ public class ServletControladorUsuario extends HttpServlet {
         acoes.put("excluir", new AcaoExcluirUsuario());
         acoes.put("pesquisar", new AcaoPesquisarUsuario());
         //acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());
-    	   	
+    	
         
         
     }
@@ -87,11 +87,7 @@ public class ServletControladorUsuario extends HttpServlet {
 				}
 				// chama o método executar da classe de 'Acao' passado request e response
 				try {
-					
-					/*if (tipo.equals("comum"))
-						operacao.executarUsuarioComum(request, response);
-					else {*/
-						
+															
 						operacao.executarUsuario(request, response);
 					
 				} catch (SQLException e) {

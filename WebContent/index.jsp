@@ -26,8 +26,6 @@
 		
 			function validar() {
 				
-				alert(document.registrar.senhaCad.value);
-				
 				var senhaUser     = document.registrar.senhaCad.value;
 				var rep_senhaUser = document.registrar.senhaConf.value;
 				
