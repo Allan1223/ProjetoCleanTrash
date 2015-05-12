@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%//@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
 <%@ page  import="java.util.List" %>
 <%@ page  import="ads.fafica.modelo.Usuario" %>
 
@@ -15,6 +16,10 @@ if(session.getAttribute("usuario") == null) {
 Usuario usuario = (Usuario) session.getAttribute("usuario");
 //Envia a sessao
 session.setAttribute("usuario",usuario);
+
+List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
+
+//pageContext.setAttribute("usuario", usuarios);
 
 %>
 
@@ -68,19 +73,14 @@ session.setAttribute("usuario",usuario);
 					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
 
 					<!-- tabela dinâmica -->
-				<table border="1" align="center">
+				<table border="0" align="center">
 						<tr>
 						<td>
 							<table border="0" align="center" cellpadding="5" cellspacing="0">
 																		
-								<!-- <tr>
-									<td align="center">
-										<a href="controladorMedico?acao=formularioAdicionarMedico">Adicionar Medicos</a>
-									</td>
-								</tr> -->
+															
 								
-								
-								<tr>
+								<tr bgColor="#ddd">
 									<th><b>Codigo Usuario</b></th>
 									<th><b>Nome</b></th>
 									<th><b>Email</b></th>
@@ -95,9 +95,7 @@ session.setAttribute("usuario",usuario);
 									</td>
 								</tr>
 								</c:if>
-								
-								
-					
+													
 								<c:forEach items="${usuarios}" var="usuario" varStatus="i">
 									<c:choose>							
 										
@@ -109,61 +107,20 @@ session.setAttribute("usuario",usuario);
 							            </c:otherwise> 
 															
 									</c:choose>	
-														 
-									<td>${usuario.codigoUsuario}</td>
-									<td>${usuario.nomeUsuario}</td>
-									<td>${usuario.emailUsuario}</td>
-									<td>${usuario.perfilUsuario}</td>
+																						 
+										<td>${usuario.codigoUsuario}</td>
+										<td>${usuario.nomeUsuario}</td>
+										<td>${usuario.emailUsuario}</td>
+										<td>${usuario.perfilUsuario}</td>
+										
 									
-								
-									<td><a href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span style="color:green;">Editar</span></strong>	</a>
-									<a href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}">   <strong><span style="color:red;">Excluir</span></strong></a>
-									 </td>
-								 
+										<td><a href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span style="color:green;">Editar</span></strong>	</a>
+										<a href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}">   <strong><span style="color:red;">Excluir</span></strong></a>
+										 </td>
+							 
 									
 								</c:forEach>
-								
-								<%
-									//List<Usuario> usuario = (List<Usuario>) request.getAttribute("usuarios");
-								
-								
-									
-								//if(usuario == null){
-								%>								
-									<!-- <tr>
-									<td align="center">
-										<p>Nenhum Usuario Cadastrado.</p>
-									</td>
-									</tr>-->
-								<%
-								
-								//}
-								//else{
-									
-									/*for(Usuario usuar: usuario){*/
-																									
-								%>
-								
-								
-								     <!-- <tr>
-										<td><%//=usuar.getCodigoUsuario()%></td>
-										<td><%//=usuar.getNomeUsuario()%>  </td>
-										<td><%//=usuar.getEmailUSuario()%> </td>
-										<td><%//=usuar.getPerfilUsuario()%></td>
-										
-										<td><a href="controladorUsuario?acao=editar&id=<%//=usuar.getCodigoUsuario()%>">
-										<img src="images/editar.png" width='40px' height="40px" alt="Editar Usuario" title="Editar Usuario"></a>
-										</a>
-										    <a href="controladorUsuario?acao=excluir&id=<%//=usuar.getCodigoUsuario()%>">
-										    <img src="images/excluir.png" width='40px' height="40px" alt="Excluir Usuario" title="Excluir Usuario">
-										    </a> 
-										</td>
-								    </tr>  -->
-								<% //}
-									
-						//		}%>
-								
-							    
+			    
 								
 							</table>
 						</td>
