@@ -12,8 +12,7 @@ public class ControladorUsuario {
     
   //contrutor da classe
   	public ControladorUsuario() throws Exception{
-  		// instancia o objeto RepositorioPessoaFisicaArray
-  		
+  		// instancia o objeto RepositorioPessoaFisicaArray  		
   		this.repositorioUsuario = new RepositorioUsuario(); 
   		  		
   	}
@@ -21,47 +20,31 @@ public class ControladorUsuario {
   	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		
 		if(!repositorioUsuario.existe(usuario.getEmailUsuario()));			
 		repositorioUsuario.inserir(usuario);			
-	}
-	
+	}	
 	public void excluirUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
-		/*if(repositorioUsuario.existe(codigoUsuario)){		
-		*/ 
-		repositorioUsuario.remover(codigoUsuario);
-		
-	}
-	
+		repositorioUsuario.remover(codigoUsuario);		
+	}	
 	public List<Usuario> procurarUsuario(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
 		return repositorioUsuario.procurarUsuario(codigoUsuario);		
-	}
-	
+	}	
 	public Usuario procurarUsuarioId(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
 		return repositorioUsuario.procurarUsuarioId(codigoUsuario);		
-	}
-	
+	}	
 	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
 		repositorioUsuario.atualizarUsuario(usuario);		
 	}
-
 	public Usuario procurarUsuario(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
-		return repositorioUsuario.procurar(email);	
-		
-	}
-	
+		return repositorioUsuario.procurar(email);			
+	}	
 	public Usuario acessoAoSistema(String email, String senha) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
-		return repositorioUsuario.acessoAoSistema(email, senha);	
-		
-	}
-	
+		return repositorioUsuario.acessoAoSistema(email, senha);			
+	}	
 	public boolean existe(String email) throws RepositorioException, SQLException{
-		return repositorioUsuario.existe(email);	
-		
-	}
-	
+		return repositorioUsuario.existe(email);			
+	}	
 	public List<Usuario> listarUsuarios(){
-		return repositorioUsuario.listarUsuarios();
-		
-	}
-	
+		return repositorioUsuario.listarUsuarios();		
+	}	
 	public void atualizarSenha(Usuario usuario) throws RepositorioException, SQLException, UsuarioNaoEncontradoException{
 		repositorioUsuario.atualizarSenha(usuario);
 	}

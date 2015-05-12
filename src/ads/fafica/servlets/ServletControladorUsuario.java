@@ -36,8 +36,6 @@ public class ServletControladorUsuario extends HttpServlet {
 	
 	private Map<String, AcaoUsuario> acoes = new HashMap<String, AcaoUsuario>();
 	
-	 
-       
     /**
      * @throws Exception 
      * @see HttpServlet#HttpServlet()
@@ -54,10 +52,8 @@ public class ServletControladorUsuario extends HttpServlet {
         acoes.put("alterarSenha", new AcaoAlterarSenhaUsuario());
         acoes.put("excluir", new AcaoExcluirUsuario());
         acoes.put("pesquisar", new AcaoPesquisarUsuario());
-        //acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico());
-    	
-        
-        
+        //acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico()); 	
+ 
     }
 
 	/**
@@ -77,8 +73,7 @@ public class ServletControladorUsuario extends HttpServlet {
 				String acao = request.getParameter("acao");
 				
 				// pega a classe de 'Acao' baseado no parâmetro da requisição
-				AcaoUsuario operacao      = acoes.get(acao);
-										
+				AcaoUsuario operacao = acoes.get(acao);										
 				
 				if (operacao == null) {
 					// se operacao == null é porque não existe classe 'Acao' com 
@@ -86,9 +81,8 @@ public class ServletControladorUsuario extends HttpServlet {
 					operacao = acoes.get("listar");
 				}
 				// chama o método executar da classe de 'Acao' passado request e response
-				try {
-															
-						operacao.executarUsuario(request, response);
+				try {															
+					operacao.executarUsuario(request, response);
 					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block

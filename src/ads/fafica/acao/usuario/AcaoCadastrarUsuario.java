@@ -13,19 +13,18 @@ import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Usuario;
 
-public class AcaoCadastrarUsuario implements AcaoUsuario {
+public class AcaoCadastrarUsuario implements AcaoUsuario {	
 	
-	
-		ControladorUsuario controladorUsuario;
+	ControladorUsuario controladorUsuario;
 	
 	public AcaoCadastrarUsuario(){
 		
 		try {
 			this.controladorUsuario = new ControladorUsuario();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
+			e.printStackTrace();			
 		}
 	}
 
@@ -42,19 +41,17 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 		String perfil = request.getParameter("perfil");
 		
 						
-		if(perfil.equals("Operador"))
+		if (perfil.equals("Operador"))
 			perfilUsuario = 1;
 		else
 			perfilUsuario = 2;
 			
 		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,perfilUsuario);
 		
-		try {
-			
+		try {			
 			boolean existe = controladorUsuario.existe(usuario.getEmailUsuario());	
 			
-			if(!existe){
-				
+			if(!existe){				
 				controladorUsuario.inserirUsuario(usuario);
 											
 				request.setAttribute("mensagem",
@@ -70,21 +67,16 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			    	RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/homeComum.jsp");
 					dispatcher.forward(request, response);
-				
 					
 				}
-				
+			    
 				else{
-					
-					
-					// controladorUsuario?acao=listar
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("controladorUsuario?acao=listar");
-					dispatcher.forward(request, response);				
-					
-					
+					dispatcher.forward(request, response);					
 				}
 			}
+			
 			else {
 				
 				request.setAttribute("mensagem",
@@ -92,14 +84,10 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 				// retorna um erro
 				request.setAttribute("validacaoUsuario","existe");
 				// testa se o cadastro veio da página inicial para redirecionar a página
-				
-								
-				if(perfil.equals("ComumInicial")){
-															
+				if(perfil.equals("ComumInicial")){															
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/index.jsp");
-					dispatcher.forward(request, response);
-					
+					dispatcher.forward(request, response);					
 				}
 				else{
 					// controladorUsuario?acao=listar
@@ -167,9 +155,6 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 				e.printStackTrace();
 							
 			}
-			
-		
-
 		}
 	
 	}*/

@@ -7,7 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ads.fafica.controlador.ControladorSolucao;
+
 public class AcaoCadastrarSolucao implements AcaoSolucao {
+	
+	ControladorSolucao controladorSolucao;
 
 	@Override
 	public void executarSolucao(HttpServletRequest request,
