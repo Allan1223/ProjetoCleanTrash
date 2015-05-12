@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
@@ -62,6 +63,10 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			    // testa se o cadastro veio da página inicial
 			    if(perfil.equals("ComumInicial")){
 			    	
+			    	request.getSession().invalidate();
+			        HttpSession session = request.getSession(true);
+			        session.setAttribute("usuario",usuario);
+			    	
 			    	RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/homeComum.jsp");
 					dispatcher.forward(request, response);
@@ -70,6 +75,7 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 				}
 				
 				else{
+					
 					
 					// controladorUsuario?acao=listar
 					RequestDispatcher dispatcher = request

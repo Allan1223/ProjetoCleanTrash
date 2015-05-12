@@ -1,0 +1,5 @@
+Validações de Usuario
+---------------------------
+
+- index.jsp - validar no segundo formulário de o campo senha é igual a o campo confirmação da senha
+- 

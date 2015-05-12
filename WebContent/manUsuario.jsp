@@ -98,15 +98,18 @@ session.setAttribute("usuario",usuario);
 								
 								
 					
-								<c:forEach items="${usuarios}" var="usuario">
-									<c:choose>								
-										<c:when test="${i.count % 2 == 0}">
-											<tr bgColor="#CC0000">
-										</c:when>
-										<c:otherwise>
-											 <tr bgColor="#0000CC">
-										</c:otherwise>
-								<tr>
+								<c:forEach items="${usuarios}" var="usuario" varStatus="i">
+									<c:choose>							
+										
+										<c:when test="${i.count % 2 == 0}">  
+							                <tr bgColor="#eee"> <%-- Use styles... fica melhor... --%>  
+							            </c:when>  
+							            <c:otherwise>  
+							                <tr bgColor="#fff">  
+							            </c:otherwise> 
+															
+									</c:choose>	
+														 
 									<td>${usuario.codigoUsuario}</td>
 									<td>${usuario.nomeUsuario}</td>
 									<td>${usuario.emailUsuario}</td>
@@ -116,8 +119,8 @@ session.setAttribute("usuario",usuario);
 									<td><a href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span style="color:green;">Editar</span></strong>	</a>
 									<a href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}">   <strong><span style="color:red;">Excluir</span></strong></a>
 									 </td>
-								</tr>
-									</c:choose>
+								 
+									
 								</c:forEach>
 								
 								<%
