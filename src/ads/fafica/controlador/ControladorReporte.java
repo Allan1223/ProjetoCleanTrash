@@ -1,32 +1,36 @@
 package ads.fafica.controlador;
 
+import java.sql.SQLException;
+
 import ads.fafica.modelo.Reporte;
 import ads.fafica.repositorio.RepositorioReporte;
 
 public class ControladorReporte {
 	
-    private IRepositorioReporte repositorioProblema;
+    private IRepositorioReporte repositorioReporte;
     
   //contrutor da classe
   	public ControladorReporte() {
   		// instancia o objeto RepositorioPessoaFisicaArray
-  		this.repositorioProblema = new RepositorioReporte(); 
+  		this.repositorioReporte = new RepositorioReporte(); 
   	}
 	
-	public void inserirProblema (Reporte problema) throws RepositorioException {						
-		repositorioProblema.inserir(problema);					
+	public void inserirReporte (Reporte reporte) throws RepositorioException {						
+		repositorioReporte.inserir(reporte);					
 	}
 	
-	public void excluirProblema(int codigoProblema) throws ProblemaNaoEncontradoException {		
-		repositorioProblema.remover(codigoProblema);		
+	public void excluirReporte(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException {		
+		repositorioReporte.remover(codigoReporte);		
 	}
 	
-	public Reporte procurarProblema(int codigoProblema) throws ProblemaNaoEncontradoException {		
-		return repositorioProblema.procurar(codigoProblema);		
+	public Reporte procurarReporte(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException {		
+		return repositorioReporte.procurar(codigoReporte);		
 	}
 	
-	public void alterarProblema(Reporte problema) throws ProblemaNaoEncontradoException {		
-		repositorioProblema.atualizar(problema);		
+	
+	
+	public void alterarReporte(Reporte reporte) throws ProblemaNaoEncontradoException {		
+		repositorioReporte.atualizar(reporte);		
 	}	
 	
 }

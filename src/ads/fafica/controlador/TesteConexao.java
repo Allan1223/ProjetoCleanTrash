@@ -14,7 +14,7 @@ public class TesteConexao {
 	
 	    	String conexao = "jdbc:mysql://localhost:3306/CleanTrash";
 	    	String usuario = "root";
-	    	String senha = "";
+	    	String senha = "root";
 	    	
 		    try {
             	

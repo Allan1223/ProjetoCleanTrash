@@ -24,7 +24,7 @@
 				<div id="status">
 				
 					
-				<form id="contactform" action="#" method="get">
+				<form id="contactform" action="controladorReporte" method="post">
 						
 			
 					<div class="field" style="float: right; margin: 0 33px;">

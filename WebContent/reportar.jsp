@@ -39,7 +39,7 @@ session.setAttribute("usuario",usuario);
 					<form id="contactform" action="controladorReporte" method="post">
 					
 					<input type="hidden" name="acao" value="cadastrar">
-					<input type="hidden" name="usuario" value="<%=usuario.getCodigoUsuario()%>">
+					<input type="hidden" name="usuario" >
 					
 					
 						<div class="field">

@@ -4,13 +4,13 @@ import ads.fafica.modelo.Reporte;
 
 public interface IRepositorioReporte {
 
-	public void inserir(Reporte problema) throws RepositorioException; 
+	public void inserir(Reporte reporte) throws RepositorioException; 
 
-	public void remover(int codigoProblema) throws ProblemaNaoEncontradoException;
+	public void remover(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException;
 
-	public Reporte procurar(int codigoProblema) throws ProblemaNaoEncontradoException;
+	public Reporte procurar(int codigoReporte) throws ProblemaNaoEncontradoException;
 
-	public void atualizar(Reporte problema) throws ProblemaNaoEncontradoException;
+	public void atualizar(Reporte reporte) throws ProblemaNaoEncontradoException;
 
 	
 }
