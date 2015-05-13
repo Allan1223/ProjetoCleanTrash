@@ -1,6 +1,9 @@
 package ads.fafica.controlador;
 
+import java.util.List;
+
 import ads.fafica.modelo.Reporte;
+import ads.fafica.modelo.Usuario;
 
 public interface IRepositorioReporte {
 
@@ -8,7 +11,7 @@ public interface IRepositorioReporte {
 
 	public void remover(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException;
 
-	public Reporte procurar(int codigoReporte) throws ProblemaNaoEncontradoException;
+	public List<Reporte> procurarReporte(int codigoReporte) throws ProblemaNaoEncontradoException;
 
 	public void atualizar(Reporte reporte) throws ProblemaNaoEncontradoException;
 

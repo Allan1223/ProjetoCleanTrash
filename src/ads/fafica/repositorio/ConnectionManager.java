@@ -23,7 +23,7 @@ public class  ConnectionManager {
     		
     		conexao = "jdbc:mysql://localhost:3306/cleantrash";
     		usuario = "root";
-    		senha = "admin";
+    		senha = "root";
     		    		
     	}
     	else if(sistema == "oracle") {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ads.fafica.controlador.ControladorReporte;
+import ads.fafica.controlador.ProblemaNaoEncontradoException;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
 import ads.fafica.modelo.Reporte;
@@ -44,15 +45,15 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 			try {
 				
 						
-				List<Reporte> usuario = controladorReporte.procurarReporte(codigoReporte);
-				request.setAttribute("usuarios", usuario);	
+				List<Reporte> reporte = controladorReporte.procurarReporte(codigoReporte);
+				request.setAttribute("reportes", reporte);	
 							
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher("/status.jsp");
 				dispatcher.forward(request, response);
 				
 				
-			} catch (ReporteNaoEncontradoException e) {
+			} catch (ProblemaNaoEncontradoException e) {
 				// TODO Auto-generated catch block
 				
 				request.setAttribute("reportes", null);	

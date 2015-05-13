@@ -1,6 +1,9 @@
 package ads.fafica.repositorio;
 
+import java.util.List;
+
 import ads.fafica.controlador.IRepositorioReporte;
+import ads.fafica.controlador.ProblemaNaoEncontradoException;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Reporte;
 
@@ -27,6 +30,13 @@ public class RepositorioReporte implements IRepositorioReporte{
 	
 	public void atualizar(Reporte problema) /*throws PessoaFisicaNaoEncontradaException*/{ //Deixar espaço entre a chave  e o parentes.
 	
+	}
+
+	@Override
+	public List<Reporte> procurarReporte(int codigoReporte)
+			throws ProblemaNaoEncontradoException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
