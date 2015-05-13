@@ -39,13 +39,14 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 		
 		if (pesquisa != ""){
 		
-			codigoReporte = Integer.parseInt(request.getParameter("pesquisa"));
+			codigoReporte = Integer.parseInt(pesquisa);
 					
 		
 			try {
 				
 						
 				List<Reporte> reporte = controladorReporte.procurarReporte(codigoReporte);
+				
 				request.setAttribute("reportes", reporte);	
 							
 				RequestDispatcher dispatcher = 
@@ -55,7 +56,7 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 				
 			} catch (ProblemaNaoEncontradoException e) {
 				// TODO Auto-generated catch block
-				
+								
 				request.setAttribute("reportes", null);	
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher("/status.jsp");
