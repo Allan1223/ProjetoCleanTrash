@@ -3,6 +3,7 @@ package ads.fafica.modelo;
 import java.sql.Time;
 import java.util.Date;
 
+
 public class Solucao{
 	
 	private int codigoSolucao;
@@ -14,8 +15,8 @@ public class Solucao{
 	
 	
 	public Solucao(int codigoSolucao, int codigoUsuario, int codigoProblema,
-			String descricaoSolucao, String hrFechamentoSolucao,
-			String dtFechamentoSolucao) {
+			String descricaoSolucao, Time hrFechamentoSolucao,
+			Date dtFechamentoSolucao) {
 		this.codigoSolucao = codigoSolucao;
 		this.codigoUsuario = codigoUsuario;
 		this.codigoProblema = codigoProblema;
@@ -23,6 +24,7 @@ public class Solucao{
 		this.hrFechamentoSolucao = hrFechamentoSolucao;
 		this.dtFechamentoSolucao = dtFechamentoSolucao;
 	}
+	
 	public int getCodigoProblema() {
 		return codigoProblema;
 	}
@@ -47,17 +49,18 @@ public class Solucao{
 	public void setDescricaoSolucao(String descricaoSolucao) {
 		this.descricaoSolucao = descricaoSolucao;
 	}
-	public String getHrFechamentoSolucao() {
+	public Time getHrFechamentoSolucao() {
 		return hrFechamentoSolucao;
 	}
-	public void setHrFechamentoSolucao(String hrFechamentoSolucao) {
+	public void setHrFechamentoSolucao(Time hrFechamentoSolucao) {
 		this.hrFechamentoSolucao = hrFechamentoSolucao;
 	}
-	public String getDtFechamentoSolucao() {
+	public Date getDtFechamentoSolucao() {
 		return dtFechamentoSolucao;
 	}
-	public void setDtFechamentoSolucao(String dtFechamentoSolucao) {
+	public void setDtFechamentoSolucao(Date dtFechamentoSolucao) {
 		this.dtFechamentoSolucao = dtFechamentoSolucao;
 	}
+
 
 }
