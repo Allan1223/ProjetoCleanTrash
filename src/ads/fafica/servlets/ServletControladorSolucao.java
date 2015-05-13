@@ -17,6 +17,7 @@ import ads.fafica.acao.solucao.AcaoSolucao;
 import ads.fafica.acao.usuario.AcaoCadastrarUsuario;
 import ads.fafica.acao.usuario.AcaoListarUsuario;
 import ads.fafica.acao.usuario.AcaoUsuario;
+import ads.fafica.controlador.RepositorioException;
 
 /**
  * Servlet implementation class ServletControladorSolucao
@@ -65,6 +66,9 @@ public class ServletControladorSolucao extends HttpServlet {
 								operacao.executarSolucao(request, response);
 							
 						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (RepositorioException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}

@@ -11,7 +11,7 @@ public class ControladorSolucao {
    private IRepositorioSolucao repositorioSolucao;
    
  //contrutor da classe
- 	public ControladorSolucao(){
+ 	public ControladorSolucao() throws Exception{
  		// instancia o objeto RepositorioPessoaFisicaArray
  		this.repositorioSolucao = new RepositorioSolucao(); 
  	}	
