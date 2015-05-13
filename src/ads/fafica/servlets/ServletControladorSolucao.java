@@ -49,14 +49,10 @@ public class ServletControladorSolucao extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Esse Servlet sempre cria um usuário com o perfil 2(usuário comum)
-		
 				// recupera o valor do parâmetro 'acao' da requisição
-						String acao = request.getParameter("acao");
-						
+						String acao 		 = request.getParameter("acao");						
 						// pega a classe de 'Acao' baseado no parâmetro da requisição
-						AcaoSolucao operacao      = acoes.get(acao);
-												
+						AcaoSolucao operacao = acoes.get(acao);											
 						
 						if (operacao == null) {
 							// se operacao == null é porque não existe classe 'Acao' com 

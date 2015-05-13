@@ -1,14 +1,28 @@
 package ads.fafica.modelo;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class Solucao{
 	
 	private int codigoSolucao;
 	private int codigoUsuario;
 	private int codigoProblema;	
 	private String descricaoSolucao;
-	private String hrFechamentoSolucao;
-	private String dtFechamentoSolucao;
+	private Time hrFechamentoSolucao;
+	private Date dtFechamentoSolucao;
 	
+	
+	public Solucao(int codigoSolucao, int codigoUsuario, int codigoProblema,
+			String descricaoSolucao, String hrFechamentoSolucao,
+			String dtFechamentoSolucao) {
+		this.codigoSolucao = codigoSolucao;
+		this.codigoUsuario = codigoUsuario;
+		this.codigoProblema = codigoProblema;
+		this.descricaoSolucao = descricaoSolucao;
+		this.hrFechamentoSolucao = hrFechamentoSolucao;
+		this.dtFechamentoSolucao = dtFechamentoSolucao;
+	}
 	public int getCodigoProblema() {
 		return codigoProblema;
 	}
@@ -45,8 +59,5 @@ public class Solucao{
 	public void setDtFechamentoSolucao(String dtFechamentoSolucao) {
 		this.dtFechamentoSolucao = dtFechamentoSolucao;
 	}
-	
-
-	
 
 }
