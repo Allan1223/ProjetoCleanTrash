@@ -67,7 +67,11 @@ session.setAttribute("usuario",usuario);
 					
 					
 				}
-	
+				if(senha == confirmarSenha){
+					alert("Senha correta:");
+					return true;
+
+					}
 	
 				
 			}

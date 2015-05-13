@@ -35,6 +35,18 @@ Usuario usuarioEditar = (Usuario) request.getAttribute("usuarioEditar");
 		<!--<script src="js/modernizr.custom.js"></script> -->
 	</head>
 	<body>
+	<script type="text/javascript">
+
+		function valida(){
+			var perfil = document.getElementById("perfil").value;
+				if(perfil == ""){
+					alert("Selecione um Perfil!");
+					return false;
+						}
+			}
+		
+
+	</script>
 		<div id="cabecalho">
 		  <h1> Editar Usu&aacute;rio</h1></div>
 			<div class="container">
