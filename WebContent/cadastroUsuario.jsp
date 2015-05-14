@@ -18,13 +18,69 @@
 		<div id="cabecalho">
 		  <h1> Cadastrar Usu&aacute;rio</h1></div>
 			<div class="container">
+			<script type="text/javascript">
+			
+                function validaForm(){
+                    
+                	// os campos nome e email já tem validações com o HTML5
+                    //var nome = document.getElementById("nome").value;
+                    //var email = document.getElementById("emailCad").value;
+                    var perfil = document.getElementById("perfil").value;
+                	var senha = document.getElementById("senhaCad").value;
+    				var conSenha = document.getElementById("confirmar").value;
+
+    				/*if(nome == ""){
+						alert ("Campo obrigatório!");
+						  return false;
+					   }
+					if(email == ""){
+						 alert("Campo obrigatório!");
+						   return false;
+						}*/
+					if(perfil == ""){
+						  alert ("Selecione um Perfil!");
+						  return false;
+						}
+					//chamando a função
+					if(!validarLetras(nome)){
+							alert("Este campo só recebe letras!");
+							 return false;
+						}
+					if(senha.length() >= 6){
+						
+						alert("Senha inválida: digite 6 ou mais caracteres!");
+						   return false;
+					}
+				   
+			  	   if(senha != confSenha){
+					   alert("Senha inválida: preencha novamennte!");
+					   return false;
+				    } else {
+							alert("Cadastro realizado com sucesso:");
+							return true;
+					    }
+           }
+			// se o conteudo não for letras retorne false
+           function validarLetras(campo){
+				var regex = /^[a-zA-Z]+$/;
+				if(regex.test(campo)){
+						return true;
+					}
+						return false;
+               }
+
+                  
+                
+				
+
+			</script>
 			
 				<!-- Contepudo da pÃ¡gina -->
 				<!-- Conteudo da pÃ¡gina -->
 				<div id="reportar">
 					
 					
-					<form id="contactform"  action="controladorUsuario" autocomplete="on" method="Post"> 
+					<form id="contactform"  action="controladorUsuario" autocomplete="on" method="Post" onsubmit="validaForm();"> 
                         <input type="hidden" name="acao" value="cadastrar">
                         <input type="hidden" name="tipo" value="cadastrar">
 						

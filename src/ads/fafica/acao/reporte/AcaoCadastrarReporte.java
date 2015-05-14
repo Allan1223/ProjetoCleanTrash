@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sun.security.util.Length;
 import ads.fafica.controlador.ControladorReporte;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Reporte;
@@ -46,6 +47,8 @@ public class AcaoCadastrarReporte implements AcaoReporte {
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
 		String descricao = request.getParameter("descricao");
+		
+		
 				
 		Reporte reporte = new Reporte(codigoReporte, codigoUsuario,opcao,descricao,status,data, hora, latitude, longitude, cidade, bairro, rua );
 		

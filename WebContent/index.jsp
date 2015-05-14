@@ -26,14 +26,19 @@
 		
 			function validar() {
 				
-				var senhaUser     = document.registrar.senhaCad.value;
-				var rep_senhaUser = document.registrar.senhaConf.value;
 				
-				alert(senhaUser);		
+				var senhaUser     = window.document.getElementById("senhaCad").value;
+				var rep_senhaUser = window.document.getElementById("senhaConf").value;
 				
-				
+									
+				if (senhaUser.length() < 6){
+					window.alert('Senhas Incorreta: digite a senha com mais de 6 caracteres!');
+					registrar.senhaUser.focus();
+					return false;			
+					
+				}
 				if (senhaUser != rep_senhaUser) {
-					alert('Senhas diferentes');
+					window.alert('Senhas diferentes: Confirme a senha corretamente!');
 					registrar.senhaConf.focus();
 					return false;
 				}

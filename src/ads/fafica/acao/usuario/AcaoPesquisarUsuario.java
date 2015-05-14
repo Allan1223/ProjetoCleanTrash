@@ -48,6 +48,7 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 				
 						
 				List<Usuario> usuario = controladorUsuario.procurarUsuario(codigoUsuario);
+				
 				request.setAttribute("usuarios", usuario);	
 							
 				RequestDispatcher dispatcher = 
@@ -58,7 +59,8 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 			} catch (UsuarioNaoEncontradoException e) {
 				// TODO Auto-generated catch block
 				
-				request.setAttribute("usuarios", null);	
+				request.setAttribute("usuarios", null);
+				
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher("/manUsuario.jsp");
 				dispatcher.forward(request, response);

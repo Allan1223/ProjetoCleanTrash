@@ -13,7 +13,7 @@ public class ControladorReporte {
     
   //contrutor da classe
   	public ControladorReporte() {
-  		// instancia o objeto RepositorioPessoaFisicaArray
+  		// instancia o objeto RepositorioReporte
   		this.repositorioReporte = new RepositorioReporte(); 
   	}
 	
