@@ -55,7 +55,7 @@ Usuario usuarioEditar = (Usuario) request.getAttribute("usuarioEditar");
 				<!-- Conteudo da página -->
 				<div id="reportar">
 					
-					<form id="contactform" action="controladorUsuario" method="post">
+					<form id="contactform" action="controladorUsuario" method="post" onsubmit="valida();">
 						<input type="hidden" name="acao" value="editar">
 						<input type="hidden" name="codigoUsuario" value="<%=usuarioEditar.getCodigoUsuario()%>">
 						

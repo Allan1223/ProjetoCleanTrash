@@ -45,9 +45,9 @@ session.setAttribute("usuario",usuario);
 			function validar() {
 				
 					
-				var senhaAtual     = document.registrar.senhaAtual.value;
-				var senha = document.registrar.senha.value;
-				var confirmarSenha     = document.registrar.confirmar.value;
+				var senhaAtual     = document.getElementById("senhaAtual").value;
+				var senha = document.getElementById("senha").value;
+				var confirmarSenha     = document.getElementById("confirmar").value;
 								
 				if(senhaAtual = <%=usuario.getSenha()%>){
 				
@@ -89,7 +89,7 @@ session.setAttribute("usuario",usuario);
 				<!-- Conteudo da página -->
 				<div id="manutencao">
 					
-					<form id="contactform" name="registrar" action="controladorUsuario" method="post">
+					<form id="contactform" name="registrar" action="controladorUsuario" method="post" onsubmit="validar();">
 					
 					<input type="hidden" name="acao" value="alterarSenha">
                     <input type="hidden" name="perfil" value="Comum">
