@@ -1,6 +1,7 @@
 package ads.fafica.modelo;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -13,6 +14,8 @@ public class Solucao{
 	private Time hrFechamentoSolucao;
 	private Date dtFechamentoSolucao;
 	
+	Date dtFechamento = new Date(System.currentTimeMillis());    
+	SimpleDateFormat formatarDate = new SimpleDateFormat("dd-MM-yyyy");   	
 	
 	public Solucao(int codigoSolucao, int codigoUsuario, int codigoProblema,
 			String descricaoSolucao, Time hrFechamentoSolucao,

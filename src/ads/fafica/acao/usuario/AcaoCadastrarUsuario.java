@@ -95,68 +95,14 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 							.getRequestDispatcher("/cadastroUsuario.jsp");
 					dispatcher.forward(request, response);
 				}
-			}
-				
+			}				
 					    
-		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-						
-		}
-		
-	}	
-	/*	public void executarUsuarioComum(HttpServletRequest request,
-				HttpServletResponse response) throws ServletException, IOException,
-				SQLException {
-			
-			String nome = request.getParameter("nome");
-			String email = request.getParameter("emailCad");
-			String senha = request.getParameter("senhaCad");
-				
-			
-			int codigoUsuario = 1;
-			
-			Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,2);
-			
-			try {
-				
-				boolean existe = controladorUsuario.existe(usuario.getEmailUSuario());	
-				
-				if(!existe){
-					controladorUsuario.inserirUsuario(usuario);	
-					
-					request.setAttribute("mensagem",
-							"Usuario adicionado com sucesso!");
-					
-					
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("/homeComum.jsp");
-					dispatcher.forward(request, response);
-				}
-				else {
-					
-					request.setAttribute("mensagem",
-							"Usuario já existe!");
-					
-					// controladorUsuario?acao=listar
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("/index.jsp");
-					dispatcher.forward(request, response);
-				}
-						    
 			} catch (RepositorioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-							
-			}
-		}
-	
-	}*/
-	
+				e.printStackTrace();						
+			}	
+	}	
 }

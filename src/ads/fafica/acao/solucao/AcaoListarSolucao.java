@@ -38,7 +38,7 @@ public class AcaoListarSolucao implements AcaoSolucao {
 		request.setAttribute("solucao", solucao);				
 		
 		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/listarSolucao.jsp");
+				request.getRequestDispatcher("/solucao.jsp");
 		dispatcher.forward(request, response);
 
 
