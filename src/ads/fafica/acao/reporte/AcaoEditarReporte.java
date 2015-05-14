@@ -38,8 +38,8 @@ public class AcaoEditarReporte implements AcaoReporte {
 		int  codigoReporte = Integer.parseInt(request.getParameter("codigoReporte"));
 		int codigoUsuario   = Integer.parseInt(request.getParameter("codigoUsuario"));
 		String status = "";
-		String data= "";
-		String hora="";
+		String data = "";
+		String hora = "";
 		String latitude  ="";
 		String longitude = "";
 		String opcao  = request.getParameter("opcao");

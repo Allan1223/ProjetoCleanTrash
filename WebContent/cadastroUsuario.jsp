@@ -22,20 +22,21 @@
 			
                 function validaForm(){
                     
-                    var nome = document.getElementById("nome").value;
-                    var email = document.getElementById("emailCad").value;
+                	// os campos nome e email já tem validações com o HTML5
+                    //var nome = document.getElementById("nome").value;
+                    //var email = document.getElementById("emailCad").value;
                     var perfil = document.getElementById("perfil").value;
                 	var senha = document.getElementById("senhaCad").value;
     				var conSenha = document.getElementById("confirmar").value;
 
-    				if(nome == ""){
+    				/*if(nome == ""){
 						alert ("Campo obrigatório!");
 						  return false;
 					   }
 					if(email == ""){
 						 alert("Campo obrigatório!");
 						   return false;
-						}
+						}*/
 					if(perfil == ""){
 						  alert ("Selecione um Perfil!");
 						  return false;
@@ -45,6 +46,11 @@
 							alert("Este campo só recebe letras!");
 							 return false;
 						}
+					if(senha.length() >= 6){
+						
+						alert("Senha inválida: digite 6 ou mais caracteres!");
+						   return false;
+					}
 				   
 			  	   if(senha != confSenha){
 					   alert("Senha inválida: preencha novamennte!");
