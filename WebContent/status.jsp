@@ -1,3 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%//@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
+<%@ page  import="java.util.List" %>
+<%@ page  import="ads.fafica.modelo.Usuario" %>
+<%@ page  import="ads.fafica.modelo.Reporte" %>
+
+<%@ page language="java" %>
+<%
+// Sessão do usuário 
+if(session.getAttribute("usuario") == null) {
+	// se o usuário não estiver logado será direcionado para a tela de Login
+	response.sendRedirect("/cleantrash/index.jsp");
+} 
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+//Envia a sessao
+session.setAttribute("usuario",usuario);
+
+List<Reporte> reportes = (List<Reporte>) request.getAttribute("reportes");
+
+//pageContext.setAttribute("usuario", usuarios);
+
+%>
+
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>

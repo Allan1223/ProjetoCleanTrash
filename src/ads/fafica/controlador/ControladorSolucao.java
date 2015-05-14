@@ -1,5 +1,6 @@
 package ads.fafica.controlador;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import ads.fafica.modelo.Solucao;
@@ -10,7 +11,7 @@ public class ControladorSolucao {
    private IRepositorioSolucao repositorioSolucao;
    
  //contrutor da classe
- 	public ControladorSolucao(){
+ 	public ControladorSolucao() throws Exception{
  		// instancia o objeto RepositorioPessoaFisicaArray
  		this.repositorioSolucao = new RepositorioSolucao(); 
  	}	
@@ -25,6 +26,9 @@ public class ControladorSolucao {
 	}
 	public void alterarSolucao(Solucao solucao) throws SolucaoNaoEncontradaException {		
 		repositorioSolucao.atualizar(solucao);		
+	}
+	public List<Solucao> listarSolucao() throws RepositorioException, SQLException {
+		return repositorioSolucao.listarSolucao(); 
 	}
 
 }

@@ -17,6 +17,7 @@ import ads.fafica.acao.solucao.AcaoSolucao;
 import ads.fafica.acao.usuario.AcaoCadastrarUsuario;
 import ads.fafica.acao.usuario.AcaoListarUsuario;
 import ads.fafica.acao.usuario.AcaoUsuario;
+import ads.fafica.controlador.RepositorioException;
 
 /**
  * Servlet implementation class ServletControladorSolucao
@@ -49,14 +50,10 @@ public class ServletControladorSolucao extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Esse Servlet sempre cria um usuário com o perfil 2(usuário comum)
-		
 				// recupera o valor do parâmetro 'acao' da requisição
-						String acao = request.getParameter("acao");
-						
+						String acao 		 = request.getParameter("acao");						
 						// pega a classe de 'Acao' baseado no parâmetro da requisição
-						AcaoSolucao operacao      = acoes.get(acao);
-												
+						AcaoSolucao operacao = acoes.get(acao);											
 						
 						if (operacao == null) {
 							// se operacao == null é porque não existe classe 'Acao' com 
@@ -69,6 +66,9 @@ public class ServletControladorSolucao extends HttpServlet {
 								operacao.executarSolucao(request, response);
 							
 						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (RepositorioException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
