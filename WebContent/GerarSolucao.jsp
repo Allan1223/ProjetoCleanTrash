@@ -1,3 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ page  import="java.util.List" %>
+<%@ page  import="ads.fafica.modelo.Usuario" %>
+<%@ page  import="ads.fafica.modelo.Reporte" %>
+
+<%@ page language="java" %>
+<%
+// Sessão do usuário 
+if(session.getAttribute("usuario") == null) {
+	// se o usuário não estiver logado será direcionado para a tela de Login
+	response.sendRedirect("/cleantrash/index.jsp");
+} 
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+//Envia a sessao
+session.setAttribute("usuario",usuario);
+
+// Recebe a instancia do reporte a ser solucionada
+Reporte reporte = (Reporte) request.getAttribute("reporte");
+
+%>
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,8 +41,14 @@
 				<!-- Conteudo da pÃ¡gina -->
 				<div id="reportar">
 					
-					<form id="contactform" action="#" method="get">
+					<form id="contactform" action="controladorSolucao?acao=cadastrar" method="post">
 					
+						<!--<input type="hidden" name="codigoUsuario" value=<%//=usuario.getCodigoUsuario()%>>-->
+						<!-- <input type="hidden" name="codigoProblema" value=<%//=problema.getCodigoProblema()%>> -->					
+						<input type="hidden" name="codigoUsuario" value="5" />
+						<input type="hidden" name="codigoProblema" value="1" />
+						
+											
 						<div class="field">
 							<label for="name">Problema:</label>
 							<input type="text" class="input" name="rua" id="rua" required="required" value="Eletrico" disabled />
@@ -44,7 +75,7 @@
 								
 						<div class="field">	
 							<label for="name">Descri&ccedil&atildeo:</label>
-							<textarea name="descricao" name = "descricao" maxlength = "255" cols = "30" rows = "5" size = "255" disabled>Falta de Iluminacao em alguns pontos da rua</textarea><br>
+							<textarea name="descricaoSolucao" name = "descricaoSolucao" maxlength = "255" cols = "30" rows = "5" size = "255" disabled>Falta de Iluminacao em alguns pontos da rua</textarea><br>
 							
 							
 						</div>	
