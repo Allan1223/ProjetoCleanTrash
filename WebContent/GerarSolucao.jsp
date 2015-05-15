@@ -81,7 +81,7 @@ Reporte reporte = (Reporte) request.getAttribute("reporte");
 						</div>	
 						<div class="field">	
 							<label for="name">Solu&ccedil&atildeo:</label>
-							<textarea name="solucao" name = "solucao" maxlength = "255" cols = "30" rows = "5" size = "255" required="required" ></textarea><br>
+							<textarea name="descricaoSolucao" name = "descricaoSolucao" maxlength = "255" cols = "30" rows = "5" size = "255" required="required" ></textarea><br>
 							
 							
 						</div>	

@@ -1,5 +1,6 @@
 package ads.fafica.controlador;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import ads.fafica.modelo.Reporte;
@@ -14,6 +15,8 @@ public interface IRepositorioReporte {
 	public List<Reporte> procurarReporte(int codigoReporte) throws ProblemaNaoEncontradoException;
 
 	public void atualizar(Reporte reporte) throws ProblemaNaoEncontradoException;
+
+	public void atualizarStatus(int codigoProblema) throws RepositorioException,SQLException;
 
 	
 }

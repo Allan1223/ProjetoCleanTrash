@@ -12,7 +12,7 @@ public class ControladorReporte {
     private IRepositorioReporte repositorioReporte;
     
   //contrutor da classe
-  	public ControladorReporte() {
+  	public ControladorReporte() throws Exception {
   		// instancia o objeto RepositorioReporte
   		this.repositorioReporte = new RepositorioReporte(); 
   	}
@@ -33,6 +33,11 @@ public class ControladorReporte {
 	
 	public void alterarReporte(Reporte reporte) throws ProblemaNaoEncontradoException {		
 		repositorioReporte.atualizar(reporte);		
+	}
+
+	public void atualizarStatus(int codigoProblema) throws RepositorioException, SQLException {
+		repositorioReporte.atualizarStatus(codigoProblema);
+		
 	}	
 	
 }

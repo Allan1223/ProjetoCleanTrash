@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ads.fafica.controlador.ControladorReporte;
 import ads.fafica.controlador.ControladorSolucao;
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
@@ -23,10 +24,12 @@ import ads.fafica.modelo.Perfil;
 public class AcaoCadastrarSolucao implements AcaoSolucao {
 
 	ControladorSolucao controladorSolucao;	
+	ControladorReporte controladorReporte;
 
 	public AcaoCadastrarSolucao(){		
 		try {
 			this.controladorSolucao = new ControladorSolucao();
+			this.controladorReporte = new ControladorReporte();
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -45,7 +48,7 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 			SQLException {
 
 		
-		int codigoSolucao    = 0;
+		int codigoSolucao    = 1;
 		int codigoUsuario    = Integer.parseInt(request.getParameter("codigoUsuario"));
 		int codigoProblema   = Integer.parseInt(request.getParameter("codigoProblema"));
 		String descricaoSolucao = request.getParameter("descricaoSolucao");
@@ -53,7 +56,7 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 		Date dtFechamentoSolucao = new Date(System.currentTimeMillis());    
 		SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-mm-dd");		
 		//System.out.print("Data " + formatarDate.format(dtFechamentoSolucao) + "\n")
-		
+						
 		java.sql.Time hrFechamentoSolucao = getCurrentTime();
 
 		Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoProblema,
@@ -61,8 +64,12 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 
 		try {							
 			controladorSolucao.inserirSolucao(solucao);
+			
+			controladorReporte.atualizarStatus(codigoProblema);
 
 			request.setAttribute("mensagem", "Reporte encerrado!");
+			
+			
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("controladorSolucao?acao=listar");
 			dispatcher.forward(request, response);	
