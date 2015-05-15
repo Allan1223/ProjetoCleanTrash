@@ -2,8 +2,8 @@ package ads.fafica.modelo;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.sql.Date;
+
 
 
 public class Solucao{
@@ -13,20 +13,20 @@ public class Solucao{
 	private int codigoProblema;	
 	private String descricaoSolucao;
 	private Time hrFechamentoSolucao;
-	private Date dtFechamentoSolucao;
+	private java.sql.Date dtFechamentoSolucao;
 	
 /*	Date dtFechamento = new Date(System.currentTimeMillis());    
 	SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-mm-dd");   */	
 	
 	public Solucao(int codigoSolucao, int codigoUsuario, int codigoProblema,
 			String descricaoSolucao, Time hrFechamentoSolucao,
-			Date dtFechamentoSolucao) {
+			java.util.Date dtFechamentoSolucao) {
 		this.codigoSolucao = codigoSolucao;
 		this.codigoUsuario = codigoUsuario;
 		this.codigoProblema = codigoProblema;
 		this.descricaoSolucao = descricaoSolucao;
 		this.hrFechamentoSolucao = hrFechamentoSolucao;
-		this.dtFechamentoSolucao = dtFechamentoSolucao;
+		this.dtFechamentoSolucao = (Date) dtFechamentoSolucao;
 	}
 	
 	public int getCodigoProblema() {

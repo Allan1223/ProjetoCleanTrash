@@ -7,7 +7,7 @@
 
 <%@ page language="java" %>
 <%
-// Sessão do usuário 
+/*// Sessão do usuário 
 if(session.getAttribute("usuario") == null) {
 	// se o usuário não estiver logado será direcionado para a tela de Login
 	response.sendRedirect("/cleantrash/index.jsp");
@@ -18,7 +18,7 @@ Usuario usuario = (Usuario) session.getAttribute("usuario");
 session.setAttribute("usuario",usuario);
 
 // Recebe a instancia do reporte a ser solucionada
-Reporte reporte = (Reporte) request.getAttribute("reporte");
+Reporte reporte = (Reporte) request.getAttribute("reporte");*/
 
 %>
 

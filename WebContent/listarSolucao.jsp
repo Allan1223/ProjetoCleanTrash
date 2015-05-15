@@ -1,3 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ page  import="java.util.List" %>
+<%@ page  import="ads.fafica.modelo.Usuario" %>
+<%@ page  import="ads.fafica.modelo.Solucao" %>
+
+<%@ page language="java" %>
+<%
+// Sessão do usuário 
+/*if(session.getAttribute("usuario") == null) {
+	// se o usuário não estiver logado será direcionado para a tela de Login
+	response.sendRedirect("/cleantrash/index.jsp");
+} 
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+//Envia a sessao
+session.setAttribute("usuario",usuario);
+*/
+// Recebe a instancia do reporte a ser solucionada
+Solucao solucao = (Solucao) request.getAttribute("solucao");
+
+%>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -43,32 +67,60 @@
 				<form>
 				
 					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
-				<table>
-					<caption>Reportes</caption>
-						<thead> <tr> <th>Codigo <th>Tipo <th>Descricao <th> Status <th> A&ccedil&otildees
-						   <!--<tfoot> <tr> <th>Codigo <th>Tipo <th>Descricao <th> Status-->
-							<tbody>
-							    <tr>
-									<td>1010 <td>Eletrico <td> Falta de luz em um poste <td> Aberto
-									<td> 
-									     <a href="solucao.html"> <img src="images/editar.png" width='40px' height="40px" alt="Fechar do reporte" title="Fechar do reporte"></a>
-									     <a href="#"> <img  src="images/excluir.png" width='40px' height="40px" alt="Exclir Reporte" title="Exclir Reporte" ></a>
-								<tr  style="background: #ccc"> 
-									<td>1020 <td>Lixo<td>Rua com metralhas <td>Fechado 
-									<td> 
-									     <a href="solucao.html"> <img src="images/editar.png" width='40px' height="40px" alt="Fechar do reporte" title="Fechar do reporte"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="Exclir Reporte" title="Exclir Reporte"></a>	
-								<tr> 
-									<td>1030 <td>Agua<td> Falta no Abastecimento <td>Aberto 
-									<td> 
-									     <a href="solucao.html"> <img src="images/editar.png" width='40px' height="40px" alt="Fechar do reporte" title="Fechar do reporte"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="Exclir Reporte" title="Exclir Reporte"></a>
-								<tr  style="background: #ccc">
-									<td>1040 <td>Lixo<td>Falta de coleta <td>Fechado 
-									<td> 
-									     <a href="solucao.html"> <img src="images/editar.png" width='40px' height="40px" alt="Fechar do reporte" title="Fechar do reporte"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="Exclir Reporte" title="Exclir Reporte"></a>
-				</table>
+				<!-- tabela dinâmica -->
+				<table border="0" align="center">
+						<tr>
+						<td>
+							<table border="0" align="center" cellpadding="5" cellspacing="0">
+																		
+															
+								
+								<tr bgColor="#ddd">
+									<th><b>Codigo Usuario</b></th>
+									<th><b>Nome</b></th>
+									<th><b>Email</b></th>
+									<th><b>Perfil</b></th>
+									<th><b>Acoes</b></th>
+								</tr>
+								
+								<c:if test="${empty usuarios}">
+								<tr>
+									<td align="center">
+										<p>Nenhum Usuario Cadastrado.</p>
+									</td>
+								</tr>
+								</c:if>
+													
+								<c:forEach items="${usuarios}" var="usuario" varStatus="i">
+									<c:choose>							
+										
+										<c:when test="${i.count % 2 == 0}">  
+							                <tr bgColor="#eee"> <%-- Use styles... fica melhor... --%>  
+							            </c:when>  
+							            <c:otherwise>  
+							                <tr bgColor="#fff">  
+							            </c:otherwise> 
+															
+									</c:choose>	
+																						 
+										<td>${usuario.codigoUsuario}</td>
+										<td>${usuario.nomeUsuario}</td>
+										<td>${usuario.emailUsuario}</td>
+										<td>${usuario.perfilUsuario}</td>
+										
+									
+										<td><a href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span style="color:green;">Editar</span></strong>	</a>
+										<a href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}">   <strong><span style="color:red;">Excluir</span></strong></a>
+										 </td>
+							 
+									
+								</c:forEach>
+			    
+								
+							</table>
+						</td>
+						</tr>
+					</table>	
 
 				
 				</div>

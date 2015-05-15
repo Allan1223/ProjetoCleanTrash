@@ -53,7 +53,7 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 		int codigoProblema   = Integer.parseInt(request.getParameter("codigoProblema"));
 		String descricaoSolucao = request.getParameter("descricaoSolucao");
 		
-		Date dtFechamentoSolucao = new Date(System.currentTimeMillis());    
+		Date dtFechamentoSolucao = new java.sql.Date(new java.util.Date().getTime());    
 		SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-mm-dd");		
 		//System.out.print("Data " + formatarDate.format(dtFechamentoSolucao) + "\n")
 						
