@@ -3,6 +3,7 @@ package ads.fafica.modelo;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class Solucao{
@@ -14,8 +15,8 @@ public class Solucao{
 	private Time hrFechamentoSolucao;
 	private Date dtFechamentoSolucao;
 	
-	Date dtFechamento = new Date(System.currentTimeMillis());    
-	SimpleDateFormat formatarDate = new SimpleDateFormat("dd-MM-yyyy");   	
+/*	Date dtFechamento = new Date(System.currentTimeMillis());    
+	SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-mm-dd");   */	
 	
 	public Solucao(int codigoSolucao, int codigoUsuario, int codigoProblema,
 			String descricaoSolucao, Time hrFechamentoSolucao,
@@ -64,6 +65,7 @@ public class Solucao{
 	public void setDtFechamentoSolucao(Date dtFechamentoSolucao) {
 		this.dtFechamentoSolucao = dtFechamentoSolucao;
 	}
-
+	
+	
 
 }

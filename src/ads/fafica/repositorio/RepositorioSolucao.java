@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import ads.fafica.controlador.IRepositorioSolucao;
@@ -15,48 +17,79 @@ import ads.fafica.modelo.Solucao;
 import ads.fafica.modelo.Usuario;
 
 public class RepositorioSolucao implements IRepositorioSolucao{
-	
+
 	private Solucao repositorioSolucao;	
 	private Connection conn = null;
-	
-    public RepositorioSolucao() throws Exception{        	    		
-         this.conn = ConnectionManager.reservaStatement("mysql");                      
-    } 
-	public void inserir(Solucao solucao) throws RepositorioException {
-			
-	}	
+
+	public RepositorioSolucao() throws Exception{        	    		
+		this.conn = ConnectionManager.reservaStatement("mysql");                      
+	} 	
 	public void remover(int codigoSolucao) /*throws UsurioNaoEncontradoException */{ //Deixar espaço entre a chave  e o parentes.
-		
+
 	}
 	public Solucao procurar(int codigoSolucao) /*throws PessoaFisicaNaoEncontradaException*/ { //Deixar espaço entre a chave  e o parentes.
 		return repositorioSolucao;
 	}
 	public void atualizar(Solucao solucao)/*throws PessoaFisicaNaoEncontradaException*/{ //Deixar espaço entre a chave  e o parentes.
-	
+
 	}
+	public void inserirSolucao(Solucao solucao) throws RepositorioException, SQLException {
+		
+		PreparedStatement stmt=null;
+		if (solucao != null) {
+			try {
+				String sql = "INSERT INTO solucao (codigoReporte, codigoUsuario, descricaoSolucao, dataFechamento, horaFechamento)"
+						+ " VALUES (?, ?, ?, ?, ?)";
+
+				stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+
+				stmt.setInt(1, solucao.getCodigoProblema());
+				stmt.setInt(2, solucao.getCodigoUsuario());
+				stmt.setString(3, solucao.getDescricaoSolucao());
+				stmt.setDate(4,	  (java.sql.Date) solucao.getDtFechamentoSolucao());
+				stmt.setTime(5, solucao.getHrFechamentoSolucao());
+
+				stmt.execute();
+
+			}
+			catch (SQLException e) {
+				throw new RepositorioException(e);
+			}
+			finally {
+				stmt.close();
+			}
+		}    
+
+	}	
+
 	@Override
 	public List<Solucao> listarSolucao() throws RepositorioException, SQLException {
 		List<Solucao> solucoes = new ArrayList<Solucao>();
 
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
-		
+
 		try {
 			String sql = "SELECT * FROM SOLUCAO";
-        	stmt = (PreparedStatement) this.conn.prepareStatement(sql);
-        	rs = stmt.executeQuery();
-        	
-			
+			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+
+
 			while (rs.next()) {
 				int codigoSolucao = rs.getInt("codigoSolucao");
 				int codigoUsuario = rs.getInt("codigoUsuario");
 				int codigoProblema= rs.getInt("codigoProblema");				
 				String descricaoSolucao = rs.getString("descricaoSolucao");
-				Time hrFechamentoSolucao = rs.getTime("hrFechamentoSolucao");
-				Date dtFechamentoSolucao = rs.getDate("dtFechamentoSolucao");										
 				
-				Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoProblema, descricaoSolucao, hrFechamentoSolucao, dtFechamentoSolucao);
-												
+
+				Date dtFechamentoSolucao = rs.getDate("dataFechamento");    
+				SimpleDateFormat formatarDate = new SimpleDateFormat("dd/mm/yyyy"); 
+
+				Time hrFechamentoSolucao = rs.getTime("horaFechamento");	
+
+				Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoProblema,
+						descricaoSolucao, hrFechamentoSolucao, dtFechamentoSolucao);
+
 				solucoes.add(solucao);
 			}
 		} catch (SQLException e) {

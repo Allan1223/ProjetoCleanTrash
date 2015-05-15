@@ -15,8 +15,8 @@ public class ControladorSolucao {
  		// instancia o objeto RepositorioPessoaFisicaArray
  		this.repositorioSolucao = new RepositorioSolucao(); 
  	}	
-	public void inserirSolucao (Solucao solucao) throws RepositorioException {			
-		repositorioSolucao.inserir(solucao);			
+	public void inserirSolucao (Solucao solucao) throws RepositorioException, SQLException {			
+		repositorioSolucao.inserirSolucao(solucao);			
 	}	
 	public void excluirSolucao(int codigoSolucao) throws SolucaoNaoEncontradaException {		
 		repositorioSolucao.remover(codigoSolucao);		

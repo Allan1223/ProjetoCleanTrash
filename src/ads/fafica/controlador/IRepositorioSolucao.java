@@ -7,7 +7,7 @@ import ads.fafica.modelo.Solucao;
 
 public interface IRepositorioSolucao {	
 
-	public void inserir(Solucao solucao) throws RepositorioException; 
+	public void inserirSolucao(Solucao solucao) throws RepositorioException, SQLException; 
 
 	public void remover(int codigoSolucao) throws SolucaoNaoEncontradaException;
 
