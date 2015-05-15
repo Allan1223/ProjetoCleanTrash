@@ -46,7 +46,7 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 				
 						
 				List<Reporte> reporte = controladorReporte.procurarReporte(codigoReporte);
-				
+								
 				request.setAttribute("reportes", reporte);	
 							
 				RequestDispatcher dispatcher = 
@@ -65,6 +65,9 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 				
 				e.printStackTrace();
 			} catch (RepositorioException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UsuarioNaoEncontradoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

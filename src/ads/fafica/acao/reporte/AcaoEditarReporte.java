@@ -54,14 +54,22 @@ public class AcaoEditarReporte implements AcaoReporte {
 		
 		try {
 			controladorReporte.alterarReporte(reporte);
+			
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("controladorReporte?acao=listar");
+			dispatcher.forward(request, response);
+			
 		} catch (ProblemaNaoEncontradoException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("controladorReporte?acao=listar");
-		dispatcher.forward(request, response);
+		catch (RepositorioException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
 
 	}
 

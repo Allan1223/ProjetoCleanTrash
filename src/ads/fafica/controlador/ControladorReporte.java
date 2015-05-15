@@ -17,27 +17,33 @@ public class ControladorReporte {
   		this.repositorioReporte = new RepositorioReporte(); 
   	}
 	
-	public void inserirReporte (Reporte reporte) throws RepositorioException {						
+	public void inserirReporte (Reporte reporte) throws RepositorioException, SQLException {						
 		repositorioReporte.inserir(reporte);					
 	}
 	
-	public void excluirReporte(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException {		
+	public void excluirReporte(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException, SQLException {		
 		repositorioReporte.remover(codigoReporte);		
 	}
 	
-	public List<Reporte> procurarReporte(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException {		
+	public List<Reporte> procurarReporte(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException, UsuarioNaoEncontradoException, SQLException {		
 		return repositorioReporte.procurarReporte(codigoReporte);		
 	}
 	
+	public Reporte procurarReporteId(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException, SQLException, UsuarioNaoEncontradoException {		
+		return repositorioReporte.procurarReporteId(codigoReporte);		
+	}	
 	
-	
-	public void alterarReporte(Reporte reporte) throws ProblemaNaoEncontradoException {		
+	public void alterarReporte(Reporte reporte) throws ProblemaNaoEncontradoException, RepositorioException, SQLException {		
 		repositorioReporte.atualizar(reporte);		
 	}
 
 	public void atualizarStatus(int codigoProblema) throws RepositorioException, SQLException {
 		repositorioReporte.atualizarStatus(codigoProblema);
 		
+	}
+
+	public List<Reporte> listarReporte() throws RepositorioException, SQLException{
+		return repositorioReporte.listarReportes();		
 	}	
 	
 }
