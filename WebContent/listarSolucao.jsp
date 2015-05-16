@@ -10,10 +10,18 @@
 <%@ page language="java" %>
 <%
 
+//Sessão do usuário 
+if(session.getAttribute("usuario") == null) {
+	// se o usuário não estiver logado será direcionado para a tela de Login
+	response.sendRedirect("/cleantrash/index.jsp");
+} 
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+//Envia a sessao
+session.setAttribute("usuario",usuario);
+
 // Recebe a instancia do reporte a ser solucionada
 List<Solucao> solucoes = (List<Solucao>) request.getAttribute("solucao");
-
-SimpleDateFormat formatarDate = new SimpleDateFormat("dd/mm/yyyy");
 
 %>
 
@@ -63,9 +71,7 @@ SimpleDateFormat formatarDate = new SimpleDateFormat("dd/mm/yyyy");
 				
 					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
 				<!-- tabela dinâmica -->
-				<table border="0" align="center">
-						<tr>
-						<td>
+				
 							<table border="0" align="center" cellpadding="5" cellspacing="0">
 																		
 															
@@ -102,26 +108,23 @@ SimpleDateFormat formatarDate = new SimpleDateFormat("dd/mm/yyyy");
 															
 									</c:choose>	
 									
+									
 										<fmt:formatDate value="${solucao.dtFechamentoSolucao.time}" pattern="dd/MM/yyyy" var="dataFormatada" />									
 									
 																															 
 										<td>${solucao.codigoSolucao}</td>
-										<td>${solucao.codigoReporte}</td>
+										<td>${solucao.codigoReporte}</td> 
 										<td>${solucao.descricaoSolucao}</td>
 										<td>${solucao.dtFechamentoSolucao}</td>
 										<td>${solucao.hrFechamentoSolucao}</td>
-										
-										
-										
+													
 																																			 
 									
 								</c:forEach>
 			    
 								
 							</table>
-						</td>
-						</tr>
-					</table>	
+						
 
 				
 				</div>

@@ -18,7 +18,7 @@ Usuario usuario = (Usuario) session.getAttribute("usuario");
 //Envia a sessao
 session.setAttribute("usuario",usuario);
 
-List<Reporte> reportes = (List<Reporte>) request.getAttribute("reportes");
+List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 
 //pageContext.setAttribute("usuario", usuarios);
 
@@ -70,41 +70,67 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reportes");
 						
 				<form>
 				
-				<a style=" margin: 20px 0 0 20px;" href="reportar.html"> <img src="images/addRep.png" alt="Novo Reporte" title="Novo Reporte"></a>
+				<a style=" margin: 20px 0 0 20px;" href="reportar.jsp"> <img src="images/addRep.png" alt="Novo Reporte" title="Novo Reporte"></a>
 				
 					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
-				<table>
-					<caption>Reportes</caption>
-						<thead> <tr> <th>Codigo <th>Tipo <th>Descricao <th> Status <th> A&ccedil&otildees
-						   <!--<tfoot> <tr> <th>Codigo <th>Tipo <th>Descricao <th> Status-->
-							<tbody>
-							    <tr>
-									<td>1010 <td>Eletrico <td> Falta de luz em um poste <td> Aberto
-									<td> 
-									     <a href="EditarReporte.html"> <img src="images/editar.png" width='40px' height="40px" alt="editar reporte" title="editar reporte"></a>
-									     <a href="#"> <img  src="images/excluir.png" width='40px' height="40px" alt="excluir reporte" title="excluir reporte" ></a>
-										 <a href="#"> <img src="images/ferramenta.png" width='30px' height="30px" alt="Reabrir reporte" title="Reabrir reporte"></a>
-								<tr  style="background: #ccc"> 
-									<td>1020 <td>Lixo<td>Rua com metralhas <td>Fechado 
-									<td> 
-									     <a href="EditarReporte.html"> <img src="images/editar.png" width='40px' height="40px"alt="editar reporte" title="editar reporte"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="excluir reporte" title="excluir reporte"></a>	
-										 <a href="#"> <img src="images/ferramenta.png" width='30px' height="30px" alt="Reabrir reporte" title="Reabrir reporte"></a>
-								<tr> 
-									<td>1030 <td>Agua<td> Falta no Abastecimento <td>Aberto 
-									<td> 
-									     <a href="EditarReporte.html"> <img src="images/editar.png" width='40px' height="40px" alt="editar reporte" title="editar reporte"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="excluir reporte" title="excluir reporte"></a>
-										 <a href="#"> <img src="images/ferramenta.png" width='30px' height="30px" alt="Reabrir reporte" title="Reabrir reporte"></a>
-								<tr  style="background: #ccc">
-									<td>1040 <td>Lixo<td>Falta de coleta <td>Fechado 
-									<td> 
-									     <a href="EditarReporte.html"> <img src="images/editar.png" width='40px' height="40px" alt="editar reporte" title="editar reporte"></a>
-									     <a href="#"> <img src="images/excluir.png" width='40px' height="40px" alt="excluir reporte" title="excluir reporte"></a>
-										 <a href="#"> <img src="images/ferramenta.png" width='30px' height="30px" alt="Reabrir reporte" title="Reabrir reporte"></a>
-				</table>
-
 				
+				<table border="0" align="center" cellpadding="5" cellspacing="0">
+																		
+															
+								
+								<tr bgColor="#ddd">
+									<th><b>Código Reporte</b></th>
+									<th><b>Tipo Reporte</b></th>
+									<th><b>Descri&ccedil&atildeo</b></th>
+									<th><b>Data Abertura</b></th>
+									<th><b>Status</b></th>
+									<th><b>A&ccedil&otildees</b></th>
+								</tr>
+								
+								<c:if test="${empty reporte}">
+								<tr>
+									<td align="center">
+										<p>Nenhum Reporte Cadastrado.</p>
+									</td>
+								</tr>
+								</c:if>
+													
+								<c:forEach items="${reporte}" var="reporte" varStatus="i">
+														
+								 
+									<c:choose>							
+										
+										<c:when test="${i.count % 2 == 0}">  
+							                <tr bgColor="#eee"> <%-- Use styles... fica melhor... --%>  
+							            </c:when>  
+							            <c:otherwise>  
+							                <tr bgColor="#fff">  
+							            </c:otherwise> 
+															
+															
+									</c:choose>	
+									
+									
+										<fmt:formatDate value="${reporte.dtAberturaReporte.time}" pattern="dd/MM/yyyy" var="dataFormatada" />									
+									
+																															 
+										<td>${reporte.codigoReporte}</td>
+										<td>${reporte.tipoReporte}</td> 
+										<td>${reporte.descricaoReporte}</td>
+										<td>${reporte.dtAberturaReporte}</td>
+										<td>${reporte.statusReporte == 0 ? "Aberto" : "Fechado"}</td>
+										
+										<td><a href="controladorReporte?acao=formularioEditarReporte&id=${reporte.codigoReporte}"><strong><span style="color:green;">Editar</span></strong>	</a>
+										<a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}">   <strong><span style="color:red;">Excluir</span></strong></a>
+										 </td>
+													
+																																			 
+									
+								</c:forEach>
+			    
+								
+							</table>
+									
 				</div>
 				
 				

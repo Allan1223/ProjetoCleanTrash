@@ -29,6 +29,8 @@ session.setAttribute("usuario",usuario);
 		
 	</head>
 	<body>
+	
+	
 		<div id="cabecalho"><h1> Reportar Problemas </h1></div>		
 		
 			<div class="container">
@@ -39,12 +41,12 @@ session.setAttribute("usuario",usuario);
 					<form id="contactform" action="controladorReporte" method="post">
 					
 					<input type="hidden" name="acao" value="cadastrar">
-					<input type="hidden" name="usuario" >
+					<input type="hidden" name="codigoUsuario" value=<%=usuario.getCodigoUsuario()%>>
 					
 					
 						<div class="field">
 						<label for="opcao">Tipo:</label>
-						<select name="opcao">
+						<select name="tipo">
 							<option> Selecione</option>
 							<option value = "Eletrico">Eletrico</option>
 							<option value = "Saneamento">Saneamento</option>
@@ -68,7 +70,7 @@ session.setAttribute("usuario",usuario);
 						<div class="field">
 							<label for="name">Cidade:</label>
 							<input type="text" class="input" name="cidade" id="cidade" required="required"/>
-							<p class="hint">Digite seu Bairro.</p>
+							<p class="hint">Digite sua Cidade.</p>
 						</div>
 						
 						

@@ -35,7 +35,7 @@ public class AcaoListarReporte implements AcaoReporte  {
 		try {
 			List<Reporte> reporte = controladorReporte.listarReporte();
 
-			request.setAttribute("reportes", reporte);			
+			request.setAttribute("reporte", reporte);			
 
 			RequestDispatcher dispatcher = 
 					request.getRequestDispatcher("/status.jsp");

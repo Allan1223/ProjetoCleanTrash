@@ -1,9 +1,11 @@
 package ads.fafica.repositorio;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,29 +34,25 @@ public class RepositorioReporte implements IRepositorioReporte{
 			try {
 
 
-				String sql = "INSERT INTO REPORTE (tipoReporte, descricaoReporte, statusReporte, dtAberturaReporte, hrAberturaReporte, latitude, longitude, cidade, bairro, rua )"
-						+ " VALUES (?, ?, ?, ?)";
+				String sql = "INSERT INTO REPORTE (codigoUsuario, tipoReporte, descricaoReporte, statusReporte, dataAbertura, horaAbertura, latitude, longitude, cidade, bairro, rua )"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 				stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 
-				//stmt.setInt(1, usuario.getCodigoUsuario());
-				stmt.setString(1, reporte.getTipoReporte());
-				stmt.setString(2, reporte.getDescricaoReporte());
-				stmt.setString(3, reporte.getStatusReporte());
-				stmt.setString(4, reporte.getDtAberturaReporte());
-				stmt.setString(5, reporte.getHrAberturaReporte());
-				stmt.setString(6, reporte.getLatitude());
-				stmt.setString(7, reporte.getLongitude());
-				stmt.setString(8, reporte.getCidade());
-				stmt.setString(9, reporte.getBairro());
-				stmt.setString(10, reporte.getRua());
-
-
+				stmt.setInt(1, reporte.getCodigoUsuario());
+				stmt.setString(2, reporte.getTipoReporte());
+				stmt.setString(3, reporte.getDescricaoReporte());
+				stmt.setInt(4, reporte.getStatusReporte());
+				stmt.setDate(5, reporte.getDtAberturaReporte());
+				stmt.setTime(6, reporte.getHrAberturaReporte());
+				stmt.setString(7, reporte.getLatitude());
+				stmt.setString(8, reporte.getLongitude());
+				stmt.setString(9, reporte.getCidade());
+				stmt.setString(10, reporte.getBairro());
+				stmt.setString(11, reporte.getRua());
 
 				stmt.execute();
-
-
 
 			}
 			catch (SQLException e) {
@@ -109,7 +107,7 @@ public class RepositorioReporte implements IRepositorioReporte{
 
 
 			if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoReporte);
-			reporte = new Reporte(rs.getInt("codigoReporte"), rs.getInt("codigoUsuario"), rs.getString("tipoReporte"), rs.getString("descricaoReporte"),rs.getString("statusReporte"), rs.getString("dtAberturaReporte"),rs.getString("hrAberturaReporte"),rs.getString("latitude"),rs.getString("longitude"),rs.getString("cidade"),rs.getString("bairro"),rs.getString("rua"));
+			reporte = new Reporte(rs.getInt("codigoReporte"), rs.getInt("codigoUsuario"), rs.getString("tipoReporte"), rs.getString("descricaoReporte"),rs.getInt("statusReporte"), rs.getDate("dataAbertura"),rs.getTime("horaAbertura"),rs.getString("latitude"),rs.getString("longitude"),rs.getString("cidade"),rs.getString("bairro"),rs.getString("rua"));
 			reportes.add(reporte);
 
 		} catch (SQLException e) {
@@ -139,13 +137,13 @@ public class RepositorioReporte implements IRepositorioReporte{
 
 
 			while (rs.next()) {
-				int codigoReporte = 0;
+				int codigoReporte = rs.getInt("codigoReporte");
 				int codigoUsuario = rs.getInt("codigoUsuario");
 				String tipoReporte = rs.getString("tipoReporte");
 				String descricaoReporte = rs.getString("descricaoReporte");
-				String statusReporte = rs.getString("statusReporte");
-				String dtAberturaReporte = rs.getString("dtAberturaReporte");
-				String hrAberturaReporte = rs.getString("hrAberturaReporte");
+				int statusReporte = rs.getInt("statusReporte");
+				Date dtAberturaReporte = rs.getDate("dataAbertura");
+				Time hrAberturaReporte = rs.getTime("horaAbertura");
 				String latitude = rs.getString("latitude");
 				String longitude = rs.getString("longitude");
 				String cidade = rs.getString("cidade");
@@ -157,6 +155,7 @@ public class RepositorioReporte implements IRepositorioReporte{
 				Reporte reporte = new Reporte(codigoReporte, codigoUsuario,tipoReporte,descricaoReporte,statusReporte,dtAberturaReporte,hrAberturaReporte,latitude, longitude, cidade, bairro, rua);
 
 				reportes.add(reporte);
+							
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -181,7 +180,7 @@ public class RepositorioReporte implements IRepositorioReporte{
 
 
 			if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoReporte);
-			reporte = new Reporte(rs.getInt("codigoReporte"), rs.getInt("codigoUsuario"), rs.getString("tipoReporte"), rs.getString("descricaoReporte"),rs.getString("statusReporte"), rs.getString("dtAberturaReporte"),rs.getString("hrAberturaReporte"),rs.getString("latitude"),rs.getString("longitude"),rs.getString("cidade"),rs.getString("bairro"),rs.getString("rua"));
+			reporte = new Reporte(rs.getInt("codigoReporte"), rs.getInt("codigoUsuario"), rs.getString("tipoReporte"), rs.getString("descricaoReporte"),rs.getInt("statusReporte"), rs.getDate("dtAberturaReporte"),rs.getTime("hrAberturaReporte"),rs.getString("latitude"),rs.getString("longitude"),rs.getString("cidade"),rs.getString("bairro"),rs.getString("rua"));
 
 
 		} catch (SQLException e) {
