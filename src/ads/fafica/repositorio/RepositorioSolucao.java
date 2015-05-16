@@ -86,9 +86,8 @@ public class RepositorioSolucao implements IRepositorioSolucao{
 				java.sql.Date dtFechamentoSolucao = rs.getDate("dataFechamento");    
 				//SimpleDateFormat formatarDate = new SimpleDateFormat("dd/mm/yyyy"); 
 
-				Time hrFechamentoSolucao = rs.getTime("horaFechamento");	
-
-
+				Time hrFechamentoSolucao = rs.getTime("horaFechamento");
+				
 
 				Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoReporte,
 						descricaoSolucao, hrFechamentoSolucao, (java.sql.Date) dtFechamentoSolucao);
