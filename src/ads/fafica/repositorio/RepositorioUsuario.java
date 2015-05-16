@@ -32,15 +32,11 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 	//@Override
 	public void inserir(Usuario usuario) throws RepositorioException, SQLException {
 
-
 		PreparedStatement stmt=null;
 		if (usuario != null) {
 			try {
-
-
 				String sql = "INSERT INTO USUARIO (nome, email, senha, perfil )"
 						+ " VALUES (?, ?, ?, ?)";
-
 
 				stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 
@@ -51,9 +47,6 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 				stmt.setInt(4, usuario.getPerfilUsuario());
 
 				stmt.execute();
-
-
-
 			}
 			catch (SQLException e) {
 				throw new RepositorioException(e);
@@ -94,7 +87,6 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			stmt.setInt(1, codigoUsuario);
 			rs = stmt.executeQuery();
 
-
 			if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoUsuario);
 			usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
 			usuarios.add(usuario);
@@ -102,15 +94,11 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		} catch (SQLException e) {
 			throw new RepositorioException(e);
 		} finally {
-
 			stmt.close();
 			rs.close();
 
 		}
-
 		return usuarios;
-
-
 	}
 
 	public Usuario procurar(String emailUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
@@ -124,7 +112,6 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			stmt.setString(1, emailUsuario);
 			rs = stmt.executeQuery();
 
-
 			if (!rs.next()) throw new UsuarioNaoEncontradoException();
 			usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
 
@@ -135,8 +122,6 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			stmt.close();
 			rs.close();
 		}
-
-
 		return usuario;
 	}
 
@@ -149,9 +134,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 					String sql = "UPDATE USUARIO SET nome = ?, email = ?, senha = ?, perfil = ?"
 							+ " where codigoUsuario = ?  ";
 
-
 					stmt = this.conn.prepareStatement(sql);
-
 
 					stmt.setString(1, usuario.getNomeUsuario());
 					stmt.setString(2, usuario.getEmailUsuario());
@@ -180,14 +163,11 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 					String sql = "UPDATE USUARIO SET nome = ?, senha = ?"
 							+ " where codigoUsuario = ?  ";
 
-
 					stmt = this.conn.prepareStatement(sql);
-
 
 					stmt.setString(1, usuario.getNomeUsuario());
 					stmt.setString(2, usuario.getSenha());
 					stmt.setInt(3, usuario.getCodigoUsuario());
-
 
 					Integer resultado = stmt.executeUpdate();
 					if (resultado == 0) throw new UsuarioNaoEncontradoException();
@@ -204,11 +184,6 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 
 	//@Override
 	public boolean existe(String emailUsuario) throws RepositorioException, SQLException {
-		/*boolean resposta = false;
-        if (getIndice(codigoUsuario) >= 0) resposta = true;
-        else resposta = false;
-        return resposta;*/
-
 
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
@@ -259,7 +234,6 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		ResultSet rs = null;
 		try {
 
-
 			String sql = "SELECT * FROM USUARIO WHERE email = ? and senha = ?";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 			stmt.setString(1, emailUsuario);
@@ -269,18 +243,13 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			if (!rs.next()) throw new UsuarioNaoEncontradoException();
 			usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
 
-
 		} catch (SQLException e) {
 			throw new RepositorioException(e);
 		} finally {
 			stmt.close();
 			rs.close();
 		}
-
 		return usuario;
-
-
-
 	}
 
 	@Override
@@ -295,14 +264,12 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 
-
 			while (rs.next()) {
 				int codigoUsuario = rs.getInt("codigoUsuario");
 				String nome = rs.getString("nome");
 				String email = rs.getString("email");
 				String senha = rs.getString("senha");
 				int perfil = rs.getInt("perfil");
-
 
 				Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,perfil);
 
@@ -327,26 +294,15 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			stmt.setInt(1, codigoUsuario);
 			rs = stmt.executeQuery();
 
-
 			if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoUsuario);
 			usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
-
 
 		} catch (SQLException e) {
 			throw new RepositorioException(e);
 		} finally {
-
 			stmt.close();
 			rs.close();
-
 		}
-
 		return usuario;
 	}
-
-
-
-
-
-
 }

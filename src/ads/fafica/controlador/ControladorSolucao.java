@@ -21,8 +21,8 @@ public class ControladorSolucao {
 	public void excluirSolucao(int codigoSolucao) throws SolucaoNaoEncontradaException {		
 		repositorioSolucao.remover(codigoSolucao);		
 	}
-	public Solucao procurarSolucao(int codigoSolucao) throws SolucaoNaoEncontradaException {		
-		return repositorioSolucao.procurar(codigoSolucao);		
+	public Solucao procurarSolucao(int codigoSolucao) throws SolucaoNaoEncontradaException, RepositorioException, SQLException {		
+		return repositorioSolucao.procurarSolucao(codigoSolucao);		
 	}
 	public void alterarSolucao(Solucao solucao) throws SolucaoNaoEncontradaException {		
 		repositorioSolucao.atualizar(solucao);		
