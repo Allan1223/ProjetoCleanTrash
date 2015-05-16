@@ -5,16 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import ads.fafica.controlador.IRepositorioSolucao;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Solucao;
-import ads.fafica.modelo.Usuario;
 
 public class RepositorioSolucao implements IRepositorioSolucao{
 

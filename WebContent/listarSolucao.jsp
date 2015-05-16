@@ -10,7 +10,7 @@
 
 // Recebe a instancia do reporte a ser solucionada
 List<Solucao> solucoes = (List<Solucao>) request.getAttribute("solucao");
-
+System.out.println("novo" + solucoes.get(0));
 %>
 
 <!DOCTYPE html>
