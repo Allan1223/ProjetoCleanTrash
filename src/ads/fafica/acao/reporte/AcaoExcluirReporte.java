@@ -14,32 +14,32 @@ import ads.fafica.controlador.RepositorioException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
 
 public class AcaoExcluirReporte implements AcaoReporte {
-	
-	
+
+
 	ControladorReporte controladorReporte;
-	
+
 	public AcaoExcluirReporte(){
-		
+
 		try {
 			this.controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}	
-	
+	}	
+
 	@Override
 	public void executarReporte(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
-		
+
 		int id = Integer.parseInt(request.getParameter("id"));
-		
-		
+
+
 		try {
 			//excluir usuário
 			controladorReporte.excluirReporte(id);
-						
+
 		} catch (ProblemaNaoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,14 +47,14 @@ public class AcaoExcluirReporte implements AcaoReporte {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		request.setAttribute("mensagem", "Reporte excluído com sucesso!");
-		
-		
+
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("controladorReporte?acao=listar");
 		dispatcher.forward(request, response);
-		
-		
+
+
 
 
 	}

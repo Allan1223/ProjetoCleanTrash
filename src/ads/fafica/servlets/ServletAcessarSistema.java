@@ -22,22 +22,22 @@ import ads.fafica.modelo.Usuario;
 @WebServlet("/acessarSistema")
 public class ServletAcessarSistema extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+
 	ControladorUsuario controladorUsuario;
-	
-    public ServletAcessarSistema() {
-    	try {
+
+	public ServletAcessarSistema() {
+		try {
 			this.controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 		}
-    }
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,43 +51,43 @@ public class ServletAcessarSistema extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
-		
+
 		try {
 			// Procura pelo usuário no banco de dados
 			Usuario usuario = controladorUsuario.acessoAoSistema(email, senha);
-					
-			    request.getSession().invalidate();
-		        HttpSession session = request.getSession(true);
-		        session.setAttribute("usuario",usuario);
 
-			
-				if (usuario.getPerfilUsuario() == 1){
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("/homeOperador.jsp");
-					dispatcher.forward(request, response);
-				}
-				else{
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("/homeComum.jsp");
-					dispatcher.forward(request, response);
-				}
-				
+			request.getSession().invalidate();
+			HttpSession session = request.getSession(true);
+			session.setAttribute("usuario",usuario);
+
+
+			if (usuario.getPerfilUsuario() == 1){
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("/homeOperador.jsp");
+				dispatcher.forward(request, response);
+			}
+			else{
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("/homeComum.jsp");
+				dispatcher.forward(request, response);
+			}
+
 			/*}*/
 		} catch (UsuarioNaoEncontradoException e) {
-			
+
 			// se não encontrar da uma menssagem de erro e volta a tela de Login
 			request.setAttribute("mensagem",
-				       "Usuario não encontrado!");
-		
-				request.setAttribute("validacaoUsuario","naoExiste");
-				
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/index.jsp");
-				dispatcher.forward(request, response);
-		
+					"Usuario não encontrado!");
+
+			request.setAttribute("validacaoUsuario","naoExiste");
+
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/index.jsp");
+			dispatcher.forward(request, response);
+
 			//e.printStackTrace();
 		} catch (RepositorioException e) {
 			// TODO Auto-generated catch block
@@ -96,8 +96,8 @@ public class ServletAcessarSistema extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
 
 }

@@ -34,7 +34,7 @@ public class RepositorioSolucao implements IRepositorioSolucao{
 
 	}
 	public void inserirSolucao(Solucao solucao) throws RepositorioException, SQLException {
-		
+
 		PreparedStatement stmt=null;
 		if (solucao != null) {
 			try {
@@ -80,21 +80,21 @@ public class RepositorioSolucao implements IRepositorioSolucao{
 				int codigoUsuario = rs.getInt("codigoUsuario");
 				int codigoReporte = rs.getInt("codigoReporte");				
 				String descricaoSolucao = rs.getString("descricaoSolucao");
-				
-						
+
+
 
 				java.sql.Date dtFechamentoSolucao = rs.getDate("dataFechamento");    
 				//SimpleDateFormat formatarDate = new SimpleDateFormat("dd/mm/yyyy"); 
 
 				Time hrFechamentoSolucao = rs.getTime("horaFechamento");	
-				
-				
-				
+
+
+
 				Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoReporte,
 						descricaoSolucao, hrFechamentoSolucao, (java.sql.Date) dtFechamentoSolucao);
 
 				solucoes.add(solucao);
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

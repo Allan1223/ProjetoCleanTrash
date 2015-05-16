@@ -4,7 +4,7 @@ public class Perfil{
 
 	private String nomePerfil;
 	private int codigoPerfil;
-	
+
 	public Perfil (String nomePerfil, int codigoPerfil) {
 		this.setNomePerfil(nomePerfil);
 		this.setCodigoPerfil(codigoPerfil);
@@ -21,7 +21,7 @@ public class Perfil{
 	public int getCodigoPerfil() {
 		return codigoPerfil;
 	}
-	
+
 	public void setCodigoPerfil(int codigoPerfil) {
 		this.codigoPerfil = codigoPerfil;
 	}	

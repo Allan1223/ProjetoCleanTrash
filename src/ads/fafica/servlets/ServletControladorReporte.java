@@ -25,22 +25,22 @@ import ads.fafica.acao.reporte.AcaoReporte;
 @WebServlet("/controladorReporte")
 public class ServletControladorReporte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Map<String, AcaoReporte> acoes = new HashMap<String, AcaoReporte>();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletControladorReporte() {
-    	
-    	acoes.put("cadastrar", new AcaoCadastrarReporte()); 
-        acoes.put("listar", new AcaoListarReporte());
-        acoes.put("formularioEditarUsuario", new AcaoFormularioEditarReporte());
-        acoes.put("editar", new AcaoEditarReporte());
-        acoes.put("excluir", new AcaoExcluirReporte());
-        acoes.put("pesquisar", new AcaoPesquisarReporte());
-       
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletControladorReporte() {
+
+		acoes.put("cadastrar", new AcaoCadastrarReporte()); 
+		acoes.put("listar", new AcaoListarReporte());
+		acoes.put("formularioEditarUsuario", new AcaoFormularioEditarReporte());
+		acoes.put("editar", new AcaoEditarReporte());
+		acoes.put("excluir", new AcaoExcluirReporte());
+		acoes.put("pesquisar", new AcaoPesquisarReporte());
+
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -54,31 +54,31 @@ public class ServletControladorReporte extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-				// recupera o valor do parâmetro 'acao' da requisição
-				String acao = request.getParameter("acao");
-				
-				// pega a classe de 'Acao' baseado no parâmetro da requisição
-				AcaoReporte operacao      = acoes.get(acao);
-				
-				if (operacao == null) {
-					// se operacao == null é porque não existe classe 'Acao' com 
-					// a String informada, então vamos usar a acao 'listar' 
-					operacao = acoes.get("listar");
-				}
-				
-				// chama o método executar da classe de 'Acao' passado request e response
-				try {
-															
-						operacao.executarReporte(request, response);
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-		
+
+
+		// recupera o valor do parâmetro 'acao' da requisição
+		String acao = request.getParameter("acao");
+
+		// pega a classe de 'Acao' baseado no parâmetro da requisição
+		AcaoReporte operacao      = acoes.get(acao);
+
+		if (operacao == null) {
+			// se operacao == null é porque não existe classe 'Acao' com 
+			// a String informada, então vamos usar a acao 'listar' 
+			operacao = acoes.get("listar");
+		}
+
+		// chama o método executar da classe de 'Acao' passado request e response
+		try {
+
+			operacao.executarReporte(request, response);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
 	}
 
 }

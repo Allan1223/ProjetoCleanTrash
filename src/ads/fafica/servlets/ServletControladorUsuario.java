@@ -32,29 +32,29 @@ import ads.fafica.modelo.Usuario;
 @WebServlet("/controladorUsuario")
 public class ServletControladorUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	
+
+
 	private Map<String, AcaoUsuario> acoes = new HashMap<String, AcaoUsuario>();
-	
-    /**
-     * @throws Exception 
-     * @see HttpServlet#HttpServlet()
-     */
+
+	/**
+	 * @throws Exception 
+	 * @see HttpServlet#HttpServlet()
+	 */
 
 	private Connection conn = null;
-	
-    public ServletControladorUsuario(){
-        
-    	acoes.put("cadastrar", new AcaoCadastrarUsuario()); 
-        acoes.put("listar", new AcaoListarUsuario());
-        acoes.put("formularioEditarUsuario", new AcaoFormularioEditarUsuario());
-        acoes.put("editar", new AcaoEditarUsuario());
-        acoes.put("alterarSenha", new AcaoAlterarSenhaUsuario());
-        acoes.put("excluir", new AcaoExcluirUsuario());
-        acoes.put("pesquisar", new AcaoPesquisarUsuario());
-        //acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico()); 	
- 
-    }
+
+	public ServletControladorUsuario(){
+
+		acoes.put("cadastrar", new AcaoCadastrarUsuario()); 
+		acoes.put("listar", new AcaoListarUsuario());
+		acoes.put("formularioEditarUsuario", new AcaoFormularioEditarUsuario());
+		acoes.put("editar", new AcaoEditarUsuario());
+		acoes.put("alterarSenha", new AcaoAlterarSenhaUsuario());
+		acoes.put("excluir", new AcaoExcluirUsuario());
+		acoes.put("pesquisar", new AcaoPesquisarUsuario());
+		//acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico()); 	
+
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -68,30 +68,30 @@ public class ServletControladorUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Esse Servlet sempre cria um usuário com o perfil 2(usuário comum)
-		
+
 		// recupera o valor do parâmetro 'acao' da requisição
-				String acao = request.getParameter("acao");
-				
-				// pega a classe de 'Acao' baseado no parâmetro da requisição
-				AcaoUsuario operacao = acoes.get(acao);										
-				
-				if (operacao == null) {
-					// se operacao == null é porque não existe classe 'Acao' com 
-					// a String informada, então vamos usar a acao 'listar' 
-					operacao = acoes.get("listar");
-				}
-				// chama o método executar da classe de 'Acao' passado request e response
-				try {															
-					operacao.executarUsuario(request, response);
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+		String acao = request.getParameter("acao");
+
+		// pega a classe de 'Acao' baseado no parâmetro da requisição
+		AcaoUsuario operacao = acoes.get(acao);										
+
+		if (operacao == null) {
+			// se operacao == null é porque não existe classe 'Acao' com 
+			// a String informada, então vamos usar a acao 'listar' 
+			operacao = acoes.get("listar");
+		}
+		// chama o método executar da classe de 'Acao' passado request e response
+		try {															
+			operacao.executarUsuario(request, response);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		/* PrintWriter out = response.getWriter();
-		 
-		 
+
+
 
 	        // escreve o texto
 	        out.println("<html>");
@@ -99,25 +99,25 @@ public class ServletControladorUsuario extends HttpServlet {
 	        out.println("Primeira servlet: " + nome + "-" + email + "-" + senha);
 	        out.println("</body>");
 	        out.println("</html>");
-		 
+
 		 response.setContentType("text/html");
 		    String pagina="http//www.google.com";
 		    response.sendRedirect(pagina);
-		
+
 		// na criação do usuário é preciso testar se já existe usuário cadastrado,
 		// se sim o código do usuário será o ultimo código cadastrado + 1, se não será 1
 
-			
+
 		int codigoUsuario = 1;
-		
+
 		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,2);
-		
+
 		try {
-			
-			
+
+
 			controladorUsuario.inserirUsuario(usuario);		
-			
-		    
+
+
 		} catch (RepositorioException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,13 +125,13 @@ public class ServletControladorUsuario extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			e.getMessage();
-			
+
 		}*/
-		
-		
-		
-		
-		
+
+
+
+
+
 	}
 
 }

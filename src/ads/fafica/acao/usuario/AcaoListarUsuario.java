@@ -18,24 +18,24 @@ public class AcaoListarUsuario implements AcaoUsuario  {
 	@Override
 	public void executarUsuario(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		 try {
-			 controladorUsuario = new ControladorUsuario();
+
+		try {
+			controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		
+
 		List<Usuario> usuario = controladorUsuario.listarUsuarios();
-					
+
 		request.setAttribute("usuarios", usuario);
-				
-		
+
+
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher("/manUsuario.jsp");
 		dispatcher.forward(request, response);
 
-		
+
 	}
 
 }

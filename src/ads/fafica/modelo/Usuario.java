@@ -8,14 +8,14 @@ public  class Usuario{
 	private String senha;
 	/*private Perfil perfilUsuario;*/
 	private int perfilUsuario;
-	
+
 	public Usuario(int codigoUsuario, String nomeUsuario, String emailUSuario, String senha, int perfilUsuario) {
 		this.setCodigoUsuario(codigoUsuario);
 		this.setNomeUsuario(nomeUsuario);
 		this.setEmailUsuario(emailUSuario);
 		this.setSenha(senha);
 		this.setPerfilUsuario(perfilUsuario);
-		
+
 	}
 
 	public int getCodigoUsuario() {
@@ -57,7 +57,7 @@ public  class Usuario{
 	public void setPerfilUsuario(int perfilUsuario) {
 		this.perfilUsuario = perfilUsuario;
 	}
-	
+
 
 	/*public Perfil getPerfilUsuario() {
 		return perfilUsuario;
@@ -67,5 +67,5 @@ public  class Usuario{
 		this.perfilUsuario = perfilUsuario;
 	}*/
 
-	
+
 }
