@@ -7,18 +7,9 @@
 
 <%@ page language="java" %>
 <%
-// Sessão do usuário 
-/*if(session.getAttribute("usuario") == null) {
-	// se o usuário não estiver logado será direcionado para a tela de Login
-	response.sendRedirect("/cleantrash/index.jsp");
-} 
 
-Usuario usuario = (Usuario) session.getAttribute("usuario");
-//Envia a sessao
-session.setAttribute("usuario",usuario);
-*/
 // Recebe a instancia do reporte a ser solucionada
-Solucao solucao = (Solucao) request.getAttribute("solucao");
+List<Solucao> solucoes = (List<Solucao>) request.getAttribute("solucao");
 
 %>
 
@@ -38,7 +29,7 @@ Solucao solucao = (Solucao) request.getAttribute("solucao");
 		<!--<script src="js/modernizr.custom.js"></script> -->
 	</head>
 	<body>
-		<div id="cabecalho"><h1> Reportes </h1></div>
+		<div id="cabecalho"><h1> Solu&ccedil&atildeo </h1></div>
 			<div class="container">
 			
 			
@@ -76,22 +67,22 @@ Solucao solucao = (Solucao) request.getAttribute("solucao");
 															
 								
 								<tr bgColor="#ddd">
-									<th><b>Codigo Usuario</b></th>
-									<th><b>Nome</b></th>
-									<th><b>Email</b></th>
-									<th><b>Perfil</b></th>
-									<th><b>Acoes</b></th>
+									<th><b>Codigo Solucao</b></th>
+									<th><b>Código Reporte</b></th>
+									<th><b>Descricao</b></th>
+									<th><b>Data Fechamento</b></th>
+									<th><b>Hora Fechamento</b></th>
 								</tr>
 								
-								<c:if test="${empty usuarios}">
+								<c:if test="${empty solucoes}">
 								<tr>
 									<td align="center">
-										<p>Nenhum Usuario Cadastrado.</p>
+										<p>Nenhuma Solucao Cadastrada.</p>
 									</td>
 								</tr>
 								</c:if>
 													
-								<c:forEach items="${usuarios}" var="usuario" varStatus="i">
+								<c:forEach items="${solucoes}" var="solucao" varStatus="i">
 									<c:choose>							
 										
 										<c:when test="${i.count % 2 == 0}">  
@@ -103,16 +94,12 @@ Solucao solucao = (Solucao) request.getAttribute("solucao");
 															
 									</c:choose>	
 																						 
-										<td>${usuario.codigoUsuario}</td>
-										<td>${usuario.nomeUsuario}</td>
-										<td>${usuario.emailUsuario}</td>
-										<td>${usuario.perfilUsuario}</td>
-										
-									
-										<td><a href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span style="color:green;">Editar</span></strong>	</a>
-										<a href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}">   <strong><span style="color:red;">Excluir</span></strong></a>
-										 </td>
-							 
+										<td>${solucao.codigoSolucao}</td>
+										<td>${solucao.codigoReporte}</td>
+										<td>${solucao.descricaoSolucao}</td>
+										<td>${solucao.dataFechamento}</td>
+										<td>${solucao.horaFechamento}</td>
+																																			 
 									
 								</c:forEach>
 			    

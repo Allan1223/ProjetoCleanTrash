@@ -10,30 +10,29 @@ public class Solucao{
 	
 	private int codigoSolucao;
 	private int codigoUsuario;
-	private int codigoProblema;	
+	private int codigoReporte;	
 	private String descricaoSolucao;
 	private Time hrFechamentoSolucao;
-	private java.sql.Date dtFechamentoSolucao;
+	private Date dtFechamentoSolucao;
 	
 /*	Date dtFechamento = new Date(System.currentTimeMillis());    
 	SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-mm-dd");   */	
 	
-	public Solucao(int codigoSolucao, int codigoUsuario, int codigoProblema,
-			String descricaoSolucao, Time hrFechamentoSolucao,
-			java.util.Date dtFechamentoSolucao) {
+	public Solucao(int codigoSolucao, int codigoUsuario, int codigoReporte,
+			String descricaoSolucao, Time hrFechamentoSolucao, Date dtFechamentoSolucao) {
 		this.codigoSolucao = codigoSolucao;
 		this.codigoUsuario = codigoUsuario;
-		this.codigoProblema = codigoProblema;
+		this.codigoReporte = codigoReporte;
 		this.descricaoSolucao = descricaoSolucao;
 		this.hrFechamentoSolucao = hrFechamentoSolucao;
-		this.dtFechamentoSolucao = (Date) dtFechamentoSolucao;
+		this.dtFechamentoSolucao = dtFechamentoSolucao;
 	}
 	
-	public int getCodigoProblema() {
-		return codigoProblema;
+	public int getcodigoReporte() {
+		return codigoReporte;
 	}
-	public void setCodigoProblema(int codigoProblema) {
-		this.codigoProblema = codigoProblema;
+	public void setcodigoReporte(int codigoReporte) {
+		this.codigoReporte = codigoReporte;
 	}
 	public int getCodigoSolucao() {
 		return codigoSolucao;
@@ -53,10 +52,10 @@ public class Solucao{
 	public void setDescricaoSolucao(String descricaoSolucao) {
 		this.descricaoSolucao = descricaoSolucao;
 	}
-	public Time getHrFechamentoSolucao() {
+	public java.sql.Time getHrFechamentoSolucao() {
 		return hrFechamentoSolucao;
 	}
-	public void setHrFechamentoSolucao(Time hrFechamentoSolucao) {
+	public void setHrFechamentoSolucao(java.sql.Time hrFechamentoSolucao) {
 		this.hrFechamentoSolucao = hrFechamentoSolucao;
 	}
 	public Date getDtFechamentoSolucao() {

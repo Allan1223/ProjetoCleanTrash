@@ -43,7 +43,7 @@ public class RepositorioSolucao implements IRepositorioSolucao{
 
 				stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 
-				stmt.setInt(1, solucao.getCodigoProblema());
+				stmt.setInt(1, solucao.getcodigoReporte());
 				stmt.setInt(2, solucao.getCodigoUsuario());
 				stmt.setString(3, solucao.getDescricaoSolucao());
 				stmt.setDate(4,	  (java.sql.Date) solucao.getDtFechamentoSolucao());
@@ -78,19 +78,23 @@ public class RepositorioSolucao implements IRepositorioSolucao{
 			while (rs.next()) {
 				int codigoSolucao = rs.getInt("codigoSolucao");
 				int codigoUsuario = rs.getInt("codigoUsuario");
-				int codigoProblema= rs.getInt("codigoProblema");				
+				int codigoReporte = rs.getInt("codigoReporte");				
 				String descricaoSolucao = rs.getString("descricaoSolucao");
 				
+						
 
-				Date dtFechamentoSolucao = rs.getDate("dataFechamento");    
-				SimpleDateFormat formatarDate = new SimpleDateFormat("dd/mm/yyyy"); 
+				java.sql.Date dtFechamentoSolucao = rs.getDate("dataFechamento");    
+				//SimpleDateFormat formatarDate = new SimpleDateFormat("dd/mm/yyyy"); 
 
 				Time hrFechamentoSolucao = rs.getTime("horaFechamento");	
-
-				Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoProblema,
-						descricaoSolucao, hrFechamentoSolucao, dtFechamentoSolucao);
+				
+				
+				
+				Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoReporte,
+						descricaoSolucao, hrFechamentoSolucao, (java.sql.Date) dtFechamentoSolucao);
 
 				solucoes.add(solucao);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

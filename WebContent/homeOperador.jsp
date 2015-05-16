@@ -87,7 +87,7 @@ session.setAttribute("usuario",usuario);
 				<!--<div><h3>Status dos Problemas</h3></div>
 				<div><h3>Manutenção</h3></div>
 				<div><h3>About</h3></div>-->
-				<div class="special"><h3><a href="controladorSolucao?acao=listarReportes.jsp"> Reportes </a></h3></div>
+				<div class="special"><h3><a href="controladorReporte?acao=listarReportes.jsp"> Reportes </a></h3></div>
 				<div class="special">< <h3><a href=controladorSolucao?acao=listar.jsp>Solucoes</a></h3>--></div>
 				<div class="special"><h3><a href="controladorUsuario?acao=listar">Manuten&ccedil&atildeo Usu&aacute;rio</a></h3></div>
 				<div class="special"><h3><a href="ajudaOperador.html">Ajuda</a></h3></div>

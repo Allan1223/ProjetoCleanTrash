@@ -60,7 +60,7 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 		java.sql.Time hrFechamentoSolucao = getCurrentTime();
 
 		Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoProblema,
-				descricaoSolucao, hrFechamentoSolucao, dtFechamentoSolucao);
+				descricaoSolucao, hrFechamentoSolucao, (java.sql.Date) dtFechamentoSolucao);
 
 		try {							
 			controladorSolucao.inserirSolucao(solucao);
