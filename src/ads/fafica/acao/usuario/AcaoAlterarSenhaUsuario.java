@@ -17,16 +17,16 @@ import ads.fafica.modelo.Usuario;
 public class AcaoAlterarSenhaUsuario implements AcaoUsuario {
 
 	ControladorUsuario controladorUsuario;
-	
+
 	public AcaoAlterarSenhaUsuario(){
 		try {
 			this.controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 		}
-		
+
 	}
 	@Override
 	public void executarUsuario(HttpServletRequest request,
@@ -38,25 +38,25 @@ public class AcaoAlterarSenhaUsuario implements AcaoUsuario {
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("emailUsuario");
 		String senha = request.getParameter("senha");
-		
+
 		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,2);
-		
+
 		try {
-			
-				controladorUsuario.atualizarSenha(usuario);
-			
-				request.setAttribute("mensagem",
-				       "Usuario Alterado com Sucesso!");
-						
-				/*request.getSession().invalidate();
+
+			controladorUsuario.atualizarSenha(usuario);
+
+			request.setAttribute("mensagem",
+					"Usuario Alterado com Sucesso!");
+
+			/*request.getSession().invalidate();
 		        HttpSession session = request.getSession(true);
 		        session.setAttribute("usuario",usuario);*/	        
-				
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/homeComum.jsp");
-				dispatcher.forward(request, response);
-		
-		
+
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/homeComum.jsp");
+			dispatcher.forward(request, response);
+
+
 		} catch (RepositorioException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,9 +64,9 @@ public class AcaoAlterarSenhaUsuario implements AcaoUsuario {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
+
+
 	}
 
 }

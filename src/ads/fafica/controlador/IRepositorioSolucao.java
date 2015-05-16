@@ -11,7 +11,7 @@ public interface IRepositorioSolucao {
 
 	public void remover(int codigoSolucao) throws SolucaoNaoEncontradaException;
 
-	public Solucao procurar(int codigoSolucao) throws SolucaoNaoEncontradaException;
+	public Solucao procurarSolucao(int codigoSolucao) throws SolucaoNaoEncontradaException, RepositorioException, SQLException;
 
 	public void atualizar(Solucao solucao) throws SolucaoNaoEncontradaException;
 

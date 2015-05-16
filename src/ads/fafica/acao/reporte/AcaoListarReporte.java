@@ -16,31 +16,31 @@ import ads.fafica.modelo.Reporte;
 public class AcaoListarReporte implements AcaoReporte  {
 
 	ControladorReporte controladorReporte;
-	
+
 	public AcaoListarReporte() {
-		
-		 try {
-			 controladorReporte = new ControladorReporte();
+
+		try {
+			controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
-	
+
 	@Override
 	public void executarReporte(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-						
+
+
 		try {
 			List<Reporte> reporte = controladorReporte.listarReporte();
-			
-			request.setAttribute("reportes", reporte);			
-			
+
+			request.setAttribute("reporte", reporte);			
+
 			RequestDispatcher dispatcher = 
 					request.getRequestDispatcher("/status.jsp");
 			dispatcher.forward(request, response);
-			
+
 		} catch (RepositorioException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,10 +48,10 @@ public class AcaoListarReporte implements AcaoReporte  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-					
-		
 
-		
+
+
+
 	}
 
 }

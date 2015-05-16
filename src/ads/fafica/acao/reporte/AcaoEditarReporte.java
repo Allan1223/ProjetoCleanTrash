@@ -18,23 +18,23 @@ import ads.fafica.modelo.Usuario;
 public class AcaoEditarReporte implements AcaoReporte {
 
 	ControladorReporte controladorReporte;
-	
+
 	public AcaoEditarReporte(){
-		
+
 		try {
 			this.controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 		}		
-		
+
 	}
 	@Override
 	public void executarReporte(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
-		
+
 		int  codigoReporte = Integer.parseInt(request.getParameter("codigoReporte"));
 		int codigoUsuario   = Integer.parseInt(request.getParameter("codigoUsuario"));
 		String status = "";
@@ -47,29 +47,29 @@ public class AcaoEditarReporte implements AcaoReporte {
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
 		String descricao = request.getParameter("descricao");
-				
-		
+
+
 		Reporte reporte = new Reporte(codigoReporte, codigoUsuario,opcao,descricao,status,data, hora, latitude, longitude, cidade, bairro, rua );
 
-		
+
 		try {
 			controladorReporte.alterarReporte(reporte);
-			
+
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("controladorReporte?acao=listar");
 			dispatcher.forward(request, response);
-			
+
 		} catch (ProblemaNaoEncontradoException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		catch (RepositorioException e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		
+
+
 
 	}
 

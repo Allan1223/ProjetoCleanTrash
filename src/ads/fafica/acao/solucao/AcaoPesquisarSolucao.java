@@ -1,4 +1,4 @@
-package ads.fafica.acao.usuario;
+package ads.fafica.acao.solucao;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,78 +9,69 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ads.fafica.controlador.ControladorSolucao;
 import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
+import ads.fafica.controlador.SolucaoNaoEncontradaException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
+import ads.fafica.modelo.Solucao;
 import ads.fafica.modelo.Usuario;
 
-public class AcaoPesquisarUsuario implements AcaoUsuario {
+public class AcaoPesquisarSolucao implements AcaoSolucao {
 
-	ControladorUsuario controladorUsuario;
-	int codigoUsuario = 0;
+	ControladorSolucao controladorSolucao;
+	int codigoSolucao = 0;
 
-	public AcaoPesquisarUsuario(){
+	public AcaoPesquisarSolucao(){
 
 		try {
-			this.controladorUsuario = new ControladorUsuario();
+			this.controladorSolucao = new ControladorSolucao();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}		
 
 	}
-	@Override
-	public void executarUsuario(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException,
-			SQLException {
-		// TODO Auto-generated method stub
 
+	@Override
+	public void executarSolucao(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException,
+			SQLException, RepositorioException {
 
 		String pesquisa = request.getParameter("pesquisa");
 
 		if (pesquisa != ""){
 
-			codigoUsuario = Integer.parseInt(request.getParameter("pesquisa"));
-
+			codigoSolucao = Integer.parseInt(request.getParameter("pesquisa"));
 
 			try {
 
+				Solucao solucao = controladorSolucao.procurarSolucao(codigoSolucao);
 
-				List<Usuario> usuario = controladorUsuario.procurarUsuario(codigoUsuario);
-
-				request.setAttribute("usuarios", usuario);	
-
-				RequestDispatcher dispatcher = 
-						request.getRequestDispatcher("/manUsuario.jsp");
-				dispatcher.forward(request, response);
-
-
-			} catch (UsuarioNaoEncontradoException e) {
-				// TODO Auto-generated catch block
-
-				request.setAttribute("usuarios", null);
+				request.setAttribute("solucoes", solucao);	
 
 				RequestDispatcher dispatcher = 
-						request.getRequestDispatcher("/manUsuario.jsp");
+						request.getRequestDispatcher("/listarSolucao.jsp");
 				dispatcher.forward(request, response);
 
-
-				e.printStackTrace();
 			} catch (RepositorioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} catch (SolucaoNaoEncontradaException e) {
+				// TODO Auto-generated catch block
 
+				request.setAttribute("solucoes", null);
+
+				RequestDispatcher dispatcher = 
+						request.getRequestDispatcher("/listarSolucao.jsp");
+				dispatcher.forward(request, response);
+				e.printStackTrace();
+			}
 		}
 		else{
-
-
 			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/controladorUsuario?acao=listar");
+					request.getRequestDispatcher("/controladorSolucao?acao=listar");
 			dispatcher.forward(request, response);
 		}
-
 	}
-
 }

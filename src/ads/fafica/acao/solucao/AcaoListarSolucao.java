@@ -26,29 +26,17 @@ public class AcaoListarSolucao implements AcaoSolucao {
 			e.printStackTrace();
 		}		
 	}
-	
-	
+
+
 	@Override
 	public void executarSolucao(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException, RepositorioException {	
-		
+
 		List<Solucao> solucao = controladorSolucao.listarSolucao();
-		
-		/*System.out.println("carai");
-		int n = solucao.size(); 
-		
-		for (int i = 0; i < n; i++) {
 			
-			System.out.printf("Oculos: %d- %s",i, solucao.get(i));
-			System.out.print ("\n");  
-			
-		}*/
-				
-		System.out.println(solucao.get(0));
-		
 		request.setAttribute("solucao", solucao);				
-		
+
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher("/listarSolucao.jsp");
 		dispatcher.forward(request, response);

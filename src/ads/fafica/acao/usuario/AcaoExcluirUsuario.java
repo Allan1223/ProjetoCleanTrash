@@ -15,34 +15,34 @@ import ads.fafica.controlador.UsuarioNaoEncontradoException;
 public class AcaoExcluirUsuario implements AcaoUsuario {
 
 	ControladorUsuario controladorUsuario;
-	
-	
+
+
 	public AcaoExcluirUsuario() {
-		
+
 		try {
 			this.controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 		}
-		
+
 	}
 	@Override
 	public void executarUsuario(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
 		// TODO Auto-generated method stub
-		
-		
-		
+
+
+
 		int id = Integer.parseInt(request.getParameter("id"));
-		
-		
+
+
 		try {
 			//excluir usuário
 			controladorUsuario.excluirUsuario(id);
-						
+
 		} catch (UsuarioNaoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,14 +50,14 @@ public class AcaoExcluirUsuario implements AcaoUsuario {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		request.setAttribute("mensagem", "Usuario excluído com sucesso!");
-		
-		
+
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("controladorUsuario?acao=listar");
 		dispatcher.forward(request, response);
-		
-		
+
+
 
 	}
 

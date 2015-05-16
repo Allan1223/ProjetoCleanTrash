@@ -6,7 +6,7 @@ import java.util.List;
 import ads.fafica.modelo.Usuario;
 
 public interface IRepositorioUsuario {
-	
+
 	public void inserir(Usuario usuario) throws RepositorioException, SQLException; 
 
 	public void remover(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
@@ -16,19 +16,19 @@ public interface IRepositorioUsuario {
 	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 
 	public boolean existe(String email) throws RepositorioException, SQLException;
-	
+
 	public boolean existe(int codigoUsuario) throws RepositorioException, SQLException;
-	
+
 	public Usuario acessoAoSistema(String emailUsuario, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException;
 
 	public Usuario procurar(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
-	
+
 	public List<Usuario> listarUsuarios();
-	
+
 	public void atualizarSenha(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 
 	public Usuario procurarUsuarioId(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
-		
-			
+
+
 
 }

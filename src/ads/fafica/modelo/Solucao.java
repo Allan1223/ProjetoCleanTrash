@@ -7,17 +7,17 @@ import java.sql.Date;
 
 
 public class Solucao{
-	
+
 	private int codigoSolucao;
 	private int codigoUsuario;
 	private int codigoReporte;	
 	private String descricaoSolucao;
 	private Time hrFechamentoSolucao;
 	private Date dtFechamentoSolucao;
-	
-/*	Date dtFechamento = new Date(System.currentTimeMillis());    
+
+	/*	Date dtFechamento = new Date(System.currentTimeMillis());    
 	SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-mm-dd");   */	
-	
+
 	public Solucao(int codigoSolucao, int codigoUsuario, int codigoReporte,
 			String descricaoSolucao, Time hrFechamentoSolucao, Date dtFechamentoSolucao) {
 		this.codigoSolucao = codigoSolucao;
@@ -27,7 +27,7 @@ public class Solucao{
 		this.hrFechamentoSolucao = hrFechamentoSolucao;
 		this.dtFechamentoSolucao = dtFechamentoSolucao;
 	}
-	
+
 	public int getcodigoReporte() {
 		return codigoReporte;
 	}
@@ -64,7 +64,7 @@ public class Solucao{
 	public void setDtFechamentoSolucao(Date dtFechamentoSolucao) {
 		this.dtFechamentoSolucao = dtFechamentoSolucao;
 	}
-	
-	
+
+
 
 }

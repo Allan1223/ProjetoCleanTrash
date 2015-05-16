@@ -1,27 +1,30 @@
- package ads.fafica.modelo;
+package ads.fafica.modelo;
+
+import java.sql.Date;
+import java.sql.Time;
 
 public class Reporte{
-	
+
 	private int    codigoReporte;
 	private int    codigoUsuario;
 	private String tipoReporte;
 	private String descricaoReporte;
-	private String statusReporte;
-	private String dtAberturaReporte;
-	private String hrAberturaReporte;
+	private int statusReporte;
+	private Date dtAberturaReporte;
+	private Time hrAberturaReporte;
 	private String latitude;
 	private String longitude;
 	private String cidade;
 	private String bairro;
 	private String rua;
-	
-	
+
+
 	public Reporte(int codigoReporte, int codigoUsuario, String tipoReporte,
-			String descricaoReporte, String statusReporte,
-			String dtAberturaReporte, String hrAberturaReporte,
+			String descricaoReporte, int statusReporte,
+			Date dtAberturaReporte, Time hrAberturaReporte,
 			String latitude, String longitude, String cidade, String bairro,
 			String rua) {
-		
+
 		this.codigoReporte = codigoReporte;
 		this.codigoUsuario = codigoUsuario;
 		this.tipoReporte = tipoReporte;
@@ -53,32 +56,32 @@ public class Reporte{
 	public void setDescricaoReporte(String descricaoReporte) {
 		this.descricaoReporte = descricaoReporte;
 	}
-	public String getStatusReporte() {
+	public int getStatusReporte() {
 		return statusReporte;
 	}
-	public void setStatusReporte(String statusReporte) {
+	public void setStatusReporte(int statusReporte) {
 		this.statusReporte = statusReporte;
 	}
-	public String getDtAberturaReporte() {
+	public Date getDtAberturaReporte() {
 		return dtAberturaReporte;
 	}
-	public void setDtAberturaReporte(String dtAberturaReporte) {
+	public void setDtAberturaReporte(Date dtAberturaReporte) {
 		this.dtAberturaReporte = dtAberturaReporte;
 	}
-	public String getHrAberturaReporte() {
+	public Time getHrAberturaReporte() {
 		return hrAberturaReporte;
 	}
-	public void setHrAberturaReporte(String hrAberturaReporte) {
+	public void setHrAberturaReporte(Time hrAberturaReporte) {
 		this.hrAberturaReporte = hrAberturaReporte;
 	}
-	
+
 	public int getCodigoUsuario() {
 		return codigoUsuario;
 	}
 	public void setCodigoUsuario(int codigoUsuario) {
 		this.codigoUsuario = codigoUsuario;
 	}
-		
+
 	public String getLatitude() {
 		return latitude;
 	}
@@ -109,5 +112,5 @@ public class Reporte{
 	public void setRua(String rua) {
 		this.rua = rua;
 	}	
-	
+
 }

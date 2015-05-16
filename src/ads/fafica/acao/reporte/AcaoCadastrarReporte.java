@@ -1,7 +1,9 @@
 package ads.fafica.acao.reporte;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,15 +20,15 @@ import ads.fafica.modelo.Usuario;
 public class AcaoCadastrarReporte implements AcaoReporte {
 
 	ControladorReporte controladorReporte;
-	
+
 	public AcaoCadastrarReporte(){
-		
+
 		try {
 			this.controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 		}
 	}
 	@Override
@@ -35,81 +37,43 @@ public class AcaoCadastrarReporte implements AcaoReporte {
 			SQLException {
 		// TODO Auto-generated method stub
 		
-		int codigoReporte = Integer.parseInt(request.getParameter("codigoReporte"));
+		java.util.Date date = new java.util.Date(); 
+		 
+
+		int codigoReporte = 1;
 		int codigoUsuario   = Integer.parseInt(request.getParameter("codigoUsuario"));
-		String status = "";
-		String data= "";
-		String hora="";
-		String latitude  ="";
+		int status = 0;
+		Date dtAberturaReporte= new java.sql.Date(new java.util.Date().getTime()); ;
+		Time hrAberturaReporte = new java.sql.Time(date.getTime());
+		// valores de longitude e latitude virão do googleMaps
+		String latitude  = "";
 		String longitude = "";
-		String opcao  = request.getParameter("opcao");
+		//**********************
+		String tipoReporte  = request.getParameter("tipo");
 		String rua  = request.getParameter("rua");
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
-		String descricao = request.getParameter("descricao");
-		
-		
-				
-		Reporte reporte = new Reporte(codigoReporte, codigoUsuario,opcao,descricao,status,data, hora, latitude, longitude, cidade, bairro, rua );
-		
+		String descricaoReporte = request.getParameter("descricao");
+
+
+
+		Reporte reporte = new Reporte(codigoReporte, codigoUsuario,tipoReporte,descricaoReporte,status,dtAberturaReporte, hrAberturaReporte, latitude, longitude, cidade, bairro, rua );
+
 		try {			
-	//		boolean existe = controladorReporte.existe(reporte.getCodigoReporte());	
+							
+			controladorReporte.inserirReporte(reporte);
+
+			request.setAttribute("mensagem",
+					"Reporte adicionado com sucesso!");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("controladorReporte?acao=listar");
+			dispatcher.forward(request, response);
 			
-	//		if(!existe){				
-				controladorReporte.inserirReporte(reporte);
-											
-				request.setAttribute("mensagem",
-						"Reporte adicionado com sucesso!");
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("controladorReporte?acao=listar");
-				dispatcher.forward(request, response);
-	/*	
-			    // testa se o cadastro veio da página inicial
-			    if(perfil.equals("ComumInicial")){
-			    	
-			    	request.getSession().invalidate();
-			        HttpSession session = request.getSession(true);
-			        session.setAttribute("usuario",usuario);
-			    	
-			    	RequestDispatcher dispatcher = request
-							.getRequestDispatcher("/homeComum.jsp");
-					dispatcher.forward(request, response);
-					
-				}
-			    
-				else{
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("controladorReporte?acao=listar");
-					dispatcher.forward(request, response);					
-				}
-			}
-			
-			else {
-				
-				request.setAttribute("mensagem",
-						"Reporte já existe!");
-				// retorna um erro
-				request.setAttribute("validacaoUsuario","existe");
-				// testa se o cadastro veio da página inicial para redirecionar a página
-				if(perfil.equals("ComumInicial")){															
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("/index.jsp");
-					dispatcher.forward(request, response);					
-				}
-				else{
-					// controladorUsuario?acao=listar
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("/cadastroUsuario.jsp");
-					dispatcher.forward(request, response);
-				}
-			}
-	*/	
-					    
 		} catch (RepositorioException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

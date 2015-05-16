@@ -20,6 +20,6 @@ public interface IRepositorioReporte {
 
 	public Reporte procurarReporteId(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException, SQLException, UsuarioNaoEncontradoException;
 
-	
-	
+
+
 }
