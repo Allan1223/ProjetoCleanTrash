@@ -37,7 +37,7 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 		}
 	}
 
-	
+
 	public static java.sql.Time getCurrentTime(){
 		java.util.Date date = new java.util.Date(); 
 		return new java.sql.Time(date.getTime());
@@ -47,16 +47,16 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
 
-		
+
 		int codigoSolucao    = 1;
 		int codigoUsuario    = Integer.parseInt(request.getParameter("codigoUsuario"));
 		int codigoProblema   = Integer.parseInt(request.getParameter("codigoProblema"));
 		String descricaoSolucao = request.getParameter("descricaoSolucao");
-		
+
 		Date dtFechamentoSolucao = new java.sql.Date(new java.util.Date().getTime());    
 		SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-mm-dd");		
 		//System.out.print("Data " + formatarDate.format(dtFechamentoSolucao) + "\n")
-						
+
 		java.sql.Time hrFechamentoSolucao = getCurrentTime();
 
 		Solucao solucao = new Solucao(codigoSolucao, codigoUsuario, codigoProblema,
@@ -64,12 +64,12 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 
 		try {							
 			controladorSolucao.inserirSolucao(solucao);
-			
+
 			controladorReporte.atualizarStatus(codigoProblema);
 
 			request.setAttribute("mensagem", "Reporte encerrado!");
-			
-			
+
+
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("controladorSolucao?acao=listar");
 			dispatcher.forward(request, response);	

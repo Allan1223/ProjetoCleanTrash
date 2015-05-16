@@ -21,7 +21,7 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 	ControladorReporte controladorReporte;
 	int codigoReporte = 0;
 	public AcaoPesquisarReporte(){
-		
+
 		try {
 			this.controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
@@ -29,40 +29,40 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	public void executarReporte(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
-		
+
 		String pesquisa = request.getParameter("pesquisa");
-		
+
 		if (pesquisa != ""){
-		
+
 			codigoReporte = Integer.parseInt(pesquisa);
-					
-		
+
+
 			try {
-				
-						
+
+
 				List<Reporte> reporte = controladorReporte.procurarReporte(codigoReporte);
-								
+
 				request.setAttribute("reportes", reporte);	
-							
+
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher("/status.jsp");
 				dispatcher.forward(request, response);
-				
-				
+
+
 			} catch (ProblemaNaoEncontradoException e) {
 				// TODO Auto-generated catch block
-								
+
 				request.setAttribute("reportes", null);	
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher("/status.jsp");
 				dispatcher.forward(request, response);
-				
-				
+
+
 				e.printStackTrace();
 			} catch (RepositorioException e) {
 				// TODO Auto-generated catch block
@@ -71,11 +71,11 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 		else{
-			
-								
+
+
 			RequestDispatcher dispatcher = 
 					request.getRequestDispatcher("/controladorReporte?acao=listar");
 			dispatcher.forward(request, response);

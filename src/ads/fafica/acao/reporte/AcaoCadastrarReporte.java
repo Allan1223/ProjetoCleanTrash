@@ -18,15 +18,15 @@ import ads.fafica.modelo.Usuario;
 public class AcaoCadastrarReporte implements AcaoReporte {
 
 	ControladorReporte controladorReporte;
-	
+
 	public AcaoCadastrarReporte(){
-		
+
 		try {
 			this.controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 		}
 	}
 	@Override
@@ -34,7 +34,7 @@ public class AcaoCadastrarReporte implements AcaoReporte {
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
 		// TODO Auto-generated method stub
-		
+
 		int codigoReporte = Integer.parseInt(request.getParameter("codigoReporte"));
 		int codigoUsuario   = Integer.parseInt(request.getParameter("codigoUsuario"));
 		String status = "";
@@ -47,45 +47,45 @@ public class AcaoCadastrarReporte implements AcaoReporte {
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
 		String descricao = request.getParameter("descricao");
-		
-		
-				
+
+
+
 		Reporte reporte = new Reporte(codigoReporte, codigoUsuario,opcao,descricao,status,data, hora, latitude, longitude, cidade, bairro, rua );
-		
+
 		try {			
-	//		boolean existe = controladorReporte.existe(reporte.getCodigoReporte());	
-			
-	//		if(!existe){				
-				controladorReporte.inserirReporte(reporte);
-											
-				request.setAttribute("mensagem",
-						"Reporte adicionado com sucesso!");
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("controladorReporte?acao=listar");
-				dispatcher.forward(request, response);
-	/*	
+			//		boolean existe = controladorReporte.existe(reporte.getCodigoReporte());	
+
+			//		if(!existe){				
+			controladorReporte.inserirReporte(reporte);
+
+			request.setAttribute("mensagem",
+					"Reporte adicionado com sucesso!");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("controladorReporte?acao=listar");
+			dispatcher.forward(request, response);
+			/*	
 			    // testa se o cadastro veio da página inicial
 			    if(perfil.equals("ComumInicial")){
-			    	
+
 			    	request.getSession().invalidate();
 			        HttpSession session = request.getSession(true);
 			        session.setAttribute("usuario",usuario);
-			    	
+
 			    	RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/homeComum.jsp");
 					dispatcher.forward(request, response);
-					
+
 				}
-			    
+
 				else{
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("controladorReporte?acao=listar");
 					dispatcher.forward(request, response);					
 				}
 			}
-			
+
 			else {
-				
+
 				request.setAttribute("mensagem",
 						"Reporte já existe!");
 				// retorna um erro
@@ -103,13 +103,13 @@ public class AcaoCadastrarReporte implements AcaoReporte {
 					dispatcher.forward(request, response);
 				}
 			}
-	*/	
-					    
+			 */	
+
 		} catch (RepositorioException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

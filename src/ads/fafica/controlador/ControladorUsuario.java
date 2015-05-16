@@ -8,16 +8,16 @@ import ads.fafica.repositorio.RepositorioUsuario;
 
 public class ControladorUsuario {
 
-    private IRepositorioUsuario repositorioUsuario;
-    
-  //contrutor da classe
-  	public ControladorUsuario() throws Exception{
-  		// instancia o objeto RepositorioPessoaFisicaArray  		
-  		this.repositorioUsuario = new RepositorioUsuario(); 
-  		  		
-  	}
-  	
-  	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		
+	private IRepositorioUsuario repositorioUsuario;
+
+	//contrutor da classe
+	public ControladorUsuario() throws Exception{
+		// instancia o objeto RepositorioPessoaFisicaArray  		
+		this.repositorioUsuario = new RepositorioUsuario(); 
+
+	}
+
+	public void inserirUsuario (Usuario usuario) throws RepositorioException, SQLException {		
 		if(!repositorioUsuario.existe(usuario.getEmailUsuario()));			
 		repositorioUsuario.inserir(usuario);			
 	}	
@@ -48,5 +48,5 @@ public class ControladorUsuario {
 	public void atualizarSenha(Usuario usuario) throws RepositorioException, SQLException, UsuarioNaoEncontradoException{
 		repositorioUsuario.atualizarSenha(usuario);
 	}
-	
+
 }

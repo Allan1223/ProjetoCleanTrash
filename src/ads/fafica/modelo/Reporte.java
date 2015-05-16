@@ -1,7 +1,7 @@
- package ads.fafica.modelo;
+package ads.fafica.modelo;
 
 public class Reporte{
-	
+
 	private int    codigoReporte;
 	private int    codigoUsuario;
 	private String tipoReporte;
@@ -14,14 +14,14 @@ public class Reporte{
 	private String cidade;
 	private String bairro;
 	private String rua;
-	
-	
+
+
 	public Reporte(int codigoReporte, int codigoUsuario, String tipoReporte,
 			String descricaoReporte, String statusReporte,
 			String dtAberturaReporte, String hrAberturaReporte,
 			String latitude, String longitude, String cidade, String bairro,
 			String rua) {
-		
+
 		this.codigoReporte = codigoReporte;
 		this.codigoUsuario = codigoUsuario;
 		this.tipoReporte = tipoReporte;
@@ -71,14 +71,14 @@ public class Reporte{
 	public void setHrAberturaReporte(String hrAberturaReporte) {
 		this.hrAberturaReporte = hrAberturaReporte;
 	}
-	
+
 	public int getCodigoUsuario() {
 		return codigoUsuario;
 	}
 	public void setCodigoUsuario(int codigoUsuario) {
 		this.codigoUsuario = codigoUsuario;
 	}
-		
+
 	public String getLatitude() {
 		return latitude;
 	}
@@ -109,5 +109,5 @@ public class Reporte{
 	public void setRua(String rua) {
 		this.rua = rua;
 	}	
-	
+
 }
