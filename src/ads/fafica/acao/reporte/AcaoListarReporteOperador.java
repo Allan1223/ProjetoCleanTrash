@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ads.fafica.controlador.ControladorReporte;
+import ads.fafica.controlador.ProblemaNaoEncontradoException;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Reporte;
 
-public class AcaoListarReporte implements AcaoReporte  {
+public class AcaoListarReporteOperador implements AcaoReporte {
 
 	ControladorReporte controladorReporte;
 
-	public AcaoListarReporte() {
+	public AcaoListarReporteOperador() {
 
 		try {
 			controladorReporte = new ControladorReporte();
@@ -26,22 +27,19 @@ public class AcaoListarReporte implements AcaoReporte  {
 			e.printStackTrace();
 		}	
 	}
-
+	
 	@Override
 	public void executarReporte(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
-		int codigoUsuario = Integer.parseInt(request.getParameter("usuario"));
-
-
-		try {
+			HttpServletResponse response) throws ServletException, IOException,
+			SQLException {
+try {
 			
-			List<Reporte> reporte = controladorReporte.listarReporte(codigoUsuario);
+			List<Reporte> reporte = controladorReporte.listarReporteOperador();
 
 			request.setAttribute("reporte", reporte);			
 
 			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/status.jsp");
+					request.getRequestDispatcher("/reportesOperador.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (RepositorioException e) {
@@ -50,10 +48,16 @@ public class AcaoListarReporte implements AcaoReporte  {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ProblemaNaoEncontradoException e) {
+			
+			request.setAttribute("reporte", null);			
+
+			RequestDispatcher dispatcher = 
+					request.getRequestDispatcher("/reportesOperador.jsp");
+			dispatcher.forward(request, response);
 		}
-
-
-
+		
+		
 
 	}
 

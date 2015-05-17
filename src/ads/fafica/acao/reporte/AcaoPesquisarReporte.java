@@ -19,7 +19,8 @@ import ads.fafica.modelo.Usuario;
 public class AcaoPesquisarReporte implements AcaoReporte {
 
 	ControladorReporte controladorReporte;
-	int codigoReporte = 0;
+	
+	
 	public AcaoPesquisarReporte(){
 
 		try {
@@ -36,18 +37,19 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 			SQLException {
 
 		String pesquisa = request.getParameter("pesquisa");
-
+		int codigoUsuario = Integer.parseInt(request.getParameter("user"));
+		
 		if (pesquisa != ""){
 
-			codigoReporte = Integer.parseInt(pesquisa);
+			int codigoReporte = Integer.parseInt(pesquisa);
 
 
 			try {
 
 
-				List<Reporte> reporte = controladorReporte.procurarReporte(codigoReporte);
+				List<Reporte> reporte = controladorReporte.procurarReporte(codigoReporte, codigoUsuario);
 
-				request.setAttribute("reportes", reporte);	
+				request.setAttribute("reporte", reporte);	
 
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher("/status.jsp");
@@ -77,7 +79,7 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 
 
 			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/controladorReporte?acao=listar");
+					request.getRequestDispatcher("/controladorReporte?acao=listar&usuario=" + codigoUsuario);
 			dispatcher.forward(request, response);
 		}
 

@@ -2,8 +2,9 @@ package ads.fafica.controlador;
 
 public class ProblemaNaoEncontradoException extends Exception{
 
-	public ProblemaNaoEncontradoException(String valor) {
-		super("Problema " + valor + " não encontrado");
+	public ProblemaNaoEncontradoException(int codigoReporte) {
+		super("Problema " + codigoReporte + " não encontrado");
 	}
 
+	
 }

@@ -42,7 +42,7 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 		<!--<script src="js/modernizr.custom.js"></script> -->
 	</head>
 	<body>
-		<div id="cabecalho"><h1> Status dos Reportes </h1></div>
+		<div id="cabecalho"><h1> Reportes </h1></div>
 			<div class="container">
 			
 			
@@ -53,8 +53,7 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 					
 				<form id="contactform" action="controladorReporte" method="post">
 				<input type="hidden" name="acao" value="pesquisar">
-				<input type="hidden" name="user" value="<%=usuario.getCodigoUsuario() %>">
-						
+									
 			
 					<div class="field" style="float: right; margin: 0 33px;">
 								
@@ -72,10 +71,9 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 						
 				<form>
 				
-				<a style=" margin: 20px 0 0 20px;" href="reportar.jsp"> <img src="images/addRep.png" alt="Novo Reporte" title="Novo Reporte"></a>
+				<br/><br/>
 				
-					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
-				
+								
 				<table border="0" align="center" cellpadding="5" cellspacing="0">
 																		
 															
@@ -122,9 +120,11 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 										<td>${reporte.dtAberturaReporte}</td>
 										<td>${reporte.statusReporte == 0 ? "Aberto" : "Fechado"}</td>
 										
-										<td><a href="controladorReporte?acao=formularioEditarReporte&id=${reporte.codigoReporte}"><strong><span style="color:green;">Editar</span></strong>	</a>
-										<a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}">   <strong><span style="color:red;">Excluir</span></strong></a>
-										 </td>
+										<c:if test="${reporte.statusReporte == 0}"> 
+										 	<td><a href="controladorReporte?acao=solucionarReporte&id=${reporte.codigoReporte}"><strong><span style="color:green;">Fechar</span></strong>	</a>
+											<a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}">   <strong><span style="color:red;">Excluir</span></strong></a>
+											 </td>
+										</c:if>
 													
 																																			 
 									
@@ -140,7 +140,7 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 				
 				
 			</div>
-		<div id="home"><h2><a href="homeComum.jsp">Home</a></h2></div>
+		<div id="home"><h2><a href="homeOperador.jsp">Home</a></h2></div>
 		
 	</body>
 	

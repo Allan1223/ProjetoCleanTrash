@@ -1,4 +1,4 @@
-package ads.fafica.acao.reporte;
+package ads.fafica.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,15 +9,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ads.fafica.acao.reporte.AcaoReporte;
 import ads.fafica.controlador.ControladorReporte;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Reporte;
 
-public class AcaoListarReporte implements AcaoReporte  {
-
+public class AcaoSolucionarReporte implements AcaoReporte {
+	
 	ControladorReporte controladorReporte;
 
-	public AcaoListarReporte() {
+	public AcaoSolucionarReporte() {
 
 		try {
 			controladorReporte = new ControladorReporte();
@@ -29,19 +30,18 @@ public class AcaoListarReporte implements AcaoReporte  {
 
 	@Override
 	public void executarReporte(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response) throws ServletException, IOException,
+			SQLException {
+		int codigoReporte = Integer.parseInt(request.getParameter("id"));
 		
-		int codigoUsuario = Integer.parseInt(request.getParameter("usuario"));
-
-
 		try {
 			
-			List<Reporte> reporte = controladorReporte.listarReporte(codigoUsuario);
+			Reporte reporte = controladorReporte.procurarReporteId(codigoReporte);
 
 			request.setAttribute("reporte", reporte);			
 
 			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/status.jsp");
+					request.getRequestDispatcher("/gerarSolucao.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (RepositorioException e) {
@@ -51,8 +51,6 @@ public class AcaoListarReporte implements AcaoReporte  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
 
 
 	}

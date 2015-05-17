@@ -1,3 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ page  import="java.util.List" %>
+<%@ page  import="ads.fafica.modelo.Usuario" %>
+<%@ page  import="ads.fafica.modelo.Reporte" %>
+<% 
+// Sess„o do usu·rio 
+if(session.getAttribute("usuario") == null) {
+	// se o usu·rio n„o estiver logado ser· direcionado para a tela de Login
+	response.sendRedirect("/cleantrash/index.jsp");
+} 
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+//Envia a sessao
+session.setAttribute("usuario",usuario);
+
+Reporte reporteEditar = (Reporte) request.getAttribute("reporteEditar");
+
+%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +31,7 @@
 		
 	</head>
 	<body>
-		<div id="cabecalho"><h1> Reportar Problemas </h1></div>		
+		<div id="cabecalho"><h1> Editar Reporte </h1></div>		
 		
 			<div class="container">
 			
@@ -17,10 +39,13 @@
 				<div id="reportar">
 					
 					<form id="contactform" action="controladorReporte" method="post">
+						<input type="hidden" name="acao" value="editar">
+						<input type="hidden" name="codigoReporte" value="<%=reporteEditar.getCodigoReporte()%>">
+					
 					
 						<div class="field">
 						<label for="opcao">Tipo:</label>
-						<select name="opcao">
+						<select name="tipo">
 							<option> Selecione</option>
 							<option value = "Eletrico" >Eletrico</option>
 							<option value = "Saneamento">Saneamento</option>
@@ -31,19 +56,19 @@
 							
 						<div class="field">
 							<label for="name">Rua:</label>
-							<input type="text" class="input" name="rua" id="rua" required="required" value="Valdira Martins" />
+							<input type="text" class="input" name="rua" id="rua" required="required" value="<%=reporteEditar.getRua()%>" />
 							<p class="hint">Digite sua Rua.</p>
 						</div>
 						
 						<div class="field">
 							<label for="name">Bairro:</label>
-							<input type="text" class="input" name="bairro" id="bairro" required="required" value="COHAB I"/>
+							<input type="text" class="input" name="bairro" id="bairro" required="required" value="<%=reporteEditar.getBairro()%>"/>
 							<p class="hint">Digite seu Bairro.</p>
 						</div>
 						
 						<div class="field">
 							<label for="name">Cidade:</label>
-							<input type="text" class="input" name="cidade" id="cidade" required="required" value="Caruaru" />
+							<input type="text" class="input" name="cidade" id="cidade" required="required" value="<%=reporteEditar.getCidade()%>" />
 							<p class="hint">Digite seu Bairro.</p>
 						</div>
 						
@@ -63,13 +88,13 @@
 						
 					<div class="field">	
 						<label for="name">Descri&ccedil&atildeo:</label>
-						<textarea name="descricao" name = "descricao" maxlength = "255" cols = "30" rows = "5" size = "255" >Falta de Ilumina√ß√£o em alguns pontos da rua
+						<textarea name="descricao" name = "descricao" maxlength = "255" cols = "30" rows = "5" size = "255" ><%=reporteEditar.getDescricaoReporte()%>
 						</textarea><br>
 						<p class="hint">Digite a Descri&ccedil&atildeo do problema.</p>
 						
 					</div>	
 					
-					<input type="reset" value="Limpar" class="button" />
+					<!--  <input type="reset" value="Limpar" class="button" />-->
 					<input type="submit" name="btnEnviar" class="button" value = "Enviar" />
 					
 						
@@ -83,7 +108,7 @@
 				</div>
 			</div><br>
 		
-		<div id="home"><h2><a href="status.html">Voltar</a></h2></div>
+		<div id="home"><h2><a href="status.jsp">Voltar</a></h2></div>
 		
 	</body>	
 </html>

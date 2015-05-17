@@ -50,7 +50,7 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 
 		int codigoSolucao    = 1;
 		int codigoUsuario    = Integer.parseInt(request.getParameter("codigoUsuario"));
-		int codigoProblema   = Integer.parseInt(request.getParameter("codigoProblema"));
+		int codigoProblema   = Integer.parseInt(request.getParameter("codigoReporte"));
 		String descricaoSolucao = request.getParameter("descricaoSolucao");
 
 		Date dtFechamentoSolucao = new java.sql.Date(new java.util.Date().getTime());    
@@ -69,9 +69,7 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 
 			request.setAttribute("mensagem", "Reporte encerrado!");
 
-
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("controladorSolucao?acao=listar");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("controladorReporte?acao=listarReporteOperador");
 			dispatcher.forward(request, response);	
 
 		} catch (RepositorioException e) {

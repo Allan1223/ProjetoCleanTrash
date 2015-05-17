@@ -88,25 +88,56 @@ public class RepositorioReporte implements IRepositorioReporte{
 	}
 
 
-	public void atualizar(Reporte problema) /*throws PessoaFisicaNaoEncontradaException*/{ //Deixar espaço entre a chave  e o parentes.
+	public void atualizar(Reporte reporte) throws RepositorioException, SQLException { 
+		
+		PreparedStatement stmt=null;
+		try {
+			if (reporte != null) {
+				try {
+					String sql = "UPDATE REPORTE SET tipoReporte = ?, descricaoReporte = ?, latitude = ?, longitude = ?, rua = ?, bairro = ?, cidade = ?"
+							+ " where codigoReporte = ?  ";
+
+					stmt = this.conn.prepareStatement(sql);
+
+					stmt.setString(1, reporte.getTipoReporte());
+					stmt.setString(2, reporte.getDescricaoReporte());
+					stmt.setString(3, reporte.getLatitude());
+					stmt.setString(4, reporte.getLongitude());
+					stmt.setString(5, reporte.getRua());
+					stmt.setString(6, reporte.getBairro());
+					stmt.setString(7, reporte.getCidade());
+					stmt.setInt(8, reporte.getCodigoReporte());
+
+					stmt.executeUpdate();
+					
+				}
+				catch (SQLException e) {
+					throw new RepositorioException(e);
+				}
+			}
+		} finally {
+			stmt.close();
+		}
 
 	}
 
 	@Override
-	public List<Reporte> procurarReporte(int codigoReporte)
-			throws ProblemaNaoEncontradoException, UsuarioNaoEncontradoException, RepositorioException, SQLException {
+	public List<Reporte> procurarReporte(int codigoReporte, int codigoUsuario)
+			throws ProblemaNaoEncontradoException, RepositorioException, SQLException {
 		List<Reporte> reportes = new ArrayList<Reporte>();
 		Reporte reporte = null;
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM REPORTE WHERE codigoReporte = ?";
+			String sql = "SELECT * FROM REPORTE WHERE codigoReporte = ? and codigoUsuario = ?";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 			stmt.setInt(1, codigoReporte);
+			stmt.setInt(2, codigoUsuario);
 			rs = stmt.executeQuery();
 
 
-			if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoReporte);
+			if (!rs.next()) throw new ProblemaNaoEncontradoException(codigoReporte);
+			
 			reporte = new Reporte(rs.getInt("codigoReporte"), rs.getInt("codigoUsuario"), rs.getString("tipoReporte"), rs.getString("descricaoReporte"),rs.getInt("statusReporte"), rs.getDate("dataAbertura"),rs.getTime("horaAbertura"),rs.getString("latitude"),rs.getString("longitude"),rs.getString("cidade"),rs.getString("bairro"),rs.getString("rua"));
 			reportes.add(reporte);
 
@@ -124,31 +155,32 @@ public class RepositorioReporte implements IRepositorioReporte{
 	}
 
 	@Override
-	public List<Reporte> listarReportes() {
+	public List<Reporte> listarReportes(int user) {
 		List<Reporte> reportes = new ArrayList<Reporte>();
 
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT * FROM REPORTE";
+			String sql = "SELECT * FROM REPORTE where codigoUsuario = ?";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+			stmt.setInt(1, user);
 			rs = stmt.executeQuery();
 
 
 			while (rs.next()) {
-				int codigoReporte = rs.getInt("codigoReporte");
-				int codigoUsuario = rs.getInt("codigoUsuario");
-				String tipoReporte = rs.getString("tipoReporte");
+				int codigoReporte 		= rs.getInt("codigoReporte");
+				int codigoUsuario 		= rs.getInt("codigoUsuario");
+				String tipoReporte 		= rs.getString("tipoReporte");
 				String descricaoReporte = rs.getString("descricaoReporte");
-				int statusReporte = rs.getInt("statusReporte");
-				Date dtAberturaReporte = rs.getDate("dataAbertura");
-				Time hrAberturaReporte = rs.getTime("horaAbertura");
-				String latitude = rs.getString("latitude");
-				String longitude = rs.getString("longitude");
-				String cidade = rs.getString("cidade");
-				String bairro = rs.getString("bairro");
-				String rua = rs.getString("rua");
+				int statusReporte 		= rs.getInt("statusReporte");
+				Date dtAberturaReporte  = rs.getDate("dataAbertura");
+				Time hrAberturaReporte  = rs.getTime("horaAbertura");
+				String latitude 		= rs.getString("latitude");
+				String longitude 		= rs.getString("longitude");
+				String cidade 			= rs.getString("cidade");
+				String bairro 			= rs.getString("bairro");
+				String rua 				= rs.getString("rua");
 
 
 
@@ -163,25 +195,70 @@ public class RepositorioReporte implements IRepositorioReporte{
 		return reportes;
 
 	}
+	
+	@Override
+	public List<Reporte> listarReportesOperador() throws RepositorioException,
+			SQLException, ProblemaNaoEncontradoException {
+		
+		List<Reporte> reportes = new ArrayList<Reporte>();
+
+		PreparedStatement stmt=null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT * FROM REPORTE";
+			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+			
+			rs = stmt.executeQuery();
+
+
+			while (rs.next()) {
+				int codigoReporte       = rs.getInt("codigoReporte");
+				int codigoUsuario       = rs.getInt("codigoUsuario");
+				String tipoReporte      = rs.getString("tipoReporte");
+				String descricaoReporte = rs.getString("descricaoReporte");
+				int statusReporte       = rs.getInt("statusReporte");
+				Date dtAberturaReporte  = rs.getDate("dataAbertura");
+				Time hrAberturaReporte  = rs.getTime("horaAbertura");
+				String latitude         = rs.getString("latitude");
+				String longitude        = rs.getString("longitude");
+				String cidade           = rs.getString("cidade");
+				String bairro           = rs.getString("bairro");
+				String rua              = rs.getString("rua");
+
+
+
+				Reporte reporte = new Reporte(codigoReporte, codigoUsuario,tipoReporte,descricaoReporte,statusReporte,dtAberturaReporte,hrAberturaReporte,latitude, longitude, cidade, bairro, rua);
+
+				reportes.add(reporte);
+							
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reportes;
+	}
+
+
 
 	@Override
 	public Reporte procurarReporteId(int codigoReporte)
-			throws ProblemaNaoEncontradoException, RepositorioException,
-			SQLException, UsuarioNaoEncontradoException {
+			throws  RepositorioException, 	SQLException{
 
 		Reporte reporte = null;
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM REPORTE WHERE codigoUsuario = ?";
+			
+			String sql = "SELECT * FROM REPORTE WHERE codigoReporte = ?";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 			stmt.setInt(1, codigoReporte);
 			rs = stmt.executeQuery();
 
 
-			if (!rs.next()) throw new UsuarioNaoEncontradoException(codigoReporte);
-			reporte = new Reporte(rs.getInt("codigoReporte"), rs.getInt("codigoUsuario"), rs.getString("tipoReporte"), rs.getString("descricaoReporte"),rs.getInt("statusReporte"), rs.getDate("dtAberturaReporte"),rs.getTime("hrAberturaReporte"),rs.getString("latitude"),rs.getString("longitude"),rs.getString("cidade"),rs.getString("bairro"),rs.getString("rua"));
-
+			if(rs.next()){  
+			 		reporte = new Reporte(rs.getInt("codigoReporte"), rs.getInt("codigoUsuario"), rs.getString("tipoReporte"), rs.getString("descricaoReporte"),rs.getInt("statusReporte"), rs.getDate("dataAbertura"),rs.getTime("horaAbertura"),rs.getString("latitude"),rs.getString("longitude"),rs.getString("cidade"),rs.getString("bairro"),rs.getString("rua"));
+			}
 
 		} catch (SQLException e) {
 			throw new RepositorioException(e);
@@ -228,5 +305,5 @@ public class RepositorioReporte implements IRepositorioReporte{
 
 	}
 
-
+	
 }
