@@ -1,4 +1,4 @@
-package ads.fafica.servlets;
+package ads.fafica.acao.reporte;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.fafica.acao.reporte.AcaoReporte;
 import ads.fafica.controlador.ControladorReporte;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Reporte;
@@ -38,7 +37,9 @@ public class AcaoSolucionarReporte implements AcaoReporte {
 			
 			Reporte reporte = controladorReporte.procurarReporteId(codigoReporte);
 
-			request.setAttribute("reporte", reporte);			
+			request.setAttribute("reporte", reporte);	
+			
+			System.out.println("carai");
 
 			RequestDispatcher dispatcher = 
 					request.getRequestDispatcher("/gerarSolucao.jsp");

@@ -46,9 +46,9 @@ public class AcaoPesquisarSolucao implements AcaoSolucao {
 
 			try {
 
-				Solucao solucao = controladorSolucao.procurarSolucao(codigoSolucao);
+				List<Solucao> solucao = controladorSolucao.procurarSolucao(codigoSolucao);
 
-				request.setAttribute("solucoes", solucao);	
+				request.setAttribute("solucao", solucao);	
 
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher("/listarSolucao.jsp");

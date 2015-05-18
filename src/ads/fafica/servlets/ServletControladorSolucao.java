@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ads.fafica.acao.solucao.AcaoCadastrarSolucao;
 import ads.fafica.acao.solucao.AcaoListarSolucao;
+import ads.fafica.acao.solucao.AcaoPesquisarSolucao;
 import ads.fafica.acao.solucao.AcaoSolucao;
 import ads.fafica.acao.usuario.AcaoCadastrarUsuario;
 import ads.fafica.acao.usuario.AcaoListarUsuario;
@@ -36,6 +37,7 @@ public class ServletControladorSolucao extends HttpServlet {
 
 		acoes.put("cadastrar", new AcaoCadastrarSolucao()); 
 		acoes.put("listar", new AcaoListarSolucao());
+		acoes.put("pesquisa", new AcaoPesquisarSolucao());
 	}
 
 	/**

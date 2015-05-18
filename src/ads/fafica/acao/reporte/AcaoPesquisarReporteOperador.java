@@ -14,15 +14,12 @@ import ads.fafica.controlador.ProblemaNaoEncontradoException;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
 import ads.fafica.modelo.Reporte;
-import ads.fafica.modelo.Usuario;
 
-public class AcaoPesquisarReporte implements AcaoReporte {
+public class AcaoPesquisarReporteOperador implements AcaoReporte {
 
 	ControladorReporte controladorReporte;
 	
-	
-	public AcaoPesquisarReporte(){
-
+	public AcaoPesquisarReporteOperador() {
 		try {
 			this.controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
@@ -31,14 +28,13 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 		}
 	}
 
-
+	@Override
 	public void executarReporte(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
-
-		String pesquisa = request.getParameter("pesquisa");
-		int codigoUsuario = Integer.parseInt(request.getParameter("user"));
 		
+		String pesquisa = request.getParameter("pesquisa");
+				
 		if (pesquisa != ""){
 
 			int codigoReporte = Integer.parseInt(pesquisa);
@@ -47,12 +43,12 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 			try {
 
 
-				List<Reporte> reporte = controladorReporte.procurarReporte(codigoReporte, codigoUsuario);
+				List<Reporte> reporte = controladorReporte.procurarReporteOperador(codigoReporte);
 
 				request.setAttribute("reporte", reporte);	
 
 				RequestDispatcher dispatcher = 
-						request.getRequestDispatcher("/status.jsp");
+						request.getRequestDispatcher("/reportesOperador.jsp");
 				dispatcher.forward(request, response);
 
 
@@ -61,7 +57,7 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 
 				request.setAttribute("reportes", null);	
 				RequestDispatcher dispatcher = 
-						request.getRequestDispatcher("/status.jsp");
+						request.getRequestDispatcher("/reportesOperador.jsp");
 				dispatcher.forward(request, response);
 
 
@@ -70,15 +66,15 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 		}
 		else{
 
 
 			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/controladorReporte?acao=listar&usuario=" + codigoUsuario);
+					request.getRequestDispatcher("/controladorReporte?acao=listarReporteOperador");
 			dispatcher.forward(request, response);
 		}
-
 
 	}
 

@@ -52,7 +52,7 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 				
 					
 				<form id="contactform" action="controladorReporte" method="post">
-				<input type="hidden" name="acao" value="pesquisar">
+				<input type="hidden" name="acao" value="pesquisarReporteOperador">
 									
 			
 					<div class="field" style="float: right; margin: 0 33px;">

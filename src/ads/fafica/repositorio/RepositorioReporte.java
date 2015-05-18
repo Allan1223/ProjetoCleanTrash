@@ -83,11 +83,6 @@ public class RepositorioReporte implements IRepositorioReporte{
 
 	}
 
-	public Reporte procurar(int codigoProblema) /*throws PessoaFisicaNaoEncontradaException*/{ //Deixar espaço entre a chave  e o parentes.
-		return repositorioProblema;
-	}
-
-
 	public void atualizar(Reporte reporte) throws RepositorioException, SQLException { 
 		
 		PreparedStatement stmt=null;
@@ -303,6 +298,40 @@ public class RepositorioReporte implements IRepositorioReporte{
 			stmt.close();
 		}
 
+	}
+
+	@Override
+	public List<Reporte> procurarReporteOperador(int codigoReporte)
+			throws RepositorioException, SQLException,
+			ProblemaNaoEncontradoException {
+	
+		List<Reporte> reportes = new ArrayList<Reporte>();
+		Reporte reporte = null;
+		PreparedStatement stmt=null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT * FROM REPORTE WHERE codigoReporte = ? ";
+			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+			stmt.setInt(1, codigoReporte);
+			
+			rs = stmt.executeQuery();
+
+
+			if (!rs.next()) throw new ProblemaNaoEncontradoException(codigoReporte);
+			
+			reporte = new Reporte(rs.getInt("codigoReporte"), rs.getInt("codigoUsuario"), rs.getString("tipoReporte"), rs.getString("descricaoReporte"),rs.getInt("statusReporte"), rs.getDate("dataAbertura"),rs.getTime("horaAbertura"),rs.getString("latitude"),rs.getString("longitude"),rs.getString("cidade"),rs.getString("bairro"),rs.getString("rua"));
+			reportes.add(reporte);
+
+		} catch (SQLException e) {
+			throw new RepositorioException(e);
+		} finally {
+
+			stmt.close();
+			rs.close();
+
+		}
+
+		return reportes;
 	}
 
 	

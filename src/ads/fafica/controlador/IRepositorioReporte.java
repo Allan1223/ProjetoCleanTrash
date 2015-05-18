@@ -10,7 +10,7 @@ public interface IRepositorioReporte {
 
 	public void remover(int codigoReporte) throws ProblemaNaoEncontradoException, RepositorioException, SQLException;
 
-	public List<Reporte> procurarReporte(int codigoReporte,int codigoUsuario) throws ProblemaNaoEncontradoException, UsuarioNaoEncontradoException, RepositorioException, SQLException;
+	public List<Reporte> procurarReporte(int codigoReporte,int codigoUsuario) throws ProblemaNaoEncontradoException,RepositorioException, SQLException;
 
 	public void atualizar(Reporte reporte) throws ProblemaNaoEncontradoException, RepositorioException,SQLException;
 
@@ -21,6 +21,8 @@ public interface IRepositorioReporte {
 	public Reporte procurarReporteId(int codigoReporte) throws RepositorioException, SQLException;
 
 	public List<Reporte> listarReportesOperador()throws RepositorioException, SQLException, ProblemaNaoEncontradoException;
+
+	public List<Reporte> procurarReporteOperador(int codigoReporte) throws RepositorioException, SQLException, ProblemaNaoEncontradoException;
 
 
 

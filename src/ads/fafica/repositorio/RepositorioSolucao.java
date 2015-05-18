@@ -10,6 +10,7 @@ import java.util.List;
 
 import ads.fafica.controlador.IRepositorioSolucao;
 import ads.fafica.controlador.RepositorioException;
+import ads.fafica.controlador.SolucaoNaoEncontradaException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
 import ads.fafica.modelo.Solucao;
 
@@ -24,9 +25,11 @@ public class RepositorioSolucao implements IRepositorioSolucao{
 	public void remover(int codigoSolucao) /*throws UsurioNaoEncontradoException */{ //Deixar espaço entre a chave  e o parentes.
 
 	}
-	public Solucao procurarSolucao(int codigoSolucao) throws RepositorioException, SQLException { //Deixar espaço entre a chave  e o parentes.
+	
+	public List<Solucao> procurarSolucao(int codigoSolucao) throws RepositorioException, SQLException { //Deixar espaço entre a chave  e o parentes.
 
-		Solucao solucao = null;
+		
+		List<Solucao> solucoes = new ArrayList<Solucao>();
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
 		try {
@@ -35,23 +38,25 @@ public class RepositorioSolucao implements IRepositorioSolucao{
 			stmt.setInt(1, codigoSolucao);
 			rs = stmt.executeQuery();
 
-			solucao = new Solucao(rs.getInt("codigoSolucao"), rs.getInt("codigoUsuario"), rs.getInt("codigoReporte"),rs.getString("descricaoSolucao"), rs.getTime("hrFechamentoSolucao"),
-					rs.getDate("dtFechamentoSolucao"));		
+			while (rs.next()) {
+				
+			
+				Solucao solucao = new Solucao(rs.getInt("codigoSolucao"), rs.getInt("codigoUsuario"), rs.getInt("codigoReporte"),rs.getString("descricaoSolucao"), rs.getTime("horaFechamento"),
+						rs.getDate("dataFechamento"));	
+				
+				solucoes.add(solucao);
 
+			}
 		} catch (SQLException e) {
 			throw new RepositorioException(e);
 		} finally {
 			stmt.close();
 			rs.close();
 		}
-		return solucao;
+		return solucoes;
 	}
 
-
-
-	public void atualizar(Solucao solucao)/*throws PessoaFisicaNaoEncontradaException*/{ //Deixar espaço entre a chave  e o parentes.
-
-	}
+	
 	public void inserirSolucao(Solucao solucao) throws RepositorioException, SQLException {
 
 		PreparedStatement stmt=null;
@@ -119,5 +124,6 @@ public class RepositorioSolucao implements IRepositorioSolucao{
 		}
 		return solucoes;
 	}
+	
 
 }

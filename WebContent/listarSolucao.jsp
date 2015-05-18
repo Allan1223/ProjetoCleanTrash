@@ -22,7 +22,7 @@ session.setAttribute("usuario",usuario);
 
 // Recebe a instancia do reporte a ser solucionada
 List<Solucao> solucoes = (List<Solucao>) request.getAttribute("solucao");
-System.out.println("novo" + solucoes.get(0));
+
 %>
 
 <!DOCTYPE html>
@@ -50,7 +50,8 @@ System.out.println("novo" + solucoes.get(0));
 				<div id="status">
 				
 					
-				<form id="contactform" action="#" method="get">
+				<form id="contactform" action="controladorSolucao" method="post">
+				<input type="hidden" name="acao" value="pesquisa">
 						
 			
 					<div class="field">

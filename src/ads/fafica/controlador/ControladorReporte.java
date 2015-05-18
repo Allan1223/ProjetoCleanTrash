@@ -25,7 +25,7 @@ public class ControladorReporte {
 		repositorioReporte.remover(codigoReporte);		
 	}
 
-	public List<Reporte> procurarReporte(int codigoReporte, int codigoUsuario) throws ProblemaNaoEncontradoException, RepositorioException, UsuarioNaoEncontradoException, SQLException {		
+	public List<Reporte> procurarReporte(int codigoReporte, int codigoUsuario) throws ProblemaNaoEncontradoException, RepositorioException, SQLException {		
 		return repositorioReporte.procurarReporte(codigoReporte, codigoUsuario);		
 	}
 
@@ -50,4 +50,9 @@ public class ControladorReporte {
 		return repositorioReporte.listarReportesOperador();	
 	}
 
+	public List<Reporte> procurarReporteOperador(int codigoReporte) throws RepositorioException, SQLException, ProblemaNaoEncontradoException{
+		return repositorioReporte.procurarReporteOperador(codigoReporte);	
+	}
+
+	
 }
