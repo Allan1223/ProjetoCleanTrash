@@ -26,20 +26,11 @@ import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Usuario;
 
-/**
- * Servlet implementation class servletPrimeiroCadastroUsuario
- */
 @WebServlet("/controladorUsuario")
 public class ServletControladorUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	private Map<String, AcaoUsuario> acoes = new HashMap<String, AcaoUsuario>();
-
-	/**
-	 * @throws Exception 
-	 * @see HttpServlet#HttpServlet()
-	 */
 
 	private Connection conn = null;
 
@@ -52,20 +43,12 @@ public class ServletControladorUsuario extends HttpServlet {
 		acoes.put("alterarSenha", new AcaoAlterarSenhaUsuario());
 		acoes.put("excluir", new AcaoExcluirUsuario());
 		acoes.put("pesquisar", new AcaoPesquisarUsuario());
-		//acoes.put("salvarEdicao", new AcaoSalvarEdicaoMedico()); 	
-
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Esse Servlet sempre cria um usuário com o perfil 2(usuário comum)
 
@@ -80,7 +63,7 @@ public class ServletControladorUsuario extends HttpServlet {
 			// a String informada, então vamos usar a acao 'listar' 
 			operacao = acoes.get("listar");
 		}
-		// chama o método executar da classe de 'Acao' passado request e response
+		// chama o método executar da classe de 'Acao' passando request e response
 		try {															
 			operacao.executarUsuario(request, response);
 
@@ -88,50 +71,5 @@ public class ServletControladorUsuario extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		/* PrintWriter out = response.getWriter();
-
-
-
-	        // escreve o texto
-	        out.println("<html>");
-	        out.println("<body>");
-	        out.println("Primeira servlet: " + nome + "-" + email + "-" + senha);
-	        out.println("</body>");
-	        out.println("</html>");
-
-		 response.setContentType("text/html");
-		    String pagina="http//www.google.com";
-		    response.sendRedirect(pagina);
-
-		// na criação do usuário é preciso testar se já existe usuário cadastrado,
-		// se sim o código do usuário será o ultimo código cadastrado + 1, se não será 1
-
-
-		int codigoUsuario = 1;
-
-		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,2);
-
-		try {
-
-
-			controladorUsuario.inserirUsuario(usuario);		
-
-
-		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			e.getMessage();
-
-		}*/
-
-
-
-
-
 	}
-
 }
