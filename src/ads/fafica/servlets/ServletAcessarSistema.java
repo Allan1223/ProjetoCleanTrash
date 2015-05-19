@@ -16,16 +16,9 @@ import ads.fafica.controlador.RepositorioException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
 import ads.fafica.modelo.Usuario;
 
-/**
- * Servlet implementation class ServletAcessarSistema
- */
 @WebServlet("/acessarSistema")
 public class ServletAcessarSistema extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 
 	ControladorUsuario controladorUsuario;
 
@@ -39,17 +32,11 @@ public class ServletAcessarSistema extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String email = request.getParameter("email");
@@ -61,7 +48,7 @@ public class ServletAcessarSistema extends HttpServlet {
 
 			request.getSession().invalidate();
 			HttpSession session = request.getSession(true);
-			session.setAttribute("usuario",usuario);
+			session.setAttribute("usuario", usuario);
 
 
 			if (usuario.getPerfilUsuario() == 1){
@@ -77,7 +64,6 @@ public class ServletAcessarSistema extends HttpServlet {
 
 			/*}*/
 		} catch (UsuarioNaoEncontradoException e) {
-
 			// se não encontrar da uma menssagem de erro e volta a tela de Login
 			request.setAttribute("mensagem",
 					"Usuario não encontrado!");
@@ -96,8 +82,5 @@ public class ServletAcessarSistema extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
 	}
-
 }
