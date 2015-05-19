@@ -33,8 +33,8 @@ public class ControladorUsuario {
 	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {		
 		repositorioUsuario.atualizarUsuario(usuario);		
 	}
-	public Usuario procurarUsuario(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
-		return repositorioUsuario.procurar(email);			
+	public List<Usuario> procurarUsuarioEmail(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+		return repositorioUsuario.procurarUsuarioEmail(email);			
 	}	
 	public Usuario acessoAoSistema(String email, String senha) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
 		return repositorioUsuario.acessoAoSistema(email, senha);			

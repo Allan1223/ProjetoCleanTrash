@@ -56,12 +56,11 @@ List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 						
 					
 					<div class="field" style="float: right; margin: 0 33px;">
-								<selec name = "filtroPesquisa">
+								<select name = "filtroPesquisa">
 									<option value = "codigoUsuario">Codigo Usuario</option>
-									<option value = "email">E-mail</option>
-									<option value = "nome">Nome</option>																		
-								</selec>
-																		
+									<option value = "emailUsuario">E-mail</option>
+									<option value = "nomeUsuario">Nome</option>																		
+								</select>
 								<label for="name">Pesquisar</label>
 								<input type="text" class="input" name="pesquisa" id="pesquisa" placeholder="Digite sua pesquisa" size="100" />
 								

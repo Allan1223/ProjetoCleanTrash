@@ -29,14 +29,6 @@
                 	var senha = document.getElementById("senhaCad").value;
     				var conSenha = document.getElementById("confirmar").value;
 
-    				/*if(nome == ""){
-						alert ("Campo obrigatório!");
-						  return false;
-					   }
-					if(email == ""){
-						 alert("Campo obrigatório!");
-						   return false;
-						}*/
 					if(perfil == ""){
 						  alert ("Selecione um Perfil!");
 						  return false;
@@ -104,8 +96,7 @@
 							<option value = "Operador">Operador</option>
 							
 						</select>
-						</div>						
-							
+						</div>											
 							
 						<div class="field">
 							<label for="name">Senha:*</label>

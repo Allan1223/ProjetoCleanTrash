@@ -12,6 +12,7 @@ import java.util.List;
 
 
 
+
 import ads.fafica.controlador.IRepositorioUsuario;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
@@ -101,13 +102,13 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		return usuarios;
 	}
 
-	public Usuario procurar(String emailUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+	public Usuario procurarUsuarioEmail(String emailUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
 
 		Usuario usuario = null;
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM USUARIO WHERE email = ?";
+			String sql = "SELECT * FROM USUARIO WHERE email BETWEEN ? AND ?";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 			stmt.setString(1, emailUsuario);
 			rs = stmt.executeQuery();
@@ -304,5 +305,12 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			rs.close();
 		}
 		return usuario;
+	}
+
+	@Override
+	public Usuario procurar(String email) throws UsuarioNaoEncontradoException,
+			RepositorioException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

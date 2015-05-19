@@ -29,6 +29,8 @@ public interface IRepositorioUsuario {
 
 	public Usuario procurarUsuarioId(int codigoUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 
+	public Usuario procurarUsuarioEmail(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
+ 
 
 
 }
