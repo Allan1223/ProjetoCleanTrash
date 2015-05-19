@@ -54,9 +54,14 @@ List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 				<form id="contactform" action="controladorUsuario" method="post">
 					<input type="hidden" name="acao" value="pesquisar">
 						
-			
+					
 					<div class="field" style="float: right; margin: 0 33px;">
-								
+								<selec name = "filtroPesquisa">
+									<option value = "codigoUsuario">Codigo Usuario</option>
+									<option value = "email">E-mail</option>
+									<option value = "nome">Nome</option>																		
+								</selec>
+																		
 								<label for="name">Pesquisar</label>
 								<input type="text" class="input" name="pesquisa" id="pesquisa" placeholder="Digite sua pesquisa" size="100" />
 								
