@@ -188,3 +188,13 @@ table{
  /*  #aec3e5*/
 
 }	
+
+select{
+    font-family: Arial, Verdana;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid rgb(61, 157, 179);
+    width: 300px;
+    color: #797979;
+	margin-bottom: 2px;
+}

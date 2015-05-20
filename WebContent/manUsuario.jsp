@@ -39,6 +39,7 @@ List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 		<link rel="shortcut icon" href="../favicon.ico"> -->
 <link rel="stylesheet" type="text/css" href="css/status.css" />
 <link rel="stylesheet" type="text/css" href="css/component.css" />
+
 <!--<script src="js/modernizr.custom.js"></script> -->
 <script type="text/javascript">
 	function validarLetras(){
@@ -107,7 +108,7 @@ List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 
 				</div>
 
-				<form>
+			</form>
 
 					<a style="margin: 0px 0 0 20px;" href="cadastroUsuario.jsp"> <img
 						src="images/novo.png" alt="Novo Usuario" title="Novo Usuario"></a>

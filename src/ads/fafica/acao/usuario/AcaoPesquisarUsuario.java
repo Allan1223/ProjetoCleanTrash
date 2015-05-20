@@ -43,6 +43,7 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 		String filtroPesquisa = request.getParameter("filtroPesquisa");
 
 		if (pesquisa != ""){			
+			
 			if (filtroPesquisa.equals("codigoUsuario")){
 				codigoUsuario = Integer.parseInt(request.getParameter("pesquisa"));
 
@@ -68,7 +69,7 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 				catch (RepositorioException e) {
 					e.printStackTrace();
 				}
-			}
+			} //codigoUsuario
 
 			else if (filtroPesquisa.equals("emailUsuario")){
 				emailUsuario = request.getParameter("pesquisa");
@@ -95,20 +96,20 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 				catch (RepositorioException e) {
 					e.printStackTrace();
 				}
-			}
-				
-			else{
-				RequestDispatcher dispatcher = 
-						request.getRequestDispatcher("/controladorUsuario?acao=listar");
-				dispatcher.forward(request, response);
-			}
-
-			}
-
+			} // email
+			
 			else if (filtroPesquisa.equals("nomeUsuario")){
 				nomeUsuario = request.getParameter("pesquisa");
 				
-			}
+			} // nomeUsuario
 		}
+			
+		else{
+			RequestDispatcher dispatcher = 
+					request.getRequestDispatcher("/controladorUsuario?acao=listar");
+			dispatcher.forward(request, response);
+		} //pesquisa = ""
+		
+	}
 
 	}

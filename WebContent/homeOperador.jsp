@@ -90,7 +90,7 @@ session.setAttribute("usuario",usuario);
 				<div class="special"><h3><a href="controladorReporte?acao=listarReporteOperador"> Reportes </a></h3></div>
 				<div class="special">< <h3><a href=controladorSolucao?acao=listar>Solucoes</a></h3>--></div>
 				<div class="special"><h3><a href="controladorUsuario?acao=listar">Manuten&ccedil&atildeo Usu&aacute;rio</a></h3></div>
-				<div class="special"><h3><a href="ajudaOperador.html">Ajuda</a></h3></div>
+				<div class="special"><!--  <h3><a href="ajudaOperador.html">Ajuda</a></h3>--> </div>
 				<div class="special">
 				
 				<div class="main clearfix">
