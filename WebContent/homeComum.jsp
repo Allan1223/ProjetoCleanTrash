@@ -96,7 +96,16 @@ session.setAttribute("usuario",usuario);
 				<!--<div><h3>Status dos Problemas</h3></div>
 				<div><h3>Manutenção</h3></div>
 				<div><h3>About</h3></div>-->
-				<div class="special"><h3><a href="reportar.jsp">Reportar Problemas</a></h3></div>
+				<div class="special">
+				
+				
+					<a href="reportar.jsp"><h3>Reportar Problemas</h3>
+					
+					
+					
+					
+					
+				</div>
 				<div class="special"><h3><a href="controladorReporte?acao=listar&usuario=<%=usuario.getCodigoUsuario() %>">Status dos Reportes</a></h3></div>
 				<div class="special"><h3><a href="alterarSenha.jsp">Alterar Senha</a></h3></div>
 				<div class="special"><h3><a href="ajuda.jsp">Ajuda</a></h3></div>

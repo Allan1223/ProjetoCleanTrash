@@ -43,13 +43,17 @@ List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 <script type="text/javascript">
 	function validarLetras(){
 		var filtroPesquisa = document.getElementById("filtroPesquisa").value;
+		var pesquisa = document.getElementById("pesquisa").value;
+		
 		if (filtroPesquisa == "codigoUsuario") {
-			var regex = /^[a-zA-Z]+$/;
-			if (!regex.test(filtroPesquisa)) {
-				return true;
-			} else {
+			//var regex = /^[0-9]+$/;
+			if (isNaN(pesquisa)) {
 				window.alert("Para pesquisar por código, use números.");
 				return false;
+				
+			} else {
+				
+				return true;
 			}
 		}
 	}
@@ -92,8 +96,9 @@ List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 						<option value="codigoUsuario">Codigo Usuario</option>
 						<option value="emailUsuario">E-mail</option>
 						<option value="nomeUsuario">Nome</option>
-					</select> <label for="name">Pesquisar</label> <input type="text"
-						class="input" name="pesquisa" id="pesquisa"
+					</select> <label for="name">Pesquisar</label> 
+					
+					<input type="text" class="input" name="pesquisa" id="pesquisa"
 						placeholder="Digite sua pesquisa" size="100" />
 
 					<button onClick="return validarLetras()">Pesquisar</button>

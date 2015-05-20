@@ -30,6 +30,8 @@
 
 .gt-grid > div:hover:before,
 .gt-grid > div.special:before {
+	
+	
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -194,3 +196,4 @@
 	-moz-transform: scale(.6);
 	transform: scale(.6);
 }
+
