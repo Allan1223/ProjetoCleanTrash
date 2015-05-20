@@ -19,7 +19,7 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 	ControladorUsuario controladorUsuario;
 	int codigoUsuario = 0;
 	String emailUsuario;
-	String nomeUsuario;
+	String nome;
 
 	public AcaoPesquisarUsuario(){
 
@@ -99,7 +99,7 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 			} // email
 			
 			else if (filtroPesquisa.equals("nomeUsuario")){
-				nomeUsuario = request.getParameter("pesquisa");
+				nome = request.getParameter("pesquisa");
 				
 			} // nomeUsuario
 		}

@@ -102,6 +102,33 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		return usuarios;
 	}
 
+	public List<Usuario> procurarUsuarioNome(String nome) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		Usuario usuario = null;
+		PreparedStatement stmt=null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT * FROM USUARIO WHERE nome like  '%"+nome+"%'";
+			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+			//stmt.setString(1, emailUsuario);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
+				usuarios.add(usuario);
+			}
+
+		} catch (SQLException e) {
+			throw new RepositorioException(e);
+		} finally {
+			stmt.close();
+			rs.close();
+		}
+		return usuarios;
+	}
+
 	public List<Usuario> procurarUsuarioEmail(String emailUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -128,6 +155,8 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		}
 		return usuarios;
 	}
+
+
 
 	//@Override
 	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
