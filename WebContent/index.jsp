@@ -31,7 +31,7 @@
 				var rep_senhaUser = window.document.getElementById("senhaConf").value;
 				
 									
-				if (senhaUser.length() < 6){
+				if (senhaUser.length < 6){
 					window.alert('Senhas Incorreta: digite a senha com mais de 6 caracteres!');
 					registrar.senhaUser.focus();
 					return false;			
