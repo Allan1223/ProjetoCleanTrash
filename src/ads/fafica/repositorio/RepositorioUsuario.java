@@ -102,20 +102,23 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		return usuarios;
 	}
 
-	public Usuario procurarUsuarioEmail(String emailUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+	public List<Usuario> procurarUsuarioEmail(String emailUsuario) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
 
+		List<Usuario> usuarios = new ArrayList<Usuario>();
 		Usuario usuario = null;
 		PreparedStatement stmt=null;
 		ResultSet rs = null;
+
 		try {
-			String sql = "SELECT * FROM USUARIO WHERE email BETWEEN ? AND ?";
+			String sql = "SELECT * FROM USUARIO WHERE email like  '%"+emailUsuario+"%'";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
-			stmt.setString(1, emailUsuario);
+			//stmt.setString(1, emailUsuario);
 			rs = stmt.executeQuery();
+			while (rs.next()) {
 
-			if (!rs.next()) throw new UsuarioNaoEncontradoException();
-			usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
-
+				usuario = new Usuario(rs.getInt("codigoUsuario"), rs.getString("nome"), rs.getString("email"),rs.getString("senha"), rs.getInt("perfil"));
+				usuarios.add(usuario);
+			}
 
 		} catch (SQLException e) {
 			throw new RepositorioException(e);
@@ -123,7 +126,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 			stmt.close();
 			rs.close();
 		}
-		return usuario;
+		return usuarios;
 	}
 
 	//@Override
@@ -309,7 +312,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 
 	@Override
 	public Usuario procurar(String email) throws UsuarioNaoEncontradoException,
-			RepositorioException, SQLException {
+	RepositorioException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

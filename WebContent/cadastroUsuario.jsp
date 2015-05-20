@@ -59,12 +59,7 @@
 						return true;
 					}
 						return false;
-               }
-
-                  
-                
-				
-
+               }             
 			</script>
 			
 				<!-- Contepudo da página -->

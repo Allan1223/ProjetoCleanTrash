@@ -24,9 +24,8 @@
 		
 		<script language="javascript" type="text/javascript">
 		
-			function validar() {
-				
-				
+			function validar() {				
+				validarLetras();
 				var senhaUser     = window.document.getElementById("senhaCad").value;
 				var rep_senhaUser = window.document.getElementById("senhaConf").value;
 				
@@ -34,18 +33,23 @@
 				if (senhaUser.length() < 6){
 					window.alert('Senhas Incorreta: digite a senha com mais de 6 caracteres!');
 					registrar.senhaUser.focus();
-					return false;			
-					
+					return false;					
 				}
 				if (senhaUser != rep_senhaUser) {
 					window.alert('Senhas diferentes: Confirme a senha corretamente!');
 					registrar.senhaConf.focus();
 					return false;
-				}
-	
-	
-				
-			}
+				}				
+			}	
+			
+			function validarLetras(campo){
+					var regex = /^[a-zA-Z]+$/;
+					if(regex.test(campo)){
+							return true;
+						}
+							return false;
+	               }
+			 
 		</script>
 
 		
