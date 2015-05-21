@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
 <%
 	//@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg"
 %>
@@ -19,12 +20,19 @@ Usuario usuario = (Usuario) session.getAttribute("usuario");
 //Envia a sessao
 session.setAttribute("usuario",usuario);
 
+
 List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 
-//pageContext.setAttribute("usuario", usuarios);
+if(usuarios == null){
+	
+	RequestDispatcher dispatcher = 
+			request.getRequestDispatcher("controladorUsuario?acao=listar");
+	dispatcher.forward(request, response);
+}
+
+pageContext.setAttribute("usuario", usuarios);
+
 %>
-
-
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -115,10 +123,10 @@ List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 
 					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
 
+					<pg:pager id="p" maxPageItems="8" maxIndexPages="100" export="offset,currentPageNumber=pageNumber" scope="request">
+  					<pg:param name="keywords"/>
 					<!-- tabela dinâmica -->
-					<table border="0" align="center">
-						<tr>
-							<td>
+					
 								<table border="0" align="center" cellpadding="5" cellspacing="0">
 
 
@@ -152,30 +160,52 @@ List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 
 										</c:choose>
 
-										<td>${usuario.codigoUsuario}</td>
-										<td>${usuario.nomeUsuario}</td>
-										<td>${usuario.emailUsuario}</td>
-										<td>${usuario.perfilUsuario}</td>
-
-
-										<td><a
-											href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span
-													style="color: green;">Editar</span></strong> </a> <a
-											href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}" onClick="return confirmarExclusao()">
-												<strong><span style="color: red;">Excluir</span></strong>
-										</a></td>
-
-
+										<pg:item>
+											<td>${usuario.codigoUsuario}</td>
+											<td>${usuario.nomeUsuario}</td>
+											<td>${usuario.emailUsuario}</td>
+											<td>${usuario.perfilUsuario == 1 ? "Operador" : "Comum"}</td>
+											<td><a
+												href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span
+														style="color: green;">Editar</span></strong> </a> <a
+												href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}" onClick="return confirmarExclusao()">
+													<strong><span style="color: red;">Excluir</span></strong>
+											</a></td>
+										</pg:item>
+										
 									</c:forEach>
 
 
 								</table>
-							</td>
-						</tr>
-					</table>
+								
+								<br><br>
+
+							
+							<div align="center">
+								<pg:index>
+								    <pg:prev>
+								      <a href="<%= pageUrl %>"><strong>&lt;&lt; Anterior</strong></a>
+								    </pg:prev>
+								    <pg:pages>
+								       <a href="<%= pageUrl %>"><strong><%= pageNumber %></strong></a> 
+								    </pg:pages>
+								    <pg:next>
+								      <a href="<%= pageUrl %>"><strong>Próximo &gt;&gt;</strong></a>
+								    </pg:next>
+								  </pg:index>
+								</pg:pager>
+								
+								</div>	 
+							
+					
 		</div>
+		
+							
+		
+								
 
 	</div>
+							
 	<div id="home">
 		<h2>
 			<a href="homeOperador.jsp">Home</a>

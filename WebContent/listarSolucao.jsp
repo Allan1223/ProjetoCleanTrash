@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
 <%@ page  import="java.util.List" %>
 <%@ page  import="java.text.SimpleDateFormat" %>
 <%@ page  import="ads.fafica.modelo.Usuario" %>
@@ -22,6 +23,16 @@ session.setAttribute("usuario",usuario);
 
 // Recebe a instancia do reporte a ser solucionada
 List<Solucao> solucoes = (List<Solucao>) request.getAttribute("solucao");
+
+if(solucoes == null){
+	
+	RequestDispatcher dispatcher = 
+			request.getRequestDispatcher("controladorSolucao?acao=listar");
+	dispatcher.forward(request, response);
+}
+
+pageContext.setAttribute("solucao", solucoes);
+
 
 %>
 
@@ -68,10 +79,12 @@ List<Solucao> solucoes = (List<Solucao>) request.getAttribute("solucao");
 					
 					
 						
-				<form>
+				</form>
 				
 					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
 				<!-- tabela dinâmica -->
+				<pg:pager id="p" maxPageItems="8" maxIndexPages="100" export="offset,currentPageNumber=pageNumber" scope="request">
+  					<pg:param name="keywords"/>		
 				
 							<table border="0" align="center" cellpadding="5" cellspacing="0">
 																		
@@ -112,6 +125,7 @@ List<Solucao> solucoes = (List<Solucao>) request.getAttribute("solucao");
 									
 										<fmt:formatDate value="${solucao.dtFechamentoSolucao.time}" pattern="dd/MM/yyyy" var="dataFormatada" />									
 									
+									<pg:item>
 																															 
 										<td>${solucao.codigoSolucao}</td>
 										<td>${solucao.codigoReporte}</td> 
@@ -119,17 +133,37 @@ List<Solucao> solucoes = (List<Solucao>) request.getAttribute("solucao");
 										<td>${solucao.dtFechamentoSolucao}</td>
 										<td>${solucao.hrFechamentoSolucao}</td>
 													
-																																			 
+													
+									</pg:item>																										 
 									
 								</c:forEach>
 			    
 								
 							</table>
+							
+							<br><br>
+
+							
+							<div align="center">
+								<pg:index>
+								    <pg:prev>
+								      <a href="<%= pageUrl %>"><strong>&lt;&lt; Anterior</strong></a>
+								    </pg:prev>
+								    <pg:pages>
+								       <a href="<%= pageUrl %>"><strong><%= pageNumber %></strong></a> 
+								    </pg:pages>
+								    <pg:next>
+								      <a href="<%= pageUrl %>"><strong>Próximo &gt;&gt;</strong></a>
+								    </pg:next>
+								  </pg:index>
+						</pg:pager>
 						
 
 				
 				</div>
 							
+			</div>
+			
 			</div>
 		<div id="home"><h2><a href="homeOperador.jsp">Home</a></h2></div>
 		

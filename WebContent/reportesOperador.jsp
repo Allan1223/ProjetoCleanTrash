@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-<%//@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
+<%@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
 <%@ page  import="java.util.List" %>
 <%@ page  import="ads.fafica.modelo.Usuario" %>
 <%@ page  import="ads.fafica.modelo.Reporte" %>
@@ -20,7 +20,14 @@ session.setAttribute("usuario",usuario);
 
 List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 
-//pageContext.setAttribute("usuario", usuarios);
+if(reportes == null){
+	
+	RequestDispatcher dispatcher = 
+			request.getRequestDispatcher("controladorReporte?acao=listarReporteOperador");
+	dispatcher.forward(request, response);
+}
+
+pageContext.setAttribute("reporte", reportes);
 
 %>
 
@@ -40,6 +47,40 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		
 		<!--<script src="js/modernizr.custom.js"></script> -->
+		
+		<script type="text/javascript">
+	/*function validarLetras(){
+		var filtroPesquisa = document.getElementById("filtroPesquisa").value;
+		var pesquisa = document.getElementById("pesquisa").value;
+		
+		if (filtroPesquisa == "codigoUsuario") {
+			//var regex = /^[0-9]+$/;
+			if (isNaN(pesquisa)) {
+				window.alert("Para pesquisar por código, use números.");
+				return false;
+				
+			} else {
+				
+				return true;
+			}
+		}
+	}*/
+	
+	function confirmarExclusao(){
+		var confirmacao = confirm("Deseja realmente excluir o Reporte selecionado?");
+		
+		if (confirmacao){
+			return true;
+		}
+		else{
+			return false;			
+		}
+		
+	}
+	
+	
+</script>
+
 	</head>
 	<body>
 		<div id="cabecalho"><h1> Reportes </h1></div>
@@ -73,7 +114,9 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 				
 				<br/><br/>
 				
-								
+				<pg:pager id="p" maxPageItems="8" maxIndexPages="100" export="offset,currentPageNumber=pageNumber" scope="request">
+  					<pg:param name="keywords"/>				
+												
 				<table border="0" align="center" cellpadding="5" cellspacing="0">
 																		
 															
@@ -113,18 +156,21 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 									
 										<fmt:formatDate value="${reporte.dtAberturaReporte.time}" pattern="dd/MM/yyyy" var="dataFormatada" />									
 									
-																															 
-										<td>${reporte.codigoReporte}</td>
-										<td>${reporte.tipoReporte}</td> 
-										<td>${reporte.descricaoReporte}</td>
-										<td>${reporte.dtAberturaReporte}</td>
-										<td>${reporte.statusReporte == 0 ? "Aberto" : "Fechado"}</td>
+										<pg:item>																					 
+											<td>${reporte.codigoReporte}</td>
+											<td>${reporte.tipoReporte}</td> 
+											<td>${reporte.descricaoReporte}</td>
+											<td>${reporte.dtAberturaReporte}</td>
+											<td>${reporte.statusReporte == 0 ? "Aberto" : "Fechado"}</td>
 										
-										<c:if test="${reporte.statusReporte == 0}"> 
-										 	<td><a href="controladorReporte?acao=solucionarReporte&id=${reporte.codigoReporte}"><strong><span style="color:green;">Fechar</span></strong>	</a>
-											<a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}">   <strong><span style="color:red;">Excluir</span></strong></a>
-											 </td>
-										</c:if>
+										
+											<c:if test="${reporte.statusReporte == 0}"> 
+											 	<td><a href="controladorReporte?acao=solucionarReporte&id=${reporte.codigoReporte}"><strong><span style="color:green;">Fechar</span></strong>	</a>
+												<a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}" onClick="return confirmarExclusao()">   <strong><span style="color:red;">Excluir</span></strong></a>
+												 </td>
+											</c:if>
+										
+										</pg:item>	
 													
 																																			 
 									
@@ -132,6 +178,25 @@ List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 			    
 								
 							</table>
+							
+							<br><br>
+
+							
+							<div align="center">
+								<pg:index>
+								    <pg:prev>
+								      <a href="<%= pageUrl %>"><strong>&lt;&lt; Anterior</strong></a>
+								    </pg:prev>
+								    <pg:pages>
+								       <a href="<%= pageUrl %>"><strong><%= pageNumber %></strong></a> 
+								    </pg:pages>
+								    <pg:next>
+								      <a href="<%= pageUrl %>"><strong>Próximo &gt;&gt;</strong></a>
+								    </pg:next>
+								  </pg:index>
+						</pg:pager>
+								
+							</div>	 
 									
 				</div>
 				

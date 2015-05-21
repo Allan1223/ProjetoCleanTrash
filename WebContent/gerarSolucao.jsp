@@ -90,7 +90,7 @@ Reporte reporte = (Reporte) request.getAttribute("reporte");
 					</form>
 				</div>
 				<div id="localizar">
-					<span>Endereço</span>
+					<span>Endere&ccedilo</span>
 					<!--<p><img src="classic-google-maps-2.png" alt="Google Maps"></p>-->
 					
 					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7896.367229218682!2d-35.97097330052696!3d-8.284517284520124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7a98b96e8d7fd6d%3A0xa30a5c7c9e363ef5!2sCaruaru+-+PE!5e0!3m2!1spt-BR!2sbr!4v1427718327757" width="490" height="290" frameborder="0" style="border:0"></iframe>

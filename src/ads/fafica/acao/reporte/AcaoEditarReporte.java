@@ -41,7 +41,7 @@ public class AcaoEditarReporte implements AcaoReporte {
 		 
 
 		int codigoReporte = Integer.parseInt(request.getParameter("codigoReporte"));
-		int codigoUsuario = 0; // o usuário nunca muda na edição do reporte
+		int codigoUsuario = Integer.parseInt(request.getParameter("codigoUsuario"));
 		int status = 0;
 		
 		// Data e Hora não serão editados 
@@ -66,8 +66,10 @@ public class AcaoEditarReporte implements AcaoReporte {
 			controladorReporte.alterarReporte(reporte);
 
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("controladorReporte?acao=listar");
+					.getRequestDispatcher("controladorReporte?acao=listar&usuario="+ codigoUsuario);
 			dispatcher.forward(request, response);
+			
+			
 
 		} catch (ProblemaNaoEncontradoException e) {
 

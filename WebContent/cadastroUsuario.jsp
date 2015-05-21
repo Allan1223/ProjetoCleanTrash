@@ -13,32 +13,30 @@
 		<link rel="stylesheet" type="text/css" href="css/componentCadUsuario.css" />
 		<link rel="stylesheet" type="text/css" href="css/cssFormCadUsuario.css" />
 		<!--<script src="js/modernizr.custom.js"></script> -->
-	</head>
-	<body>
-		<div id="cabecalho">
-		  <h1> Cadastrar Usu&aacute;rio</h1></div>
-			<div class="container">
-			<script type="text/javascript">
+		
+		<script language="javascript" type="text/javascript">
 			
                 function validaForm(){
                     
+                	
                 	// os campos nome e email já tem validações com o HTML5
-                    //var nome = document.getElementById("nome").value;
+                    var nome = document.getElementById("nome").value;
                     //var email = document.getElementById("emailCad").value;
                     var perfil = document.getElementById("perfil").value;
                 	var senha = document.getElementById("senhaCad").value;
     				var conSenha = document.getElementById("confirmar").value;
 
+    				alert(nome + "-" + perfil + "-" + senha + "-" + conSenha);
+    				
 					if(perfil == ""){
 						  alert ("Selecione um Perfil!");
 						  return false;
 						}
-					//chamando a função
-					if(!validarLetras(nome)){
-							alert("Este campo só recebe letras!");
+					 if (!isNaN(nome)) {
+			   				alert("Este campo só recebe letras!");
 							 return false;
 						}
-					if(senha.length() >= 6){
+					if(senha.length <= 6){
 						
 						alert("Senha inválida: digite 6 ou mais caracteres!");
 						   return false;
@@ -49,18 +47,20 @@
 					   return false;
 				    } else {
 							alert("Cadastro realizado com sucesso:");
-							return true;
-					    }
-           }
-			// se o conteudo não for letras retorne false
-           function validarLetras(campo){
-				var regex = /^[a-zA-Z]+$/;
-				if(regex.test(campo)){
-						return true;
+							
 					}
-						return false;
-               }             
+			  	   
+			  	 return true;
+          		 }
+			     
 			</script>
+			
+			
+	</head>
+	<body>
+		<div id="cabecalho">
+		  <h1> Cadastrar Usu&aacute;rio</h1></div>
+			<div class="container">
 			
 				<!-- Contepudo da pÃ¡gina -->
 				<!-- Conteudo da pÃ¡gina -->
@@ -74,7 +74,7 @@
 						<div class="field">
 							<label for="name">Nome:*</label>
 							<input type="text" class="input" name="nome" id="nome" required="required" />
-							<p class="hint">Edite seu nome.</p>
+							<p class="hint">Digite o nome.</p>
 						</div>
 						
 						<div class="field">
@@ -86,7 +86,7 @@
 						<div class="field">
 						<label for="opcao">Perfil:</label>
 						<select name="perfil">
-							<option> Selecione o Perfil</option>
+							<option value = ""> Selecione o Perfil</option>
 							<option value = "Comum">Comum</option>
 							<option value = "Operador">Operador</option>
 							
@@ -105,7 +105,7 @@
 						</div>
 						
 						<input type="reset" value="Limpar" class="button" />
-					    <input type="submit" name="btnEnviar" class="button" value = "Cadastrar" />
+					    <input type="submit" name="btnEnviar" class="button" value = "Cadastrar" onclick="return validaForm()"/>
 				
 					</form>
 				</div>	

@@ -19,7 +19,7 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 	ControladorUsuario controladorUsuario;
 	int codigoUsuario = 0;
 	String emailUsuario;
-	String nome;
+	String nomeUsuario;
 
 	public AcaoPesquisarUsuario(){
 
@@ -99,7 +99,30 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 			} // email
 			
 			else if (filtroPesquisa.equals("nomeUsuario")){
-				nome = request.getParameter("pesquisa");
+				nomeUsuario = request.getParameter("pesquisa");
+				
+				try {
+					List<Usuario> usuario = controladorUsuario.procurarUsuarioNome(nomeUsuario);
+
+					request.setAttribute("usuarios", usuario);	
+
+					RequestDispatcher dispatcher = 
+							request.getRequestDispatcher("/manUsuario.jsp");
+					dispatcher.forward(request, response);
+
+				} 
+				catch (UsuarioNaoEncontradoException e) {
+					request.setAttribute("usuarios", null);
+
+					RequestDispatcher dispatcher = 
+							request.getRequestDispatcher("/manUsuario.jsp");
+					dispatcher.forward(request, response);
+
+					e.printStackTrace();
+				} 
+				catch (RepositorioException e) {
+					e.printStackTrace();
+				}
 				
 			} // nomeUsuario
 		}
