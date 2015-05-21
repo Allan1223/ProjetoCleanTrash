@@ -12,6 +12,7 @@ import ads.fafica.controlador.ControladorReporte;
 import ads.fafica.controlador.ProblemaNaoEncontradoException;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.controlador.UsuarioNaoEncontradoException;
+import ads.fafica.modelo.Usuario;
 
 public class AcaoExcluirReporte implements AcaoReporte {
 
@@ -34,6 +35,7 @@ public class AcaoExcluirReporte implements AcaoReporte {
 			SQLException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		int codigoUsuario = Integer.parseInt(request.getParameter("codigoUsuario"));
 
 
 		try {
@@ -47,11 +49,13 @@ public class AcaoExcluirReporte implements AcaoReporte {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+				
 		request.setAttribute("mensagem", "Reporte excluído com sucesso!");
 
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("controladorReporte?acao=listar");
+		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("controladorReporte?acao=listar&codigoUsuario=" + codigoUsuario);
 		dispatcher.forward(request, response);
 
 

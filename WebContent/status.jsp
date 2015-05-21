@@ -48,6 +48,23 @@ pageContext.setAttribute("reporte", reportes);
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		
 		<!--<script src="js/modernizr.custom.js"></script> -->
+<script type="text/javascript">		
+		function confirmarExclusao(){
+		var confirmacao = confirm("Deseja realmente excluir o Reporte selecionado?");
+		
+		if (confirmacao){
+			return true;
+		}
+		else{
+			return false;			
+		}
+		
+	}
+	
+	
+</script>
+
+
 	</head>
 	<body>
 		<div id="cabecalho"><h1> Status dos Reportes </h1></div>
@@ -135,7 +152,7 @@ pageContext.setAttribute("reporte", reportes);
 											
 											<c:if test="${reporte.statusReporte == 0}"> 
 											<td><a href="controladorReporte?acao=formularioEditarReporte&id=${reporte.codigoReporte}"><strong><span style="color:green;">Editar</span></strong>	</a>
-											<a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}">   <strong><span style="color:red;">Excluir</span></strong></a>
+											<a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}&codigoUsuario=${reporte.codigoUsuario}" onClick="return confirmarExclusao()">   <strong><span style="color:red;">Excluir</span></strong></a>
 											 </td>
 											 </c:if>
 										 </pg:item>	

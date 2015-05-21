@@ -48,7 +48,7 @@ session.setAttribute("usuario",usuario);
 				<div>
 					<!--<p>This is a modal window. You can do the following things with it:</p>-->
 					<ul>
-						<li><strong>Versão:</strong> 1.0 </li>
+						<li><strong>Ver&atildeo:</strong> 1.0 </li>
 						<li><strong>Desenvolvimento:</strong> RefSoft 2015</li>
 						<!--<li><strong>Close:</strong> click on the button below to close the modal.</li>-->
 					</ul>

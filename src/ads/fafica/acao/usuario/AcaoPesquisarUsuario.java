@@ -102,7 +102,7 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 				nomeUsuario = request.getParameter("pesquisa");
 				
 				try {
-					List<Usuario> usuario = controladorUsuario.procurarUsuarioNome(nomeUsuario);
+					List<Usuario> usuario = controladorUsuario.procurarUsuario(nomeUsuario);
 
 					request.setAttribute("usuarios", usuario);	
 

@@ -102,7 +102,7 @@ public class RepositorioUsuario implements IRepositorioUsuario{
 		return usuarios;
 	}
 
-	public List<Usuario> procurarUsuarioNome(String nome) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
+	public List<Usuario> procurarUsuario(String nome) throws UsuarioNaoEncontradoException, RepositorioException, SQLException {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		Usuario usuario = null;

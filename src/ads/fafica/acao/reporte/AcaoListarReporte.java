@@ -13,7 +13,7 @@ import ads.fafica.controlador.ControladorReporte;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Reporte;
 
-public class AcaoListarReporte implements AcaoReporte  {
+public class AcaoListarReporte implements AcaoReporte {
 
 	ControladorReporte controladorReporte;
 
@@ -24,24 +24,25 @@ public class AcaoListarReporte implements AcaoReporte  {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	@Override
 	public void executarReporte(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		int codigoUsuario = Integer.parseInt(request.getParameter("usuario"));
 
+		int codigoUsuario = Integer.parseInt(request
+				.getParameter("codigoUsuario"));
 
 		try {
-			
-			List<Reporte> reporte = controladorReporte.listarReporte(codigoUsuario);
 
-			request.setAttribute("reporte", reporte);			
+			List<Reporte> reporte = controladorReporte
+					.listarReporte(codigoUsuario);
 
-			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/status.jsp");
+			request.setAttribute("reporte", reporte);
+
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/status.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (RepositorioException e) {
@@ -51,9 +52,6 @@ public class AcaoListarReporte implements AcaoReporte  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
-
 
 	}
 

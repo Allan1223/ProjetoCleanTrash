@@ -43,20 +43,13 @@ session.setAttribute("usuario",usuario);
 	<body>
 	 	
 		
-	<%-- CÛdigo JSP
-		String mensagem = "Bem vindo ao sistema de agenda do FJ-21!";
-	    out.println(mensagem); 
-	 --%>
-		
-		<%//=usuario.getEmailUsuario() %>
-		
 		<div class="md-modal md-effect-19" id="modal-19">
 			<div class="md-content">
 				<h3>Clean Trash</h3>
 				<div>
 					<!--<p>This is a modal window. You can do the following things with it:</p>-->
 					<ul>
-						<li><strong>Vers√£o:</strong> 1.0 </li>
+						<li><strong>Vers&atildeo:</strong> 1.0 </li>
 						<li><strong>Desenvolvimento:</strong> RefSoft 2015</li>
 						<!--<li><strong>Close:</strong> click on the button below to close the modal.</li>-->
 					</ul>
@@ -70,10 +63,7 @@ session.setAttribute("usuario",usuario);
 				<span class="gt-grid-icon"></span>
 				<div class="gt-grid-select">
 					<div></div> <div></div> <div></div> <div></div> <div></div> 
-					<div></div> <!--<div></div> <div></div><div></div> <div></div> 
-					<div></div><div></div><div></div><div></div><div></div>
-					<div></div><div></div><div></div><div></div><div></div>
-					<div></div><div></div><div></div><div></div><div></div> -->
+					<div></div> 
 				</div>
 			</div>
 			<div id="gt-grid" class="gt-grid">
@@ -100,13 +90,9 @@ session.setAttribute("usuario",usuario);
 				
 				
 					<a href="reportar.jsp"><h3>Reportar Problemas</h3>
-					
-					
-					
-					
-					
+										
 				</div>
-				<div class="special"><h3><a href="controladorReporte?acao=listar&usuario=<%=usuario.getCodigoUsuario() %>">Status dos Reportes</a></h3></div>
+				<div class="special"><h3><a href="controladorReporte?acao=listar&codigoUsuario=<%=usuario.getCodigoUsuario() %>">Status dos Reportes</a></h3></div>
 				<div class="special"><h3><a href="alterarSenha.jsp">Alterar Senha</a></h3></div>
 				<div class="special"><!-- <h3><a href=ajuda.jsp></a></h3>--> </div> 
 				<div class="special">
@@ -119,27 +105,7 @@ session.setAttribute("usuario",usuario);
 					</div>
 					</div>
 				</div>
-				
-				
-				
-				
-				
-				<!--<div><h3>celery</h3></div>
-				<div><h3>greens lotus</h3></div>
-				<div><h3>arugula beet</h3></div>
-				<div><h3>desert raisin</h3></div>
-				<div><h3>mustard burdock</h3></div>
-				<div><h3>potato bush</h3></div>
-				<div><h3>catsear</h3></div>
-				<div><h3>water chestnut</h3></div>
-				<div><h3>bok choy</h3></div>
-				<div><h3>pea sprouts</h3></div>
-				<div><h3>gumbo parsley</h3></div>
-				<div><h3>bitterleaf</h3></div>
-				<div><h3>spinach rock</h3></div>
-				<div><h3>tigernut garlic</h3></div>
-				<div><h3>caulie</h3></div>
-				<div><h3>seakale</h3></div>-->
+												
 			</div>
 
 		</div><!-- /container -->

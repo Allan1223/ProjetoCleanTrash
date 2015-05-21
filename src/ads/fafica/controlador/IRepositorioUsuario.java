@@ -31,7 +31,7 @@ public interface IRepositorioUsuario {
 
 	public List<Usuario> procurarUsuarioEmail(String email) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
 	
-	public List<Usuario> procurarUsuarioNome(String nome) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
+	public List<Usuario> procurarUsuario(String nome) throws UsuarioNaoEncontradoException, RepositorioException, SQLException;
  
 
 
