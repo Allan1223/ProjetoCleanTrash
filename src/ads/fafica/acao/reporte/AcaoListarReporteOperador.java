@@ -27,13 +27,13 @@ public class AcaoListarReporteOperador implements AcaoReporte {
 			e.printStackTrace();
 		}	
 	}
-	
+
 	@Override
 	public void executarReporte(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
-try {
-			
+		try {
+
 			List<Reporte> reporte = controladorReporte.listarReporteOperador();
 
 			request.setAttribute("reporte", reporte);			
@@ -49,15 +49,15 @@ try {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ProblemaNaoEncontradoException e) {
-			
+
 			request.setAttribute("reporte", null);			
 
 			RequestDispatcher dispatcher = 
 					request.getRequestDispatcher("/reportesOperador.jsp");
 			dispatcher.forward(request, response);
 		}
-		
-		
+
+
 
 	}
 

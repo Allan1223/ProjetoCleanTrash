@@ -17,7 +17,11 @@ import ads.fafica.modelo.Reporte;
 
 public class AcaoPesquisarReporteOperador implements AcaoReporte {
 
-	ControladorReporte controladorReporte;
+	ControladorReporte controladorReporte;	
+	int codigoReporte;
+	int statusReporte;
+	String tipoReporte;
+	String descricaoReporte;
 	
 	public AcaoPesquisarReporteOperador() {
 		try {
@@ -34,6 +38,7 @@ public class AcaoPesquisarReporteOperador implements AcaoReporte {
 			SQLException {
 		
 		String pesquisa = request.getParameter("pesquisa");
+		String filtroPesquisa = request.getParameter("filtroPesquisa");
 				
 		if (pesquisa != ""){
 
