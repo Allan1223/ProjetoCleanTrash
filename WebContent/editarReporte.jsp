@@ -48,10 +48,10 @@ Reporte reporteEditar = (Reporte) request.getAttribute("reporteEditar");
 						<label for="opcao">Tipo:</label>
 						<select name="tipo">
 							<option> Selecione</option>
-							<option value = "Eletrico" >Eletrico</option>
-							<option value = "Saneamento">Saneamento</option>
-							<option value = "Limpeza">Limpeza</option>
-							<option value = "Mobilidade">Mobilidade</option>
+							<option value = "Eletrico" <% if(reporteEditar.getTipoReporte().equals("Eletrico")){%> selected <%}%>>Eletrico</option>
+							<option value = "Saneamento" <% if(reporteEditar.getTipoReporte().equals("Saneamento")){%> selected <%}%>>Saneamento</option>
+							<option value = "Limpeza" <% if(reporteEditar.getTipoReporte().equals("Limpeza")){%> selected <%}%>>Limpeza</option>
+							<option value = "Mobilidade" <% if(reporteEditar.getTipoReporte().equals("Mobilidade")){%> selected <%}%>>Mobilidade</option>
 						</select>
 						</div>						
 							
@@ -96,7 +96,7 @@ Reporte reporteEditar = (Reporte) request.getAttribute("reporteEditar");
 				</div>
 			</div><br>
 		
-		<div id="home"><h2><a href="controladorReporte?acao=listar&usuario=<%=usuario.getCodigoUsuario() %>">Voltar</a></h2></div>
+		<div id="home"><h2><a href="controladorReporte?acao=listar&codigoUsuario=<%=usuario.getCodigoUsuario() %>">Voltar</a></h2></div>
 		
 	</body>	
 </html>

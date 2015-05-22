@@ -77,8 +77,8 @@ Usuario usuarioEditar = (Usuario) request.getAttribute("usuarioEditar");
 						<label for="opcao">Perfil:</label>
 						<select name="perfil">
 							<option> Selecione o Perfil</option>
-							<option value = "Comum">Comum</option>
-							<option value = "Operador">Operador</option>
+							<option value = "Comum" <% if(usuarioEditar.getPerfilUsuario() == 2){%> selected <%}%>>Comum</option>
+							<option value = "Operador" <% if(usuarioEditar.getPerfilUsuario() == 1){%> selected <%}%>>Operador</option>
 							
 						</select>
 						</div>						
