@@ -11,5 +11,7 @@ import ads.fafica.controlador.RepositorioException;
 
 public interface AcaoSolucao {
 
-	public void executarSolucao(HttpServletRequest request,HttpServletResponse response )throws ServletException, IOException, SQLException, RepositorioException;
+	public void executarSolucao(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException,
+			SQLException, RepositorioException;
 }

@@ -13,18 +13,16 @@ import ads.fafica.controlador.ControladorUsuario;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Usuario;
 
-public class AcaoCadastrarUsuario implements AcaoUsuario {	
+public class AcaoCadastrarUsuario implements AcaoUsuario {
 
 	ControladorUsuario controladorUsuario;
 
-	public AcaoCadastrarUsuario(){
+	public AcaoCadastrarUsuario() {
 
 		try {
 			this.controladorUsuario = new ControladorUsuario();
-		} 
-		catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -35,34 +33,35 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 
 		int perfilUsuario, codigoUsuario = 1;
 
-		String nome   = request.getParameter("nome");
-		String email  = request.getParameter("emailCad");
-		String senha  = request.getParameter("senhaCad");
+		String nome = request.getParameter("nome");
+		String email = request.getParameter("emailCad");
+		String senha = request.getParameter("senhaCad");
 		String perfil = request.getParameter("perfil");
-
 
 		if (perfil.equals("Operador"))
 			perfilUsuario = 1;
 		else
 			perfilUsuario = 2;
 
-		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,perfilUsuario);
+		Usuario usuario = new Usuario(codigoUsuario, nome, email, senha,
+				perfilUsuario);
 
-		try {			
-			boolean existe = controladorUsuario.existe(usuario.getEmailUsuario());	
+		try {
+			boolean existe = controladorUsuario.existe(usuario
+					.getEmailUsuario());
 
-			if(!existe){				
+			if (!existe) {
 				controladorUsuario.inserirUsuario(usuario);
 
 				request.setAttribute("mensagem",
 						"Usuario adicionado com sucesso!");
 
 				// testa se o cadastro veio da página inicial
-				if(perfil.equals("ComumInicial")){
+				if (perfil.equals("ComumInicial")) {
 
 					request.getSession().invalidate();
 					HttpSession session = request.getSession(true);
-					session.setAttribute("usuario",usuario);
+					session.setAttribute("usuario", usuario);
 
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/homeComum.jsp");
@@ -70,39 +69,35 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 
 				}
 
-				else{
+				else {
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("controladorUsuario?acao=listar");
-					dispatcher.forward(request, response);					
+					dispatcher.forward(request, response);
 				}
 			}
 
 			else {
 
-				request.setAttribute("mensagem",
-						"Usuario já existe!");
+				request.setAttribute("mensagem", "Usuario já existe!");
 				// retorna um erro
-				request.setAttribute("validacaoUsuario","existe");
-				// testa se o cadastro veio da página inicial para redirecionar a página
-				if(perfil.equals("ComumInicial")){															
+				request.setAttribute("validacaoUsuario", "existe");
+				// testa se o cadastro veio da página inicial para redirecionar
+				// a página
+				if (perfil.equals("ComumInicial")) {
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/index.jsp");
-					dispatcher.forward(request, response);					
-				}
-				else{
-					// controladorUsuario?acao=listar
+					dispatcher.forward(request, response);
+				} else {
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/cadastroUsuario.jsp");
 					dispatcher.forward(request, response);
 				}
-			}				
+			}
 
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();						
-		}	
-	}	
+			e.printStackTrace();
+		}
+	}
 }

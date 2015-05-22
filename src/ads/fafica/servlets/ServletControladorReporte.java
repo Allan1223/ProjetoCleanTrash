@@ -36,7 +36,7 @@ public class ServletControladorReporte extends HttpServlet {
 	 */
 	public ServletControladorReporte() {
 
-		acoes.put("cadastrar", new AcaoCadastrarReporte()); 
+		acoes.put("cadastrar", new AcaoCadastrarReporte());
 		acoes.put("listar", new AcaoListarReporte());
 		acoes.put("formularioEditarReporte", new AcaoFormularioEditarReporte());
 		acoes.put("editar", new AcaoEditarReporte());
@@ -44,53 +44,49 @@ public class ServletControladorReporte extends HttpServlet {
 		acoes.put("pesquisar", new AcaoPesquisarReporte());
 		acoes.put("listarReporteOperador", new AcaoListarReporteOperador());
 		acoes.put("solucionarReporte", new AcaoSolucionarReporte());
-		acoes.put("pesquisarReporteOperador", new AcaoPesquisarReporteOperador());
-		
-		
-		
-		
-		
-		
-		
+		acoes.put("pesquisarReporteOperador",
+				new AcaoPesquisarReporteOperador());
 
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		// recupera o valor do parâmetro 'acao' da requisição
 		String acao = request.getParameter("acao");
 
 		// pega a classe de 'Acao' baseado no parâmetro da requisição
-		AcaoReporte operacao      = acoes.get(acao);
+		AcaoReporte operacao = acoes.get(acao);
 
 		if (operacao == null) {
-			// se operacao == null é porque não existe classe 'Acao' com 
-			// a String informada, então vamos usar a acao 'listar' 
+			// se operacao == null é porque não existe classe 'Acao' com
+			// a String informada, então vamos usar a acao 'listar'
 			operacao = acoes.get("listar");
 		}
 
-		// chama o método executar da classe de 'Acao' passado request e response
+		// chama o método executar da classe de 'Acao' passado request e
+		// response
 		try {
 
 			operacao.executarReporte(request, response);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 
 	}
 

@@ -23,9 +23,8 @@ public class AcaoListarReporteOperador implements AcaoReporte {
 		try {
 			controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	@Override
@@ -36,28 +35,24 @@ public class AcaoListarReporteOperador implements AcaoReporte {
 
 			List<Reporte> reporte = controladorReporte.listarReporteOperador();
 
-			request.setAttribute("reporte", reporte);			
+			request.setAttribute("reporte", reporte);
 
-			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/reportesOperador.jsp");
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/reportesOperador.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ProblemaNaoEncontradoException e) {
 
-			request.setAttribute("reporte", null);			
+			request.setAttribute("reporte", null);
 
-			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/reportesOperador.jsp");
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/reportesOperador.jsp");
 			dispatcher.forward(request, response);
 		}
-
-
 
 	}
 

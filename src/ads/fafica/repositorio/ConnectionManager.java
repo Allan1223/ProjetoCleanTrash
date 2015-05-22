@@ -8,7 +8,7 @@ import java.sql.Statement;
 /**
  * Esta é uma classe auxiliar
  */
-public class  ConnectionManager {
+public class ConnectionManager {
 
 	private static Connection connection;
 	private static Statement statement;
@@ -25,79 +25,72 @@ public class  ConnectionManager {
 			usuario = "root";
 			senha = "admin";
 
-		}
-		else if(sistema == "oracle") {
+		} else if (sistema == "oracle") {
 			conexao = "jdbc:oracle:thin:@192.168.43.149:1521:XE";
 			usuario = "mauricio";
-			senha = "mauricio";    		
-		}
-		else if(sistema == "sqlserver") {
+			senha = "mauricio";
+		} else if (sistema == "sqlserver") {
 			conexao = "jdbc:sqlserver://localhost:1433;databaseName=aula06";
-			//conexao = "jdbc:sqlserver://localhost\\localhost:1433;databaseName=aula06";
 			usuario = "poo";
-			senha = "poo";    		
-		}
-		else {
+			senha = "poo";
+		} else {
 			conexao = "";
 		}
 
 		if (connection == null) {
 			try {
 
-
-				String driverName = "com.mysql.jdbc.Driver";                        
+				String driverName = "com.mysql.jdbc.Driver";
 
 				Class.forName(driverName);
 
+				connection = DriverManager.getConnection(conexao, usuario,
+						senha);
 
-				connection = DriverManager.getConnection(conexao, usuario, senha);
-
-				//System.out.println("puta que pariu vei, Conectou porraaaa!");
-
-
-				//statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			} catch(SQLException e) {
+			} catch (SQLException e) {
 				connection.close();
-				//statement.close();
-				throw new Exception("SQLException => ConnectionManager: " + e.getMessage());
+				throw new Exception("SQLException => ConnectionManager: "
+						+ e.getMessage());
 			}
 		}
 		return connection;
-		//return statement;
 	}
 
 	/**
 	 * Atenção, este método fecha o Statement!
-	 * @throws SQLException 
+	 * 
+	 * @throws SQLException
 	 */
 	public synchronized static void liberaStatement() throws SQLException {
 		try {
-			if (statement != null) statement.close();
-		} catch(SQLException e) {
-			throw new SQLException("SQLException => ConnectionManager: " + e.getMessage());
+			if (statement != null)
+				statement.close();
+		} catch (SQLException e) {
+			throw new SQLException("SQLException => ConnectionManager: "
+					+ e.getMessage());
 		}
 	}
 
 	public static void liberaRecursos() throws SQLException {
 		try {
-			if (statement != null) statement.close();
+			if (statement != null)
+				statement.close();
 		} catch (SQLException e) {
-			throw new SQLException("SQLException => ConnectionManager: " + e.getMessage());
+			throw new SQLException("SQLException => ConnectionManager: "
+					+ e.getMessage());
 		}
 		try {
-			//reservaStatement();
-			//statement.executeUpdate("SHUTDOWN COMPACT");
 			liberaStatement();
 		} catch (SQLException e) {
-			throw new SQLException("SQLException => ConnectionManager: " + e.getMessage());
+			throw new SQLException("SQLException => ConnectionManager: "
+					+ e.getMessage());
 		}
 		try {
-			if (connection != null) connection.close();
+			if (connection != null)
+				connection.close();
 		} catch (SQLException e) {
-			throw new SQLException("SQLException => ConnectionManager: " + e.getMessage());
+			throw new SQLException("SQLException => ConnectionManager: "
+					+ e.getMessage());
 		}
-
 	}
-
 }
-

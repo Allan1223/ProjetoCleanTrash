@@ -26,18 +26,17 @@ public class ServletAcessarSistema extends HttpServlet {
 		try {
 			this.controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		}
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -50,36 +49,29 @@ public class ServletAcessarSistema extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("usuario", usuario);
 
-
-			if (usuario.getPerfilUsuario() == 1){
+			if (usuario.getPerfilUsuario() == 1) {
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/homeOperador.jsp");
 				dispatcher.forward(request, response);
-			}
-			else{
+			} else {
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/homeComum.jsp");
 				dispatcher.forward(request, response);
 			}
 
-			/*}*/
 		} catch (UsuarioNaoEncontradoException e) {
 			// se não encontrar da uma menssagem de erro e volta a tela de Login
-			request.setAttribute("mensagem",
-					"Usuario não encontrado!");
+			request.setAttribute("mensagem", "Usuario não encontrado!");
 
-			request.setAttribute("validacaoUsuario","naoExiste");
+			request.setAttribute("validacaoUsuario", "naoExiste");
 
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
 
-			//e.printStackTrace();
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
