@@ -1,7 +1,7 @@
 package ads.fafica.repositorio;
 
-public class RepositorioException extends Exception{
-	/*Allan, por que existe essa mesma classe no pacote de Controlador?*/		
+public class RepositorioException extends Exception {
+
 	private Exception exception;
 
 	public RepositorioException(Exception exception) {
@@ -18,5 +18,3 @@ public class RepositorioException extends Exception{
 	}
 
 }
-
-

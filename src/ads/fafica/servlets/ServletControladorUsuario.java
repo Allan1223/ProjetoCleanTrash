@@ -1,19 +1,15 @@
 package ads.fafica.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import ads.fafica.acao.usuario.AcaoAlterarSenhaUsuario;
 import ads.fafica.acao.usuario.AcaoCadastrarUsuario;
 import ads.fafica.acao.usuario.AcaoEditarUsuario;
@@ -22,9 +18,6 @@ import ads.fafica.acao.usuario.AcaoFormularioEditarUsuario;
 import ads.fafica.acao.usuario.AcaoListarUsuario;
 import ads.fafica.acao.usuario.AcaoPesquisarUsuario;
 import ads.fafica.acao.usuario.AcaoUsuario;
-import ads.fafica.controlador.ControladorUsuario;
-import ads.fafica.controlador.RepositorioException;
-import ads.fafica.modelo.Usuario;
 
 @WebServlet("/controladorUsuario")
 public class ServletControladorUsuario extends HttpServlet {
@@ -34,9 +27,9 @@ public class ServletControladorUsuario extends HttpServlet {
 
 	private Connection conn = null;
 
-	public ServletControladorUsuario(){
+	public ServletControladorUsuario() {
 
-		acoes.put("cadastrar", new AcaoCadastrarUsuario()); 
+		acoes.put("cadastrar", new AcaoCadastrarUsuario());
 		acoes.put("listar", new AcaoListarUsuario());
 		acoes.put("formularioEditarUsuario", new AcaoFormularioEditarUsuario());
 		acoes.put("editar", new AcaoEditarUsuario());
@@ -45,30 +38,32 @@ public class ServletControladorUsuario extends HttpServlet {
 		acoes.put("pesquisar", new AcaoPesquisarUsuario());
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// Esse Servlet sempre cria um usuário com o perfil 2(usuário comum)
 
 		// recupera o valor do parâmetro 'acao' da requisição
 		String acao = request.getParameter("acao");
 
 		// pega a classe de 'Acao' baseado no parâmetro da requisição
-		AcaoUsuario operacao = acoes.get(acao);										
+		AcaoUsuario operacao = acoes.get(acao);
 
 		if (operacao == null) {
-			// se operacao == null é porque não existe classe 'Acao' com 
-			// a String informada, então vamos usar a acao 'listar' 
+			// se operacao == null é porque não existe classe 'Acao' com
+			// a String informada, então vamos usar a acao 'listar'
 			operacao = acoes.get("listar");
 		}
-		// chama o método executar da classe de 'Acao' passando request e response
-		try {															
+		// chama o método executar da classe de 'Acao' passando request e
+		// response
+		try {
 			operacao.executarUsuario(request, response);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

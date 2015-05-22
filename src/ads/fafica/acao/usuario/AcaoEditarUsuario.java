@@ -17,25 +17,22 @@ public class AcaoEditarUsuario implements AcaoUsuario {
 
 	ControladorUsuario controladorUsuario;
 
-	public AcaoEditarUsuario(){
+	public AcaoEditarUsuario() {
 
 		try {
 			this.controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
-		}		
-
+		}
 	}
 
-	//controladorUsuario?acao=editar&id=${usuario.codigoUsuario}
 	@Override
 	public void executarUsuario(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
 
-		int  codigoUsuario = Integer.parseInt(request.getParameter("codigoUsuario"));
+		int codigoUsuario = Integer.parseInt(request
+				.getParameter("codigoUsuario"));
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -43,31 +40,28 @@ public class AcaoEditarUsuario implements AcaoUsuario {
 
 		int perfilUsuario;
 
-		if(perfil.equals("Operador")){
+		if (perfil.equals("Operador")) {
 
 			perfilUsuario = 1;
 
-		}
-		else{
+		} else {
 
 			perfilUsuario = 2;
 		}
 
-
-		Usuario usuario = new Usuario(codigoUsuario,nome,email,senha,perfilUsuario);
+		Usuario usuario = new Usuario(codigoUsuario, nome, email, senha,
+				perfilUsuario);
 
 		try {
 			controladorUsuario.atualizarUsuario(usuario);
 
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("controladorUsuario?acao=listar");
-			dispatcher.forward(request, response);		
+			dispatcher.forward(request, response);
 
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UsuarioNaoEncontradoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

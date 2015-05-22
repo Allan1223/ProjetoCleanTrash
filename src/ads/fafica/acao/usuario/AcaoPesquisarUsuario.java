@@ -21,118 +21,113 @@ public class AcaoPesquisarUsuario implements AcaoUsuario {
 	String emailUsuario;
 	String nomeUsuario;
 
-	public AcaoPesquisarUsuario(){
+	public AcaoPesquisarUsuario() {
 
 		try {
 			this.controladorUsuario = new ControladorUsuario();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
-		}		
+		}
 
 	}
+
 	@Override
 	public void executarUsuario(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
-		// TODO Auto-generated method stub
-
 
 		String pesquisa = request.getParameter("pesquisa");
 		String filtroPesquisa = request.getParameter("filtroPesquisa");
 
-		if (pesquisa != ""){			
-			
-			if (filtroPesquisa.equals("codigoUsuario")){
-				codigoUsuario = Integer.parseInt(request.getParameter("pesquisa"));
+		if (pesquisa != "") {
+
+			if (filtroPesquisa.equals("codigoUsuario")) {
+				codigoUsuario = Integer.parseInt(request
+						.getParameter("pesquisa"));
 
 				try {
-					List<Usuario> usuario = controladorUsuario.procurarUsuario(codigoUsuario);
+					List<Usuario> usuario = controladorUsuario
+							.procurarUsuario(codigoUsuario);
 
-					request.setAttribute("usuarios", usuario);	
+					request.setAttribute("usuarios", usuario);
 
-					RequestDispatcher dispatcher = 
-							request.getRequestDispatcher("/manUsuario.jsp");
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/manUsuario.jsp");
 					dispatcher.forward(request, response);
 
-				} 
-				catch (UsuarioNaoEncontradoException e) {
+				} catch (UsuarioNaoEncontradoException e) {
 					request.setAttribute("usuarios", null);
 
-					RequestDispatcher dispatcher = 
-							request.getRequestDispatcher("/manUsuario.jsp");
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/manUsuario.jsp");
 					dispatcher.forward(request, response);
 
 					e.printStackTrace();
-				} 
-				catch (RepositorioException e) {
+				} catch (RepositorioException e) {
 					e.printStackTrace();
 				}
-			} //codigoUsuario
+			} // codigoUsuario
 
-			else if (filtroPesquisa.equals("emailUsuario")){
+			else if (filtroPesquisa.equals("emailUsuario")) {
 				emailUsuario = request.getParameter("pesquisa");
-				
+
 				try {
-					List<Usuario> usuario = controladorUsuario.procurarUsuarioEmail(emailUsuario);
+					List<Usuario> usuario = controladorUsuario
+							.procurarUsuarioEmail(emailUsuario);
 
-					request.setAttribute("usuarios", usuario);	
+					request.setAttribute("usuarios", usuario);
 
-					RequestDispatcher dispatcher = 
-							request.getRequestDispatcher("/manUsuario.jsp");
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/manUsuario.jsp");
 					dispatcher.forward(request, response);
 
-				} 
-				catch (UsuarioNaoEncontradoException e) {
+				} catch (UsuarioNaoEncontradoException e) {
 					request.setAttribute("usuarios", null);
 
-					RequestDispatcher dispatcher = 
-							request.getRequestDispatcher("/manUsuario.jsp");
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/manUsuario.jsp");
 					dispatcher.forward(request, response);
 
 					e.printStackTrace();
-				} 
-				catch (RepositorioException e) {
+				} catch (RepositorioException e) {
 					e.printStackTrace();
 				}
 			} // email
-			
-			else if (filtroPesquisa.equals("nomeUsuario")){
+
+			else if (filtroPesquisa.equals("nomeUsuario")) {
 				nomeUsuario = request.getParameter("pesquisa");
-				
+
 				try {
-					List<Usuario> usuario = controladorUsuario.procurarUsuario(nomeUsuario);
+					List<Usuario> usuario = controladorUsuario
+							.procurarUsuario(nomeUsuario);
 
-					request.setAttribute("usuarios", usuario);	
+					request.setAttribute("usuarios", usuario);
 
-					RequestDispatcher dispatcher = 
-							request.getRequestDispatcher("/manUsuario.jsp");
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/manUsuario.jsp");
 					dispatcher.forward(request, response);
 
-				} 
-				catch (UsuarioNaoEncontradoException e) {
+				} catch (UsuarioNaoEncontradoException e) {
 					request.setAttribute("usuarios", null);
 
-					RequestDispatcher dispatcher = 
-							request.getRequestDispatcher("/manUsuario.jsp");
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/manUsuario.jsp");
 					dispatcher.forward(request, response);
 
 					e.printStackTrace();
-				} 
-				catch (RepositorioException e) {
+				} catch (RepositorioException e) {
 					e.printStackTrace();
 				}
-				
+
 			} // nomeUsuario
 		}
-			
-		else{
-			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/controladorUsuario?acao=listar");
+
+		else {
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/controladorUsuario?acao=listar");
 			dispatcher.forward(request, response);
-		} //pesquisa = ""
-		
-	}
+		} // pesquisa
 
 	}
+
+}

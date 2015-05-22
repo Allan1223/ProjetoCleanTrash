@@ -9,5 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface AcaoReporte {
 
-	public void executarReporte(HttpServletRequest request,HttpServletResponse response )throws ServletException, IOException, SQLException;
+	public void executarReporte(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException,
+			SQLException;
 }

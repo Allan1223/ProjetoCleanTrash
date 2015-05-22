@@ -22,7 +22,6 @@ public class AcaoListarReporte implements AcaoReporte {
 		try {
 			controladorReporte = new ControladorReporte();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -31,10 +30,11 @@ public class AcaoListarReporte implements AcaoReporte {
 	public void executarReporte(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		int codigoUsuario = Integer.parseInt(request.getParameter("codigoUsuario"));
+		int codigoUsuario = Integer.parseInt(request
+				.getParameter("codigoUsuario"));
 
 		try {
-
+			
 			List<Reporte> reporte = controladorReporte
 					.listarReporte(codigoUsuario);
 
@@ -45,10 +45,8 @@ public class AcaoListarReporte implements AcaoReporte {
 			dispatcher.forward(request, response);
 
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
