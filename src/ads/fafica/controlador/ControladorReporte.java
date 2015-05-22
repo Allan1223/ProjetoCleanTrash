@@ -68,7 +68,7 @@ public class ControladorReporte {
 				.procurarReporteOperadorPorCodigo(codigoReporte);
 	}
 
-	public List<Reporte> procurarReporteOperadorPorStatus(String statusReporte)
+	public List<Reporte> procurarReporteOperadorPorStatus(int statusReporte)
 			throws RepositorioException, SQLException,
 			ProblemaNaoEncontradoException {
 		return repositorioReporte

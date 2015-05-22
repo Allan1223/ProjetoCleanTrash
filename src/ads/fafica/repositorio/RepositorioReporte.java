@@ -339,7 +339,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 	}
 
 	@Override
-	public List<Reporte> procurarReporteOperadorPorStatus(String statusReporte)
+	public List<Reporte> procurarReporteOperadorPorStatus(int statusReporte)
 			throws RepositorioException, SQLException,
 			ProblemaNaoEncontradoException {
 
@@ -350,11 +350,11 @@ public class RepositorioReporte implements IRepositorioReporte {
 		try {
 			String sql = "SELECT * FROM REPORTE WHERE statusReporte = ? ";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+			stmt.setInt(1, statusReporte);
 
 			rs = stmt.executeQuery();
 
-			if (!rs.next())
-				throw new ProblemaNaoEncontradoException(statusReporte);
+			while (rs.next()) {
 
 			reporte = new Reporte(rs.getInt("codigoReporte"),
 					rs.getInt("codigoUsuario"), rs.getString("tipoReporte"),
@@ -363,7 +363,10 @@ public class RepositorioReporte implements IRepositorioReporte {
 					rs.getTime("horaAbertura"), rs.getString("latitude"),
 					rs.getString("longitude"), rs.getString("cidade"),
 					rs.getString("bairro"), rs.getString("rua"));
+			
 			reportes.add(reporte);
+			
+			}
 
 		} catch (SQLException e) {
 			throw new RepositorioException(e);
@@ -386,11 +389,11 @@ public class RepositorioReporte implements IRepositorioReporte {
 		try {
 			String sql = "SELECT * FROM REPORTE WHERE tipoReporte = ? ";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+			stmt.setString(1, tipoReporte);
 
 			rs = stmt.executeQuery();
 
-			if (!rs.next())
-				throw new ProblemaNaoEncontradoException(tipoReporte);
+			while (rs.next()) {
 
 			reporte = new Reporte(rs.getInt("codigoReporte"),
 					rs.getInt("codigoUsuario"), rs.getString("tipoReporte"),
@@ -400,6 +403,8 @@ public class RepositorioReporte implements IRepositorioReporte {
 					rs.getString("longitude"), rs.getString("cidade"),
 					rs.getString("bairro"), rs.getString("rua"));
 			reportes.add(reporte);
+			
+			}
 
 		} catch (SQLException e) {
 			throw new RepositorioException(e);
@@ -422,11 +427,11 @@ public class RepositorioReporte implements IRepositorioReporte {
 			String sql = "SELECT * FROM USUARIO WHERE descricaoReporte like  '%" + descricaoReporte
 					+ "%'";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
+			stmt.setString(1, descricaoReporte);
 
 			rs = stmt.executeQuery();
 
-			if (!rs.next())
-				throw new ProblemaNaoEncontradoException(descricaoReporte);
+			while (rs.next()) {
 
 			reporte = new Reporte(rs.getInt("codigoReporte"),
 					rs.getInt("codigoUsuario"), rs.getString("tipoReporte"),
@@ -436,6 +441,8 @@ public class RepositorioReporte implements IRepositorioReporte {
 					rs.getString("longitude"), rs.getString("cidade"),
 					rs.getString("bairro"), rs.getString("rua"));
 			reportes.add(reporte);
+			
+			}
 
 		} catch (SQLException e) {
 			throw new RepositorioException(e);

@@ -33,7 +33,7 @@ public class AcaoExcluirReporte implements AcaoReporte {
 				.getParameter("codigoUsuario"));
 
 		try {
-			// excluir usuário
+			// excluir reporte
 			controladorReporte.excluirReporte(id);
 
 		} catch (ProblemaNaoEncontradoException e) {

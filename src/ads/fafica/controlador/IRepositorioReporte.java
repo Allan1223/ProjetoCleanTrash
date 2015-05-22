@@ -37,7 +37,7 @@ public interface IRepositorioReporte {
 			throws RepositorioException, SQLException,
 			ProblemaNaoEncontradoException;
 
-	public List<Reporte> procurarReporteOperadorPorStatus(String statusReporte)
+	public List<Reporte> procurarReporteOperadorPorStatus(int statusReporte)
 			throws RepositorioException, SQLException,
 			ProblemaNaoEncontradoException;
 	

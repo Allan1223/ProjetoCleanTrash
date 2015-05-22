@@ -96,14 +96,18 @@ pageContext.setAttribute("reporte", reportes);
 
 			<form id="contactform" action="controladorReporte" method="post">
 				<input type="hidden" name="acao" value="pesquisarReporteOperador">
+				
+				<div class="field" style="float: right; margin: 0 33px;">
+				
 				<select name="filtroPesquisa" id="filtroPesquisa">
 					<option value="codigoReporte">Codigo</option>
 					<option value="statusReporte">Status</option>
-					<option value="tipoReporte">Tipo</option>
-				</select> <label for="name">Pesquisar</label>
+					<!--  <option value="tipoReporte">Tipo</option>
+					<option value="Descricao">Descri&ccedil&atildeo</option>-->
+				</select> 
 
 
-				<div class="field" style="float: right; margin: 0 33px;">
+				
 
 					<label for="name">Pesquisar</label> <input type="text"
 						class="input" name="pesquisa" id="pesquisa"
@@ -118,7 +122,7 @@ pageContext.setAttribute("reporte", reportes);
 
 
 
-				<form>
+			</form>
 
 					<br />
 					<br />
@@ -180,7 +184,7 @@ pageContext.setAttribute("reporte", reportes);
 										<td><a
 											href="controladorReporte?acao=solucionarReporte&id=${reporte.codigoReporte}"><strong><span
 													style="color: green;">Fechar</span></strong> </a> <a
-											href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}"
+											href="controladorReporte?acao=excluirReporteOperador&id=${reporte.codigoReporte}"
 											onClick="return confirmarExclusao()"> <strong><span
 													style="color: red;">Excluir</span></strong></a></td>
 									</c:if>
