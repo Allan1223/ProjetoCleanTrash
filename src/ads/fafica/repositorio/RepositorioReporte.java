@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+
 import ads.fafica.controlador.IRepositorioReporte;
 import ads.fafica.controlador.ProblemaNaoEncontradoException;
 import ads.fafica.controlador.RepositorioException;
-
 import ads.fafica.modelo.Reporte;
 
 public class RepositorioReporte implements IRepositorioReporte {
@@ -419,7 +419,8 @@ public class RepositorioReporte implements IRepositorioReporte {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM REPORTE WHERE descricaoReporte = ? ";
+			String sql = "SELECT * FROM USUARIO WHERE descricaoReporte like  '%" + descricaoReporte
+					+ "%'";
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 
 			rs = stmt.executeQuery();
