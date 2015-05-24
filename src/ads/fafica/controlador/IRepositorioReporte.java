@@ -28,7 +28,7 @@ public interface IRepositorioReporte {
 			throws RepositorioException, SQLException;
 
 	public Reporte procurarReporteId(int codigoReporte)
-			throws RepositorioException, SQLException;
+			throws RepositorioException, SQLException, ProblemaNaoEncontradoException;
 
 	public List<Reporte> listarReportesOperador() throws RepositorioException,
 			SQLException, ProblemaNaoEncontradoException;

@@ -246,8 +246,9 @@ public class RepositorioReporte implements IRepositorioReporte {
 			stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 			stmt.setInt(1, codigoReporte);
 			rs = stmt.executeQuery();
-
-			if (rs.next()) {
+			
+			if (rs.next()){
+			
 				reporte = new Reporte(rs.getInt("codigoReporte"),
 						rs.getInt("codigoUsuario"),
 						rs.getString("tipoReporte"),
@@ -257,6 +258,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 						rs.getString("longitude"), rs.getString("cidade"),
 						rs.getString("bairro"), rs.getString("rua"));
 			}
+			
 
 		} catch (SQLException e) {
 			throw new RepositorioException(e);

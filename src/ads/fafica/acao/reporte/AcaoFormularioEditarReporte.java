@@ -2,11 +2,14 @@ package ads.fafica.acao.reporte;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import ads.fafica.controlador.ControladorReporte;
+import ads.fafica.controlador.ProblemaNaoEncontradoException;
 import ads.fafica.controlador.RepositorioException;
 import ads.fafica.modelo.Reporte;
 
@@ -44,6 +47,9 @@ public class AcaoFormularioEditarReporte implements AcaoReporte {
 		} catch (RepositorioException e) {
 			e.printStackTrace();
 		}
+		 catch (ProblemaNaoEncontradoException e) {
+				e.printStackTrace();
+			}
 
 	}
 

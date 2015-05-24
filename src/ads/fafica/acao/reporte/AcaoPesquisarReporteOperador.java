@@ -38,9 +38,6 @@ public class AcaoPesquisarReporteOperador implements AcaoReporte {
 		String filtroPesquisa = request.getParameter("filtroPesquisa");
 		int status = 0;
 		
-		System.out.println(filtroPesquisa);
-		
-
 		// Pesquisa por código
 		if (pesquisa != "") {
 
@@ -61,6 +58,7 @@ public class AcaoPesquisarReporteOperador implements AcaoReporte {
 				} catch (ProblemaNaoEncontradoException e) {
 
 					request.setAttribute("reportes", null);
+					
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("/reportesOperador.jsp");
 					dispatcher.forward(request, response);
@@ -87,12 +85,10 @@ public class AcaoPesquisarReporteOperador implements AcaoReporte {
 						status = 1;
 					}
 					
-					else{
+					else{					
 						
-						request.setAttribute("reportes", null);
-						RequestDispatcher dispatcher = request
-								.getRequestDispatcher("/reportesOperador.jsp");
-						dispatcher.forward(request, response);
+						status = 2;
+										
 						
 					}
 					

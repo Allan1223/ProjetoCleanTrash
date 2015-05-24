@@ -35,7 +35,7 @@ public class ControladorReporte {
 	}
 
 	public Reporte procurarReporteId(int codigoReporte)
-			throws RepositorioException, SQLException {
+			throws RepositorioException, SQLException, ProblemaNaoEncontradoException {
 		return repositorioReporte.procurarReporteId(codigoReporte);
 	}
 
