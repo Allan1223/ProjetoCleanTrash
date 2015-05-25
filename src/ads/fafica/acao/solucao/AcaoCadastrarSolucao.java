@@ -59,12 +59,23 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 			controladorSolucao.inserirSolucao(solucao);
 
 			controladorReporte.atualizarStatus(codigoProblema);
+			
+			request.setAttribute("mensagem", "Reporte solucionado com sucesso!");
+			
+			request.setAttribute("pagina",
+					"controladorReporte?acao=listarReporteOperador");
+			
 
-			request.setAttribute("mensagem", "Reporte encerrado!");
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/mensagem.jsp");
+			dispatcher.forward(request, response);
+			
+
+			/*request.setAttribute("mensagem", "Reporte encerrado!");
 
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("controladorReporte?acao=listarReporteOperador");
-			dispatcher.forward(request, response);
+			dispatcher.forward(request, response);*/
 
 		} catch (RepositorioException e) {
 			e.printStackTrace();

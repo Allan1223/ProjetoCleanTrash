@@ -41,13 +41,24 @@ public class AcaoExcluirReporte implements AcaoReporte {
 		} catch (RepositorioException e) {
 			e.printStackTrace();
 		}
-
+		
 		request.setAttribute("mensagem", "Reporte excluído com sucesso!");
+		
+		request.setAttribute("pagina",
+				"controladorReporte?acao=listar&codigoUsuario="
+						+ codigoUsuario);
+		
+
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher("/mensagem.jsp");
+		dispatcher.forward(request, response);
+
+		/*request.setAttribute("mensagem", "Reporte excluído com sucesso!");
 
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("controladorReporte?acao=listar&codigoUsuario="
 						+ codigoUsuario);
-		dispatcher.forward(request, response);
+		dispatcher.forward(request, response);*/
 
 	}
 

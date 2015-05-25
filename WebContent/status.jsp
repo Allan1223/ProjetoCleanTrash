@@ -20,13 +20,18 @@ session.setAttribute("usuario",usuario);
 
 List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
 
-if(reportes == null){
-	
-	RequestDispatcher dispatcher = 
-			request.getRequestDispatcher("controladorReporte?acao=listar&usuario=" + usuario.getCodigoUsuario());
-	dispatcher.forward(request, response);
-}
+/*boolean pesquisa = (Boolean) request.getAttribute("pesquisa");
 
+if(!pesquisa){*/
+	
+	if(reportes == null){
+		
+		RequestDispatcher dispatcher = 
+				request.getRequestDispatcher("controladorReporte?acao=listar&usuario=" + usuario.getCodigoUsuario());
+		dispatcher.forward(request, response);
+	}
+
+/*}*/
 pageContext.setAttribute("reporte", reportes);
 
 
@@ -78,7 +83,7 @@ pageContext.setAttribute("reporte", reportes);
 					
 				<form id="contactform" action="controladorReporte" method="post">
 				<input type="hidden" name="acao" value="pesquisar">
-				<input type="hidden" name="user" value="<%=usuario.getCodigoUsuario() %>">
+				<input type="hidden" name="codigoUsuario" value="<%=usuario.getCodigoUsuario() %>">
 						
 			
 					<div class="field" style="float: right; margin: 0 33px;">

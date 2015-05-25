@@ -40,10 +40,20 @@ public class AcaoExcluirReporteOperador implements AcaoReporte {
 			e.printStackTrace();
 		}
 
-		request.setAttribute("mensagem", "Reporte excluído com sucesso!");
+		/*request.setAttribute("mensagem", "Reporte excluído com sucesso!");
 
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("controladorReporte?acao=listarReporteOperador");
+		dispatcher.forward(request, response);*/
+		
+request.setAttribute("mensagem", "Reporte excluído com sucesso!");
+		
+		request.setAttribute("pagina",
+				"controladorReporte?acao=listarReporteOperador");
+		
+
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher("/mensagem.jsp");
 		dispatcher.forward(request, response);
 
 	}

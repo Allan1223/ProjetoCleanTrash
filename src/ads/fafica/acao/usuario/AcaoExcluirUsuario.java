@@ -43,9 +43,12 @@ public class AcaoExcluirUsuario implements AcaoUsuario {
 		}
 
 		request.setAttribute("mensagem", "Usuario excluído com sucesso!");
+		
+		request.setAttribute("pagina",
+				"controladorUsuario?acao=listar");
 
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("controladorUsuario?acao=listar");
+				.getRequestDispatcher("/mensagem.jsp");
 		dispatcher.forward(request, response);
 
 	}

@@ -30,7 +30,7 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 			SQLException {
 
 		String pesquisa = request.getParameter("pesquisa");
-		int codigoUsuario = Integer.parseInt(request.getParameter("user"));
+		int codigoUsuario = Integer.parseInt(request.getParameter("codigoUsuario"));
 
 		if (pesquisa != "") {
 
@@ -42,6 +42,7 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 						codigoReporte, codigoUsuario);
 
 				request.setAttribute("reporte", reporte);
+				/*request.setAttribute("pesquisa", true);*/
 
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/status.jsp");
@@ -49,7 +50,10 @@ public class AcaoPesquisarReporte implements AcaoReporte {
 
 			} catch (ProblemaNaoEncontradoException e) {
 
-				request.setAttribute("reportes", null);
+				
+				request.setAttribute("reporte", null);
+				/*request.setAttribute("pesquisa", true);*/
+				
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/status.jsp");
 				dispatcher.forward(request, response);
