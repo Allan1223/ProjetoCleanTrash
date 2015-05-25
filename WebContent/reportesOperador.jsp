@@ -96,20 +96,15 @@ pageContext.setAttribute("reporte", reportes);
 
 			<form id="contactform" action="controladorReporte" method="post">
 				<input type="hidden" name="acao" value="pesquisarReporteOperador">
-				
+
 				<div class="field" style="float: right; margin: 0 33px;">
-				
-				<select name="filtroPesquisa" id="filtroPesquisa">
-					<option value="codigoReporte">Codigo</option>
-					<option value="statusReporte">Status</option>
-					<!--  <option value="tipoReporte">Tipo</option>
+
+					<select name="filtroPesquisa" id="filtroPesquisa">
+						<option value="codigoReporte">Codigo</option>
+						<option value="statusReporte">Status</option>
+						<!--  <option value="tipoReporte">Tipo</option>
 					<option value="Descricao">Descri&ccedil&atildeo</option>-->
-				</select> 
-
-
-				
-
-					<label for="name">Pesquisar</label> <input type="text"
+					</select> <label for="name">Pesquisar</label> <input type="text"
 						class="input" name="pesquisa" id="pesquisa"
 						placeholder="Digite sua pesquisa" size="100" />
 
@@ -124,97 +119,96 @@ pageContext.setAttribute("reporte", reportes);
 
 			</form>
 
-					<br />
-					<br />
+			<br /> <br />
 
-					<pg:pager id="p" maxPageItems="8" maxIndexPages="100"
-						export="offset,currentPageNumber=pageNumber" scope="request">
-						<pg:param name="keywords" />
+			<pg:pager id="p" maxPageItems="8" maxIndexPages="100"
+				export="offset,currentPageNumber=pageNumber" scope="request">
+				<pg:param name="keywords" />
 
-						<table border="0" align="center" cellpadding="5" cellspacing="0">
-
+				<table border="0" align="center" cellpadding="5" cellspacing="0">
 
 
-							<tr bgColor="#ddd">
-								<th><b>Código Reporte</b></th>
-								<th><b>Tipo Reporte</b></th>
-								<th><b>Descri&ccedil&atildeo</b></th>
-								<th><b>Data Abertura</b></th>
-								<th><b>Status</b></th>
-								<th><b>A&ccedil&otildees</b></th>
-							</tr>
 
-							<c:if test="${empty reporte}">
-								<tr>
-									<td align="center">
-										<p>Nenhum Reporte Cadastrado.</p>
-									</td>
-								</tr>
+					<tr bgColor="#ddd">
+						<th><b>Código Reporte</b></th>
+						<th><b>Tipo Reporte</b></th>
+						<th><b>Descri&ccedil&atildeo</b></th>
+						<th><b>Data Abertura</b></th>
+						<th><b>Status</b></th>
+						<th><b>A&ccedil&otildees</b></th>
+					</tr>
+
+					<c:if test="${empty reporte}">
+						<tr>
+							<td align="center">
+								<p>Nenhum Reporte Cadastrado.</p>
+							</td>
+						</tr>
+					</c:if>
+
+					<c:forEach items="${reporte}" var="reporte" varStatus="i">
+
+
+						<c:choose>
+
+							<c:when test="${i.count % 2 == 0}">
+								<tr bgColor="#eee">
+									<%-- Use styles... fica melhor... --%>
+							</c:when>
+							<c:otherwise>
+								<tr bgColor="#fff">
+							</c:otherwise>
+
+
+						</c:choose>
+
+
+						<fmt:formatDate value="${reporte.dtAberturaReporte.time}"
+							pattern="dd/MM/yyyy" var="dataFormatada" />
+
+						<pg:item>
+							<td>${reporte.codigoReporte}</td>
+							<td>${reporte.tipoReporte}</td>
+							<td>${reporte.descricaoReporte}</td>
+							<td>${reporte.dtAberturaReporte}</td>
+							<td>${reporte.statusReporte == 0 ? "Aberto" : "Fechado"}</td>
+
+
+							<c:if test="${reporte.statusReporte == 0}">
+								<td><a
+									href="controladorReporte?acao=solucionarReporte&id=${reporte.codigoReporte}"><strong><span
+											style="color: green;">Fechar</span></strong> </a> <a
+									href="controladorReporte?acao=excluirReporteOperador&id=${reporte.codigoReporte}"
+									onClick="return confirmarExclusao()"> <strong><span
+											style="color: red;">Excluir</span></strong></a></td>
 							</c:if>
 
-							<c:forEach items="${reporte}" var="reporte" varStatus="i">
-
-
-								<c:choose>
-
-									<c:when test="${i.count % 2 == 0}">
-										<tr bgColor="#eee">
-											<%-- Use styles... fica melhor... --%>
-									</c:when>
-									<c:otherwise>
-										<tr bgColor="#fff">
-									</c:otherwise>
-
-
-								</c:choose>
-
-
-								<fmt:formatDate value="${reporte.dtAberturaReporte.time}"
-									pattern="dd/MM/yyyy" var="dataFormatada" />
-
-								<pg:item>
-									<td>${reporte.codigoReporte}</td>
-									<td>${reporte.tipoReporte}</td>
-									<td>${reporte.descricaoReporte}</td>
-									<td>${reporte.dtAberturaReporte}</td>
-									<td>${reporte.statusReporte == 0 ? "Aberto" : "Fechado"}</td>
-
-
-									<c:if test="${reporte.statusReporte == 0}">
-										<td><a
-											href="controladorReporte?acao=solucionarReporte&id=${reporte.codigoReporte}"><strong><span
-													style="color: green;">Fechar</span></strong> </a> <a
-											href="controladorReporte?acao=excluirReporteOperador&id=${reporte.codigoReporte}"
-											onClick="return confirmarExclusao()"> <strong><span
-													style="color: red;">Excluir</span></strong></a></td>
-									</c:if>
-
-								</pg:item>
+						</pg:item>
 
 
 
-							</c:forEach>
+					</c:forEach>
 
 
-						</table>
+				</table>
 
-						<br>
-						<br>
+				<br>
+				<br>
 
 
-						<div align="center">
-							<pg:index>
-								<pg:prev>
-									<a href="<%= pageUrl %>"><strong>&lt;&lt; Anterior</strong></a>
-								</pg:prev>
-								<pg:pages>
-									<a href="<%= pageUrl %>"><strong><%= pageNumber %></strong></a>
-								</pg:pages>
-								<pg:next>
-									<a href="<%= pageUrl %>"><strong>Próximo &gt;&gt;</strong></a>
-								</pg:next>
-							</pg:index>
-					</pg:pager>
+				<div align="center">
+					<pg:index>
+						<pg:prev>
+							<a href="<%= pageUrl %>"><strong>&lt;&lt; Anterior</strong></a>
+						</pg:prev>
+						<pg:pages>
+							<a href="<%= pageUrl %>"><strong><%= pageNumber %></strong></a>
+						</pg:pages>
+						<pg:next>
+							<a href="<%= pageUrl %>"><strong>Próximo &gt;&gt;</strong></a>
+						</pg:next>
+					</pg:index>
+			</pg:pager>
 		</div>
 
 	</div>

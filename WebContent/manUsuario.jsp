@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
+<%@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg"%>
 <%
 	//@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg"
 %>
@@ -105,9 +105,8 @@ pageContext.setAttribute("usuario", usuarios);
 						<option value="codigoUsuario">Codigo Usuario</option>
 						<option value="emailUsuario">E-mail</option>
 						<option value="nomeUsuario">Nome</option>
-					</select> <label for="name">Pesquisar</label> 
-					
-					<input type="text" class="input" name="pesquisa" id="pesquisa"
+					</select> <label for="name">Pesquisar</label> <input type="text"
+						class="input" name="pesquisa" id="pesquisa"
 						placeholder="Digite sua pesquisa" size="100" />
 
 					<button onClick="return validarLetras()">Pesquisar</button>
@@ -118,94 +117,97 @@ pageContext.setAttribute("usuario", usuarios);
 
 			</form>
 
-					<a style="margin: 0px 0 0 20px;" href="cadastroUsuario.jsp"> <img
-						src="images/novo.png" alt="Novo Usuario" title="Novo Usuario"></a>
+			<a style="margin: 0px 0 0 20px;" href="cadastroUsuario.jsp"> <img
+				src="images/novo.png" alt="Novo Usuario" title="Novo Usuario"></a>
 
-					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
+			<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
 
-					<pg:pager id="p" maxPageItems="8" maxIndexPages="100" export="offset,currentPageNumber=pageNumber" scope="request">
-  					<pg:param name="keywords"/>
-					<!-- tabela dinâmica -->
-					
-								<table border="0" align="center" cellpadding="5" cellspacing="0">
+			<pg:pager id="p" maxPageItems="8" maxIndexPages="100"
+				export="offset,currentPageNumber=pageNumber" scope="request">
+				<pg:param name="keywords" />
+				<!-- tabela dinâmica -->
 
-
-
-									<tr bgColor="#ddd">
-										<th><b>Codigo Usuario</b></th>
-										<th><b>Nome</b></th>
-										<th><b>Email</b></th>
-										<th><b>Perfil</b></th>
-										<th><b>Acoes</b></th>
-									</tr>
-
-									<c:if test="${empty usuarios}">
-										<tr>
-											<td align="center">
-												<p>Nenhum Usuario Cadastrado.</p>
-											</td>
-										</tr>
-									</c:if>
-
-									<c:forEach items="${usuarios}" var="usuario" varStatus="i">
-										<c:choose>
-
-											<c:when test="${i.count % 2 == 0}">
-												<tr bgColor="#eee">
-													<%-- Use styles... fica melhor... --%>
-											</c:when>
-											<c:otherwise>
-												<tr bgColor="#fff">
-											</c:otherwise>
-
-										</c:choose>
-
-										<pg:item>
-											<td>${usuario.codigoUsuario}</td>
-											<td>${usuario.nomeUsuario}</td>
-											<td>${usuario.emailUsuario}</td>
-											<td>${usuario.perfilUsuario == 1 ? "Operador" : "Comum"}</td>
-											<td><a
-												href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span
-														style="color: green;">Editar</span></strong> </a> <a
-												href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}" onClick="return confirmarExclusao()">
-													<strong><span style="color: red;">Excluir</span></strong>
-											</a></td>
-										</pg:item>
-										
-									</c:forEach>
+				<table border="0" align="center" cellpadding="5" cellspacing="0">
 
 
-								</table>
-								
-								<br><br>
 
-							
-							<div align="center">
-								<pg:index>
-								    <pg:prev>
-								      <a href="<%= pageUrl %>"><strong>&lt;&lt; Anterior</strong></a>
-								    </pg:prev>
-								    <pg:pages>
-								       <a href="<%= pageUrl %>"><strong><%= pageNumber %></strong></a> 
-								    </pg:pages>
-								    <pg:next>
-								      <a href="<%= pageUrl %>"><strong>Próximo &gt;&gt;</strong></a>
-								    </pg:next>
-								  </pg:index>
-								</pg:pager>
-								
-								</div>	 
-							
-					
+					<tr bgColor="#ddd">
+						<th><b>Codigo Usuario</b></th>
+						<th><b>Nome</b></th>
+						<th><b>Email</b></th>
+						<th><b>Perfil</b></th>
+						<th><b>Acoes</b></th>
+					</tr>
+
+					<c:if test="${empty usuarios}">
+						<tr>
+							<td align="center">
+								<p>Nenhum Usuario Cadastrado.</p>
+							</td>
+						</tr>
+					</c:if>
+
+					<c:forEach items="${usuarios}" var="usuario" varStatus="i">
+						<c:choose>
+
+							<c:when test="${i.count % 2 == 0}">
+								<tr bgColor="#eee">
+									<%-- Use styles... fica melhor... --%>
+							</c:when>
+							<c:otherwise>
+								<tr bgColor="#fff">
+							</c:otherwise>
+
+						</c:choose>
+
+						<pg:item>
+							<td>${usuario.codigoUsuario}</td>
+							<td>${usuario.nomeUsuario}</td>
+							<td>${usuario.emailUsuario}</td>
+							<td>${usuario.perfilUsuario == 1 ? "Operador" : "Comum"}</td>
+							<td><a
+								href="controladorUsuario?acao=formularioEditarUsuario&id=${usuario.codigoUsuario}"><strong><span
+										style="color: green;">Editar</span></strong> </a> <a
+								href="controladorUsuario?acao=excluir&id=${usuario.codigoUsuario}"
+								onClick="return confirmarExclusao()"> <strong><span
+										style="color: red;">Excluir</span></strong>
+							</a></td>
+						</pg:item>
+
+					</c:forEach>
+
+
+				</table>
+
+				<br>
+				<br>
+
+
+				<div align="center">
+					<pg:index>
+						<pg:prev>
+							<a href="<%= pageUrl %>"><strong>&lt;&lt; Anterior</strong></a>
+						</pg:prev>
+						<pg:pages>
+							<a href="<%= pageUrl %>"><strong><%= pageNumber %></strong></a>
+						</pg:pages>
+						<pg:next>
+							<a href="<%= pageUrl %>"><strong>Próximo &gt;&gt;</strong></a>
+						</pg:next>
+					</pg:index>
+			</pg:pager>
+
 		</div>
-		
-							
-		
-								
+
 
 	</div>
-							
+
+
+
+
+
+	</div>
+
 	<div id="home">
 		<h2>
 			<a href="homeOperador.jsp">Home</a>

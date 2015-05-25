@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList" %>
+	pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
- <%
+<%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg"%>
+<%
 ArrayList teste = new ArrayList();
  teste.add("maça");
  teste.add("pêra");
@@ -23,31 +23,33 @@ ArrayList teste = new ArrayList();
 </head>
 <body>
 
-<pg:pager id="p" maxPageItems="2" maxIndexPages="10" export="offset,currentPageNumber=pageNumber" scope="request">
-  <pg:param name="keywords"/>
+	<pg:pager id="p" maxPageItems="2" maxIndexPages="10"
+		export="offset,currentPageNumber=pageNumber" scope="request">
+		<pg:param name="keywords" />
 
-<c:forEach var="item" items="${lista}">
-  <pg:item>
+		<c:forEach var="item" items="${lista}">
+			<pg:item>
 	
 	- ${item}	<br>
-	
-	</pg:item>
-</c:forEach>
 
-<br><br>
+			</pg:item>
+		</c:forEach>
 
- <pg:index>
-    <pg:prev>
-      <a href="<%= pageUrl %>">&lt;&lt; Anterior</a>
-    </pg:prev>
-    <pg:pages>
-       <a href="<%= pageUrl %>"><%= pageNumber %></a> 
-    </pg:pages>
-    <pg:next>
-      <a href="<%= pageUrl %>">Próximo &gt;&gt;</a>
-    </pg:next>
-  </pg:index>
-</pg:pager>
+		<br>
+		<br>
+
+		<pg:index>
+			<pg:prev>
+				<a href="<%= pageUrl %>">&lt;&lt; Anterior</a>
+			</pg:prev>
+			<pg:pages>
+				<a href="<%= pageUrl %>"><%= pageNumber %></a>
+			</pg:pages>
+			<pg:next>
+				<a href="<%= pageUrl %>">Próximo &gt;&gt;</a>
+			</pg:next>
+		</pg:index>
+	</pg:pager>
 
 </body>
 </html>
