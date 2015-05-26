@@ -99,9 +99,7 @@ session.setAttribute("usuario",usuario);
 			</div>
 			<div class="special">
 				<h3>
-					<a
-						href="controladorReporte?acao=listar&codigoUsuario=<%=usuario.getCodigoUsuario() %>">Status
-						dos Reportes</a>
+					<a 	href="controladorReporte?acao=listar&codigoUsuario=<%=usuario.getCodigoUsuario() %>">Status dos Reportes</a>
 				</h3>
 			</div>
 			<div class="special">

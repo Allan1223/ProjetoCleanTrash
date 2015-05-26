@@ -66,10 +66,10 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 					session.setAttribute("usuario", usuario);
 
 					request.setAttribute("pagina",
-							"/homeComum.jsp");
+							"homeComum.jsp");
 					
 					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("homeComum.jsp");
+							.getRequestDispatcher("mensagem.jsp");
 					dispatcher.forward(request, response);
 
 				}

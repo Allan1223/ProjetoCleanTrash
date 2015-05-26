@@ -41,12 +41,16 @@ public class AcaoAlterarSenhaUsuario implements AcaoUsuario {
 
 			controladorUsuario.atualizarSenha(usuario);
 
-			request.setAttribute("mensagem", "Usuario Alterado com Sucesso!");
+					
+			request.setAttribute("mensagem", "Senha alterada com sucesso!");
+			
+			request.setAttribute("pagina", "homeComum.jsp");
+			
 
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/homeComum.jsp");
+					.getRequestDispatcher("/mensagem.jsp");
 			dispatcher.forward(request, response);
-
+			
 		} catch (RepositorioException e) {
 			e.printStackTrace();
 		} catch (UsuarioNaoEncontradoException e) {

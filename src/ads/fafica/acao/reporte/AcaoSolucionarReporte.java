@@ -39,8 +39,7 @@ public class AcaoSolucionarReporte implements AcaoReporte {
 
 			request.setAttribute("reporte", reporte);
 
-			System.out.println("carai");
-
+			
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/gerarSolucao.jsp");
 			dispatcher.forward(request, response);
