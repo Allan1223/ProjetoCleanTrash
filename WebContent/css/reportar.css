@@ -13,7 +13,7 @@
 }
 
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
-body, html { font-size: 100%; padding: 0; margin: 0; height: 88%; }
+body, html { font-size: 100%; padding: 0; margin: 0; height: 88%;  }
 
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before, .clearfix:after { content: " "; display: table; }
@@ -64,8 +64,8 @@ a:active {
 }
 
 #reportar{
-	height: 400px;
-	 width: 425px;
+	height: 80%;
+	 width: 100%;
 	 background-color: #eee;
 	 float: left;
 	 margin: 100px 0px 0px 100px;

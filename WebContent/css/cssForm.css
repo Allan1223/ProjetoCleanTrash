@@ -1,45 +1,4 @@
-/*
-label{
-float: left; 
-margin-right:15px;
-width: 120px;
-font-weight: bold;
-}
 
-span{
-float: left; 
-margin:5px auto;
-
-width: 100px;
-font-weight: bold;
-}
-*/
-/*
-input, textarea{
-width: 300px;
-margin-bottom: 5px;
-padding: 5px;
-}
-
-textarea{
-width: 300px;
-height: 150px;
-}
-
-.boxes{
-width: 1em;
-}
-
-input submit{
-margin-left: 120px;
-margin-top: 5px;
-width: 50px;
-}
-
-br{
-clear: left;
-}
-*/
 label {
     font-family: Arial, Verdana;
     /*text-shadow: 1px 1px 1px #000;*/
@@ -77,6 +36,28 @@ label {
     box-shadow: 2px 2px 2px #888;
  
     }
+    
+#contactformMapa {
+ 
+    width: 1000px;
+    padding: 20px;
+    /*background: #0D5E44;*/
+    overflow:auto;
+	float:left;
+ 
+    /* Border style */
+  /*  border: 1px solid #aaa;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;*/ 
+ 
+    /* Border Shadow*/ 
+    /*-moz-box-shadow: 2px 2px 2px #888;
+    -webkit-box-shadow: 2px 2px 2px #888;
+    box-shadow: 2px 2px 2px #888;*/
+ 
+    }
+        
 .input{
     font-family: Arial, Verdana;
     font-size: 15px;
