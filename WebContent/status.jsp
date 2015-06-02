@@ -27,7 +27,7 @@ if(!pesquisa){*/
 	if(reportes == null){
 		
 		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("controladorReporte?acao=listar&usuario=" + usuario.getCodigoUsuario());
+				request.getRequestDispatcher("controladorReporte?acao=listar&codigoUsuario=" + usuario.getCodigoUsuario());
 		dispatcher.forward(request, response);
 	}
 
@@ -111,8 +111,7 @@ pageContext.setAttribute("reporte", reportes);
 
 					<!--<img align="right" src="images/editar.gif" alt="editar reporte" title="editar reporte"></a>-->
 
-					<pg:pager id="p" maxPageItems="8" maxIndexPages="100"
-						export="offset,currentPageNumber=pageNumber" scope="request">
+					<pg:pager id="p" maxPageItems="8" maxIndexPages="100" export="offset,currentPageNumber=pageNumber" scope="request">
 						<pg:param name="keywords" />
 
 						<table border="0" align="center" cellpadding="5" cellspacing="0">
