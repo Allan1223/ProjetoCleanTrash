@@ -66,26 +66,7 @@ Reporte reporteEditar = (Reporte) request.getAttribute("reporteEditar");
 					</select>
 				</div>
 
-				<div class="field">
-					<label for="name">Rua:</label> <input type="text" class="input"
-						name="rua" id="rua" required="required"
-						value="<%=reporteEditar.getRua()%>" />
-					<p class="hint">Digite sua Rua.</p>
-				</div>
-
-				<div class="field">
-					<label for="name">Bairro:</label> <input type="text" class="input"
-						name="bairro" id="bairro" required="required"
-						value="<%=reporteEditar.getBairro()%>" />
-					<p class="hint">Digite seu Bairro.</p>
-				</div>
-
-				<div class="field">
-					<label for="name">Cidade:</label> <input type="text" class="input"
-						name="cidade" id="cidade" required="required"
-						value="<%=reporteEditar.getCidade()%>" />
-					<p class="hint">Digite seu Bairro.</p>
-				</div>
+				
 
 
 				<div class="field">

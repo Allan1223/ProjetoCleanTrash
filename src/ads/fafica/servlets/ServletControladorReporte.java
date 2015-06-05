@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ads.fafica.acao.reporte.AcaoCadastrarReporte;
+import ads.fafica.acao.reporte.AcaoDetalhaReporte;
 import ads.fafica.acao.reporte.AcaoEditarReporte;
 import ads.fafica.acao.reporte.AcaoExcluirReporte;
 import ads.fafica.acao.reporte.AcaoExcluirReporteOperador;
@@ -40,6 +41,7 @@ public class ServletControladorReporte extends HttpServlet {
 		acoes.put("cadastrar", new AcaoCadastrarReporte());
 		acoes.put("listar", new AcaoListarReporte());
 		acoes.put("formularioEditarReporte", new AcaoFormularioEditarReporte());
+		acoes.put("detalheReporte", new AcaoDetalhaReporte());
 		acoes.put("editar", new AcaoEditarReporte());
 		acoes.put("excluir", new AcaoExcluirReporte());
 		acoes.put("excluirReporteOperador", new AcaoExcluirReporteOperador());

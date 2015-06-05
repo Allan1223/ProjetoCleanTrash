@@ -31,8 +31,8 @@ public class RepositorioReporte implements IRepositorioReporte {
 		if (reporte != null) {
 			try {
 
-				String sql = "INSERT INTO REPORTE (codigoUsuario, tipoReporte, descricaoReporte, statusReporte, dataAbertura, horaAbertura, latitude, longitude, cidade, bairro, rua )"
-						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				String sql = "INSERT INTO REPORTE (codigoUsuario, tipoReporte, descricaoReporte, statusReporte, dataAbertura, horaAbertura, latitude, longitude, endereco )"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 				stmt = (PreparedStatement) this.conn.prepareStatement(sql);
 
@@ -44,9 +44,9 @@ public class RepositorioReporte implements IRepositorioReporte {
 				stmt.setTime(6, reporte.getHrAberturaReporte());
 				stmt.setString(7, reporte.getLatitude());
 				stmt.setString(8, reporte.getLongitude());
-				stmt.setString(9, reporte.getCidade());
-				stmt.setString(10, reporte.getBairro());
-				stmt.setString(11, reporte.getRua());
+				stmt.setString(9, reporte.getEndereco());
+				/*stmt.setString(10, reporte.getBairro());
+				stmt.setString(11, reporte.getRua());*/
 
 				stmt.execute();
 
@@ -82,7 +82,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 		try {
 			if (reporte != null) {
 				try {
-					String sql = "UPDATE REPORTE SET tipoReporte = ?, descricaoReporte = ?, latitude = ?, longitude = ?, rua = ?, bairro = ?, cidade = ?"
+					String sql = "UPDATE REPORTE SET tipoReporte = ?, descricaoReporte = ?, latitude = ?, longitude = ?, endereco = ?"
 							+ " where codigoReporte = ?  ";
 
 					stmt = this.conn.prepareStatement(sql);
@@ -91,9 +91,9 @@ public class RepositorioReporte implements IRepositorioReporte {
 					stmt.setString(2, reporte.getDescricaoReporte());
 					stmt.setString(3, reporte.getLatitude());
 					stmt.setString(4, reporte.getLongitude());
-					stmt.setString(5, reporte.getRua());
-					stmt.setString(6, reporte.getBairro());
-					stmt.setString(7, reporte.getCidade());
+					stmt.setString(5, reporte.getEndereco());
+					/*stmt.setString(6, reporte.getBairro());
+					stmt.setString(7, reporte.getCidade());*/
 					stmt.setInt(8, reporte.getCodigoReporte());
 
 					stmt.executeUpdate();
@@ -131,8 +131,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 					rs.getString("descricaoReporte"),
 					rs.getInt("statusReporte"), rs.getDate("dataAbertura"),
 					rs.getTime("horaAbertura"), rs.getString("latitude"),
-					rs.getString("longitude"), rs.getString("cidade"),
-					rs.getString("bairro"), rs.getString("rua"));
+					rs.getString("longitude"), rs.getString("endereco")	);
 			reportes.add(reporte);
 
 		} catch (SQLException e) {
@@ -171,14 +170,14 @@ public class RepositorioReporte implements IRepositorioReporte {
 				Time hrAberturaReporte = rs.getTime("horaAbertura");
 				String latitude = rs.getString("latitude");
 				String longitude = rs.getString("longitude");
-				String cidade = rs.getString("cidade");
-				String bairro = rs.getString("bairro");
-				String rua = rs.getString("rua");
+				String endereco = rs.getString("endereco");
+				/*String bairro = rs.getString("bairro");
+				String rua = rs.getString("rua");*/
 
 				Reporte reporte = new Reporte(codigoReporte, codigoUsuario,
 						tipoReporte, descricaoReporte, statusReporte,
 						dtAberturaReporte, hrAberturaReporte, latitude,
-						longitude, cidade, bairro, rua);
+						longitude, endereco);
 
 				reportes.add(reporte);
 
@@ -215,14 +214,14 @@ public class RepositorioReporte implements IRepositorioReporte {
 				Time hrAberturaReporte = rs.getTime("horaAbertura");
 				String latitude = rs.getString("latitude");
 				String longitude = rs.getString("longitude");
-				String cidade = rs.getString("cidade");
-				String bairro = rs.getString("bairro");
-				String rua = rs.getString("rua");
+				String endereco = rs.getString("endereco");
+				/*String bairro = rs.getString("bairro");
+				String rua = rs.getString("rua");*/
 
 				Reporte reporte = new Reporte(codigoReporte, codigoUsuario,
 						tipoReporte, descricaoReporte, statusReporte,
 						dtAberturaReporte, hrAberturaReporte, latitude,
-						longitude, cidade, bairro, rua);
+						longitude, endereco);
 
 				reportes.add(reporte);
 
@@ -255,8 +254,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 						rs.getString("descricaoReporte"),
 						rs.getInt("statusReporte"), rs.getDate("dataAbertura"),
 						rs.getTime("horaAbertura"), rs.getString("latitude"),
-						rs.getString("longitude"), rs.getString("cidade"),
-						rs.getString("bairro"), rs.getString("rua"));
+						rs.getString("longitude"), rs.getString("endereco"));
 			}
 			
 
@@ -324,8 +322,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 					rs.getString("descricaoReporte"),
 					rs.getInt("statusReporte"), rs.getDate("dataAbertura"),
 					rs.getTime("horaAbertura"), rs.getString("latitude"),
-					rs.getString("longitude"), rs.getString("cidade"),
-					rs.getString("bairro"), rs.getString("rua"));
+					rs.getString("longitude"), rs.getString("endereco"));
 			reportes.add(reporte);
 
 		} catch (SQLException e) {
@@ -363,8 +360,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 					rs.getString("descricaoReporte"),
 					rs.getInt("statusReporte"), rs.getDate("dataAbertura"),
 					rs.getTime("horaAbertura"), rs.getString("latitude"),
-					rs.getString("longitude"), rs.getString("cidade"),
-					rs.getString("bairro"), rs.getString("rua"));
+					rs.getString("longitude"), rs.getString("endereco"));
 			
 			reportes.add(reporte);
 			
@@ -402,8 +398,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 					rs.getString("descricaoReporte"),
 					rs.getInt("statusReporte"), rs.getDate("dataAbertura"),
 					rs.getTime("horaAbertura"), rs.getString("latitude"),
-					rs.getString("longitude"), rs.getString("cidade"),
-					rs.getString("bairro"), rs.getString("rua"));
+					rs.getString("longitude"), rs.getString("endereco"));
 			reportes.add(reporte);
 			
 			}
@@ -440,8 +435,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 					rs.getString("descricaoReporte"),
 					rs.getInt("statusReporte"), rs.getDate("dataAbertura"),
 					rs.getTime("horaAbertura"), rs.getString("latitude"),
-					rs.getString("longitude"), rs.getString("cidade"),
-					rs.getString("bairro"), rs.getString("rua"));
+					rs.getString("longitude"), rs.getString("endereco"));
 			reportes.add(reporte);
 			
 			}

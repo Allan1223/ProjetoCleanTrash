@@ -41,18 +41,18 @@ public class AcaoCadastrarReporte implements AcaoReporte {
 		;
 		Time hrAberturaReporte = new java.sql.Time(date.getTime());
 		// valores de longitude e latitude virão do googleMaps
-		String latitude = "";
-		String longitude = "";
+		String latitude = request.getParameter("txtLatitude");
+		String longitude = request.getParameter("txtLongitude");
 		// **********************
 		String tipoReporte = request.getParameter("tipo");
-		String rua = request.getParameter("rua");
-		String bairro = request.getParameter("bairro");
-		String cidade = request.getParameter("cidade");
+		String endereco = request.getParameter("txtEndereco");
+		/*String bairro = request.getParameter("bairro");
+		String cidade = request.getParameter("cidade");*/
 		String descricaoReporte = request.getParameter("descricao");
 
 		Reporte reporte = new Reporte(codigoReporte, codigoUsuario,
 				tipoReporte, descricaoReporte, status, dtAberturaReporte,
-				hrAberturaReporte, latitude, longitude, cidade, bairro, rua);
+				hrAberturaReporte, latitude, longitude, endereco);
 
 		try {
 

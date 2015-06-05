@@ -163,12 +163,14 @@ pageContext.setAttribute("reporte", reportes);
 									<td>${reporte.statusReporte == 0 ? "Aberto" : "Fechado"}</td>
 
 									<c:if test="${reporte.statusReporte == 0}">
-										<td><a
-											href="controladorReporte?acao=formularioEditarReporte&id=${reporte.codigoReporte}"><strong><span
-													style="color: green;">Editar</span></strong> </a> <a
-											href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}&codigoUsuario=${reporte.codigoUsuario}"
+										<td><a href="controladorReporte?acao=formularioEditarReporte&id=${reporte.codigoReporte}"><strong><span
+													style="color: green;">Editar</span></strong> </a> 
+										    <a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}&codigoUsuario=${reporte.codigoUsuario}"
 											onClick="return confirmarExclusao()"> <strong><span
-													style="color: red;">Excluir</span></strong></a></td>
+													style="color: red;">Excluir</span></strong></a>
+											<a href="controladorReporte?acao=detalheReporte&id=${reporte.codigoReporte}"><strong><span
+													style="color: blue;">Detalhes</span></strong> </a>		
+									    </td>
 									</c:if>
 								</pg:item>
 

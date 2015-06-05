@@ -14,14 +14,14 @@ public class Reporte {
 	private Time hrAberturaReporte;
 	private String latitude;
 	private String longitude;
-	private String cidade;
-	private String bairro;
-	private String rua;
+	/*private String cidade;
+	private String bairro;*/
+	private String endereco;
 
 	public Reporte(int codigoReporte, int codigoUsuario, String tipoReporte,
 			String descricaoReporte, int statusReporte, Date dtAberturaReporte,
 			Time hrAberturaReporte, String latitude, String longitude,
-			String cidade, String bairro, String rua) {
+			String endereco) {
 
 		this.codigoReporte = codigoReporte;
 		this.codigoUsuario = codigoUsuario;
@@ -32,9 +32,9 @@ public class Reporte {
 		this.hrAberturaReporte = hrAberturaReporte;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.cidade = cidade;
-		this.bairro = bairro;
-		this.rua = rua;
+		this.endereco = endereco;
+		/*this.bairro = bairro;
+		this.rua = rua;*/
 	}
 
 	public int getCodigoReporte() {
@@ -109,7 +109,17 @@ public class Reporte {
 		this.longitude = longitude;
 	}
 
-	public String getCidade() {
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	
+	
+
+	/*public String getCidade() {
 		return cidade;
 	}
 
@@ -131,6 +141,6 @@ public class Reporte {
 
 	public void setRua(String rua) {
 		this.rua = rua;
-	}
+	}*/
 
 }

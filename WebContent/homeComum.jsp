@@ -22,16 +22,18 @@ session.setAttribute("usuario",usuario);
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
+
+
+
+
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clean Trash</title>
-<meta name="description"
-	content="Dynamic Grid with CSS Transitions inspired by the Google Trends Grid Visualization" />
-<meta name="keywords"
-	content="google trends, dynamic grid, css transitions, javascript, responsive, fluid, layout" />
-<meta name="author" content="Codrops" />
-<link rel="shortcut icon" href="../favicon.ico">
+
+<link rel="icon" href="imagens/logo.png" type="image/png" />
+<link rel="shortcut icon" href="imagens/logo.png" type="image/png" /> 
+
 <link rel="stylesheet" type="text/css" href="css/default2.css" />
 <link rel="stylesheet" type="text/css" href="css/default.css" />
 <link rel="stylesheet" type="text/css" href="css/component.css" />
@@ -74,9 +76,9 @@ session.setAttribute("usuario",usuario);
 		</div>
 		<div id="gt-grid" class="gt-grid">
 			<div>
-				<h1>Clean Trash</h1>
-
-
+				<!-- <h1>Clean Trash</h1> -->
+				<img src="images/logo.png" style="opacity:0.8" width="480" heght="500">
+				
 				<!--<img src="images\home-icon.png" style="opacity:0.6">-->
 				<div class="codrops-top">
 					<a class="codrops-icon codrops-icon-prev" href="index.jsp"><span>Sair</span></a>
