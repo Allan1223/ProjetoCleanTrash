@@ -49,7 +49,7 @@
         	
             
         }
-    </script>
+</script>
     
 </head>
 <body >
@@ -72,7 +72,6 @@
 				<input type="hidden" name="codigoUsuario" value=<%=usuario.getCodigoUsuario()%>>
 				<input type="hidden" id="txtLatitude" name="txtLatitude" />
 	            <input type="hidden" id="txtLongitude" name="txtLongitude" /> 
-								
 				
 				<br/>
 				

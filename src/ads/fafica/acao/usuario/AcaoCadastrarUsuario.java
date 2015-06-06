@@ -47,8 +47,7 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 				perfilUsuario);
 
 		try {
-			boolean existe = controladorUsuario.existe(usuario
-					.getEmailUsuario());
+			boolean existe = controladorUsuario.existe(usuario.getEmailUsuario());
 
 			if (!existe) {
 				controladorUsuario.inserirUsuario(usuario);

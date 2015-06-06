@@ -37,7 +37,7 @@ public class ServletControladorReporte extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletControladorReporte() {
-
+		
 		acoes.put("cadastrar", new AcaoCadastrarReporte());
 		acoes.put("listar", new AcaoListarReporte());
 		acoes.put("formularioEditarReporte", new AcaoFormularioEditarReporte());

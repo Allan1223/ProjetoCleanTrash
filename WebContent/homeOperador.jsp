@@ -45,7 +45,8 @@
 
 	<div class="md-modal md-effect-19" id="modal-19">
 		<div class="md-content">
-			<h3>Clean Trash</h3>
+			<!-- <h1>Clean Trash</h1> -->
+				<img src="images/logo.png" style="opacity:0.8" width="480" heght="500">
 			<div>
 				<!--<p>This is a modal window. You can do the following things with it:</p>-->
 				<ul>
@@ -76,7 +77,8 @@
 		</div>
 		<div id="gt-grid" class="gt-grid">
 			<div>
-				<h1>Clean Trash</h1>
+				<!-- <h1>Clean Trash</h1> -->
+				<img src="images/logo.png" style="opacity:0.8" width="480" heght="500">
 
 				<!--<img src="images\home-icon.png" style="opacity:0.6">-->
 				<div class="codrops-top">

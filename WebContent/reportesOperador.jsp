@@ -180,7 +180,9 @@ pageContext.setAttribute("reporte", reportes);
 											style="color: green;">Fechar</span></strong> </a> <a
 									href="controladorReporte?acao=excluirReporteOperador&id=${reporte.codigoReporte}"
 									onClick="return confirmarExclusao()"> <strong><span
-											style="color: red;">Excluir</span></strong></a></td>
+											style="color: red;">Excluir</span></strong></a>
+												
+									</td>
 							</c:if>
 
 						</pg:item>

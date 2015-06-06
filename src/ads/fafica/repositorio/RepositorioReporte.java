@@ -94,7 +94,7 @@ public class RepositorioReporte implements IRepositorioReporte {
 					stmt.setString(5, reporte.getEndereco());
 					/*stmt.setString(6, reporte.getBairro());
 					stmt.setString(7, reporte.getCidade());*/
-					stmt.setInt(8, reporte.getCodigoReporte());
+					stmt.setInt(6, reporte.getCodigoReporte());
 
 					stmt.executeUpdate();
 
