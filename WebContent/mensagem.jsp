@@ -23,7 +23,8 @@ session.setAttribute("usuario",usuario);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>&{mesagem}</title>
+<!--<title>&{mesagem}</title>-->
+<title>Clean Trash</title>
 
 <style type="text/css">
 #mensagem {

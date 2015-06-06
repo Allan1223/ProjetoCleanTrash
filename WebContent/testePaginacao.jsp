@@ -19,7 +19,7 @@ ArrayList teste = new ArrayList();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Paginação</title>
+<title>Clean Trash</title>
 </head>
 <body>
 
