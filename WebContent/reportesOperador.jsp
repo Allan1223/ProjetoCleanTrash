@@ -178,10 +178,12 @@ pageContext.setAttribute("reporte", reportes);
 							<c:if test="${reporte.statusReporte == 0}">
 								<td><a
 									href="controladorReporte?acao=solucionarReporte&id=${reporte.codigoReporte}"><strong><span
-											style="color: green;">Fechar</span></strong> </a> <a
-									href="controladorReporte?acao=excluirReporteOperador&id=${reporte.codigoReporte}"
+											style="color: green;">Fechar</span></strong> </a>
+								   <%--  <a href="controladorReporte?acao=excluirReporteOperador&id=${reporte.codigoReporte}"
 									onClick="return confirmarExclusao()"> <strong><span
-											style="color: red;">Excluir</span></strong></a>
+											style="color: red;">Excluir</span></strong></a> --%>
+									<a href="controladorReporte?acao=detalheReporte&id=${reporte.codigoReporte}"><strong><span
+									style="color: blue;">Detalhes</span></strong> </a>		
 												
 									</td>
 							</c:if>

@@ -169,8 +169,8 @@ pageContext.setAttribute("reporte", reportes);
 										    <a href="controladorReporte?acao=excluir&id=${reporte.codigoReporte}&codigoUsuario=${reporte.codigoUsuario}"
 											onClick="return confirmarExclusao()"> <strong><span
 													style="color: red;">Excluir</span></strong></a>
-											<a href="controladorReporte?acao=detalheReporte&id=${reporte.codigoReporte}"><strong><span
-													style="color: blue;">Detalhes</span></strong> </a>		
+											<%-- <a href="controladorReporte?acao=detalheReporte&id=${reporte.codigoReporte}"><strong><span
+													style="color: blue;">Detalhes</span></strong> </a> --%>		
 									    </td>
 									</c:if>
 								</pg:item>

@@ -162,7 +162,7 @@ Reporte reporte = (Reporte) request.getAttribute("reporte");
 	 
 	  <div id="home">
 	 
-	 	<h2> <a href="homeComum.jsp">Home</a>   </h2>
+	 	<h2> <a href="reportesOperador.jsp">Reportes</a>   </h2>
 	 	
 	 </div> 
 	 
