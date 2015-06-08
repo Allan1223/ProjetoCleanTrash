@@ -8,7 +8,6 @@ public class Perfil {
 	public Perfil(String nomePerfil, int codigoPerfil) {
 		this.setNomePerfil(nomePerfil);
 		this.setCodigoPerfil(codigoPerfil);
-		System.out.println("Allan, tomar no cu chibata!");
 	}
 
 	public String getNomePerfil() {
