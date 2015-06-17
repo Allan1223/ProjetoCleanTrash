@@ -18,6 +18,7 @@ if(session.getAttribute("usuario") == null) {
 } 
 
 Usuario usuario = (Usuario) session.getAttribute("usuario");
+
 //Envia a sessao
 session.setAttribute("usuario",usuario);
 
@@ -178,6 +179,8 @@ pageContext.setAttribute("solucao", solucoes);
 			<a href="homeOperador.jsp">Home</a>
 		</h2>
 	</div>
+	
+	
 
 </body>
 

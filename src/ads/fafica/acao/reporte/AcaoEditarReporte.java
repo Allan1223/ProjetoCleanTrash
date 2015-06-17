@@ -68,17 +68,12 @@ public class AcaoEditarReporte implements AcaoReporte {
 		try {
 			controladorReporte.alterarReporte(reporte);
 
-			request.setAttribute("mensagem", "Reporte alterado com sucesso!");
+			request.setAttribute("mensagem", "alterar");
 			
-			request.setAttribute("pagina",
-					"controladorReporte?acao=listar&codigoUsuario="
-							+ codigoUsuario);
-			
-
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/mensagem.jsp");
+					.getRequestDispatcher("controladorReporte?acao=listar&codigoUsuario="
+						+ codigoUsuario);
 			dispatcher.forward(request, response);
-
 
 		} catch (ProblemaNaoEncontradoException e) {
 			e.printStackTrace();		}

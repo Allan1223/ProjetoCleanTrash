@@ -15,6 +15,7 @@ if(session.getAttribute("usuario") == null) {
 } 
 
 Usuario usuario = (Usuario) session.getAttribute("usuario");
+String mensagem = (String) request.getAttribute("mensagem");
 //Envia a sessao
 session.setAttribute("usuario",usuario);
 
@@ -228,6 +229,22 @@ pageContext.setAttribute("reporte", reportes);
 			<a href="homeOperador.jsp">Home</a>
 		</h2>
 	</div>
+	
+	<%	
+		if(mensagem != null){
+			
+			if(mensagem.equals("cadastrar")){
+				
+				out.print("<script>");
+				out.print("alert('Reporte Solucionado com Sucesso!');");
+				out.print("</script>");	
+			}
+					
+		
+			
+		}
+
+	%>
 
 </body>
 

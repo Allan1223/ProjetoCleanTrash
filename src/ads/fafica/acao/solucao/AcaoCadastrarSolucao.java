@@ -60,14 +60,10 @@ public class AcaoCadastrarSolucao implements AcaoSolucao {
 
 			controladorReporte.atualizarStatus(codigoProblema);
 			
-			request.setAttribute("mensagem", "Reporte solucionado com sucesso!");
+			request.setAttribute("mensagem", "cadastrar");
 			
-			request.setAttribute("pagina",
-					"controladorReporte?acao=listarReporteOperador");
-			
-
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/mensagem.jsp");
+					.getRequestDispatcher("controladorReporte?acao=listarReporteOperador");
 			dispatcher.forward(request, response);
 			
 

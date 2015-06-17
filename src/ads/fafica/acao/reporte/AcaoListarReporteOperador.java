@@ -35,6 +35,10 @@ public class AcaoListarReporteOperador implements AcaoReporte {
 
 			List<Reporte> reporte = controladorReporte.listarReporteOperador();
 
+			String mensagem = (String) request.getAttribute("mensagem");
+			
+			request.setAttribute("mensagem", mensagem);	
+			
 			request.setAttribute("reporte", reporte);
 
 			RequestDispatcher dispatcher = request

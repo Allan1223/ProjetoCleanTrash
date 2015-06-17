@@ -19,6 +19,7 @@ Usuario usuario = (Usuario) session.getAttribute("usuario");
 session.setAttribute("usuario",usuario);
 
 List<Reporte> reportes = (List<Reporte>) request.getAttribute("reporte");
+String mensagem        = (String) request.getAttribute("mensagem");
 
 /*boolean pesquisa = (Boolean) request.getAttribute("pesquisa");
 
@@ -32,6 +33,7 @@ if(!pesquisa){*/
 	}
 
 /*}*/
+	
 pageContext.setAttribute("reporte", reportes);
 
 
@@ -77,8 +79,8 @@ pageContext.setAttribute("reporte", reportes);
 		<h1>Status dos Reportes</h1>
 	</div>
 	<div class="container">
-
-
+	
+	    
 
 		<!-- Conteudo da pÃ¡gina -->
 		<div id="status">
@@ -213,6 +215,37 @@ pageContext.setAttribute("reporte", reportes);
 			<a href="homeComum.jsp">Home</a>
 		</h2>
 	</div>
+	
+<%	
+	if(mensagem != null){
+		
+		if(mensagem.equals("cadastro")){
+			
+			out.print("<script>");
+			out.print("alert('Reporte Cadastrado com Sucesso!');");
+			out.print("</script>");	
+		}
+		
+		if(mensagem.equals("alterar")){
+			
+			out.print("<script>");
+			out.print("alert('Reporte Alterado com Sucesso!');");
+			out.print("</script>");	
+		}
+		
+		if(mensagem.equals("excluir")){
+			
+			out.print("<script>");
+			out.print("alert('Reporte Excluído com Sucesso!');");
+			out.print("</script>");	
+		}
+			
+	
+		
+	}
+
+%>
+	
 
 </body>
 

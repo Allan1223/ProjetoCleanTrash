@@ -58,15 +58,17 @@ public class AcaoCadastrarReporte implements AcaoReporte {
 
 			controladorReporte.inserirReporte(reporte);
 			
-			request.setAttribute("mensagem", "Reporte cadastrado com sucesso!");
+			request.setAttribute("mensagem", "cadastro");
 			
 			request.setAttribute("pagina",
 					"controladorReporte?acao=listar&codigoUsuario="
 						+ codigoUsuario);
 			
 
+			// /mensagem.jsp
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/mensagem.jsp");
+					.getRequestDispatcher("controladorReporte?acao=listar&codigoUsuario="
+						+ codigoUsuario);
 			dispatcher.forward(request, response);
 			
 

@@ -52,10 +52,7 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 			if (!existe) {
 				controladorUsuario.inserirUsuario(usuario);
 
-				request.setAttribute("mensagem",
-						"Usuario adicionado com sucesso!");
-				
-				
+				request.setAttribute("mensagem", "cadastrar");							
 
 				// testa se o cadastro veio da página inicial
 				if (perfil.equals("ComumInicial")) {
@@ -63,22 +60,17 @@ public class AcaoCadastrarUsuario implements AcaoUsuario {
 					request.getSession().invalidate();
 					HttpSession session = request.getSession(true);
 					session.setAttribute("usuario", usuario);
-
-					request.setAttribute("pagina",
-							"homeComum.jsp");
 					
 					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("mensagem.jsp");
+							.getRequestDispatcher("/homeComum.jsp");
 					dispatcher.forward(request, response);
 
 				}
 
 				else {
-					
-					request.setAttribute("pagina",
-							"controladorUsuario?acao=listar");
+										
 					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("/mensagem.jsp");
+							.getRequestDispatcher("controladorUsuario?acao=listar");
 					dispatcher.forward(request, response);
 				}
 			}

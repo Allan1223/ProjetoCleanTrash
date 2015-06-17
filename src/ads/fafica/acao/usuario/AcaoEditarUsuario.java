@@ -55,14 +55,11 @@ public class AcaoEditarUsuario implements AcaoUsuario {
 		try {
 			controladorUsuario.atualizarUsuario(usuario);
 			
-			request.setAttribute("mensagem", "Usuario alterado com sucesso!");
-			
-			request.setAttribute("pagina",
-					"controladorUsuario?acao=listar");
-			
+			request.setAttribute("mensagem", "alterar");
+							
 
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/mensagem.jsp");
+					.getRequestDispatcher("controladorUsuario?acao=listar");
 			dispatcher.forward(request, response);
 
 		} catch (RepositorioException e) {
